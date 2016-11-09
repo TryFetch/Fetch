@@ -55,7 +55,8 @@ extension MediaType {
     }
     
     func generatePoster(callback: (UIImage) -> Void) {
-        let noArtworkView = NSBundle(identifier: "uk.co.wearecocoon.PutioKit")!.loadNibNamed("NoArtwork", owner: nil, options: nil)![0] as! NoArtworkView
+        
+        let noArtworkView = NSBundle(forClass: Putio.self).loadNibNamed("NoArtwork", owner: nil, options: nil)![0] as! NoArtworkView
         noArtworkView.frame = CGRectMake(0, 0, 350, 525)
         noArtworkView.label.text = self.title
         

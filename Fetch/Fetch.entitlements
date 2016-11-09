@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)uk.co.wearecocoon.Fetch</string>
+		<string>com.getfetchapp.Fetch-1478723902</string>
 	</array>
 </dict>
 </plist>
