@@ -11,7 +11,6 @@ import AVFoundation
 import Fabric
 import Crashlytics
 import PutioKit
-import GoSquared
 import ReachabilitySwift
 
 var reachability: Reachability?
@@ -31,11 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
         }
         
         Fabric.with([Crashlytics.self()])
-        
-        GoSquared.sharedTracker().token = "GSN-416200-V"
-        GoSquared.sharedTracker().key = "FMH19BQ6KBRIFDPF"
-        GoSquared.sharedTracker().secret = "032646bce72e243d0aee505a78ad93e3"
-        GoSquared.sharedTracker().logLevel = .Silent
         
         do {
             // Setup the AV Session so we can play via AirPlay in the background
@@ -100,9 +94,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
         
         // This is the first run, it'll be shown if there is nothing stored in the keychain
         
+        print(Putio.keychain)
+        
         if let token = Putio.accessToken {
-            GoSquared.sharedTracker().identify(token)
-            GoSquared.sharedChatViewController().openConnection()
+            // The user is logged in
         } else {
             let sb: UIStoryboard = UIStoryboard(name: "FirstRun", bundle: nil)
             let vc: UIViewController = sb.instantiateInitialViewController()!

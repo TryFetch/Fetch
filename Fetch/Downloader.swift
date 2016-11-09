@@ -121,7 +121,7 @@ class Downloader {
         let fm = NSFileManager.defaultManager()
         let documentsUrl =  fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         do {
-            try fm.removeItemAtURL(documentsUrl.URLByAppendingPathComponent(file))
+            try fm.removeItemAtURL(documentsUrl.URLByAppendingPathComponent(file)!)
         } catch {
             print("Could not delete file")
         }

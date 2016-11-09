@@ -11,7 +11,7 @@ PODS:
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.2.2):
     - MZAppearance
-  - ReachabilitySwift (3)
+  - ReachabilitySwift (2.4)
   - Realm (2.0.3):
     - Realm/Headers (= 2.0.3)
   - Realm/Headers (2.0.3)
@@ -29,7 +29,7 @@ DEPENDENCIES:
   - Fabric
   - KeychainAccess (~> 2.4)
   - MZFormSheetPresentationController (~> 2.2.0)
-  - ReachabilitySwift
+  - ReachabilitySwift (~> 2.4)
   - RealmSwift
   - SwiftyJSON (= 2.4.0)
   - TUSafariActivity
@@ -44,12 +44,12 @@ SPEC CHECKSUMS:
   KeychainAccess: c2a71459af5bddf720a51806046a598500976c04
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 8772f845dd3c64a0d9fe545a997d72201db3fe39
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  ReachabilitySwift: dc7452dab85ff881904215e1a113326ad8d07beb
   Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
   SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: e15f96cf903ace3e8b9bc9fd1f686dfd5b17e831
+PODFILE CHECKSUM: 8675ae75edbb0453a1704f15212c05dced5a2e2e
 
 COCOAPODS: 1.0.0

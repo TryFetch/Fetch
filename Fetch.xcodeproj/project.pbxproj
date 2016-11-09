@@ -18,12 +18,8 @@
 		2802CF351C3FBF210062DEEF /* RSSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2802CF341C3FBF210062DEEF /* RSSTableViewController.swift */; };
 		2802CF371C3FD5AA0062DEEF /* AddFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2802CF361C3FD5AA0062DEEF /* AddFeedTableViewController.swift */; };
 		280B283C1C1C8930006E17B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B283B1C1C8930006E17B6 /* AppDelegate.swift */; };
-		280B286F1C1C8977006E17B6 /* SRBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */; };
-		280B28701C1C8977006E17B6 /* SRBarcodeScanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		280B28761C1C8984006E17B6 /* SRBarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28741C1C8984006E17B6 /* SRBarcodeScanner.swift */; };
 		280B28771C1C8984006E17B6 /* SRBarcodeScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28751C1C8984006E17B6 /* SRBarcodeScannerDelegate.swift */; };
-		280B28841C1C89BE006E17B6 /* PutioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */; };
-		280B28851C1C89BE006E17B6 /* PutioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		280B288B1C1C8AF0006E17B6 /* Putio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28891C1C8AF0006E17B6 /* Putio.swift */; };
 		280B288C1C1C8AF1006E17B6 /* TMDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B288A1C1C8AF0006E17B6 /* TMDB.swift */; };
 		280B28901C1C8B30006E17B6 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B288E1C1C8B30006E17B6 /* Files.swift */; };
@@ -121,6 +117,10 @@
 		286FFFAE1C95A55E00A0D8FA /* FetchAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FFFAD1C95A55D00A0D8FA /* FetchAlertController.swift */; };
 		287829531C94523F0090EE69 /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287829521C94523F0090EE69 /* PushNotifications.swift */; };
 		2891E5681CA5B222005CEE06 /* QuickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2891E5671CA5B222005CEE06 /* QuickAction.swift */; };
+		289480A31DD370D700C6301C /* SRBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */; };
+		289480A41DD370D700C6301C /* SRBarcodeScanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		289480A71DD370D700C6301C /* PutioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */; };
+		289480A81DD370D700C6301C /* PutioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		289D77661CA05A3D00EE8FF3 /* TVShowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D77651CA05A3D00EE8FF3 /* TVShowCollectionViewController.swift */; };
 		289D77681CA08C3100EE8FF3 /* TVShowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D77671CA08C3100EE8FF3 /* TVShowCollectionViewCell.swift */; };
 		289E63DA1C9F20060090B6FA /* FAQs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 289E63D91C9F20060090B6FA /* FAQs.storyboard */; };
@@ -142,14 +142,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		280B286D1C1C8977006E17B6 /* PBXContainerItemProxy */ = {
+		289480A51DD370D700C6301C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 280B28301C1C8930006E17B6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 280B28671C1C8977006E17B6;
 			remoteInfo = SRBarcodeScanner;
 		};
-		280B28821C1C89BE006E17B6 /* PBXContainerItemProxy */ = {
+		289480A91DD370D700C6301C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 280B28301C1C8930006E17B6 /* Project object */;
 			proxyType = 1;
@@ -166,14 +166,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		280B285E1C1C894B006E17B6 /* Embed Frameworks */ = {
+		289480AB1DD370D700C6301C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				280B28851C1C89BE006E17B6 /* PutioKit.framework in Embed Frameworks */,
-				280B28701C1C8977006E17B6 /* SRBarcodeScanner.framework in Embed Frameworks */,
+				289480A41DD370D700C6301C /* SRBarcodeScanner.framework in Embed Frameworks */,
+				289480A81DD370D700C6301C /* PutioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +304,7 @@
 		286FFFAD1C95A55D00A0D8FA /* FetchAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAlertController.swift; sourceTree = "<group>"; };
 		287829521C94523F0090EE69 /* PushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
 		2891E5671CA5B222005CEE06 /* QuickAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAction.swift; sourceTree = "<group>"; };
+		289480AC1DD3767C00C6301C /* Fetch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fetch.entitlements; sourceTree = "<group>"; };
 		289D77651CA05A3D00EE8FF3 /* TVShowCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowCollectionViewController.swift; sourceTree = "<group>"; };
 		289D77671CA08C3100EE8FF3 /* TVShowCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowCollectionViewCell.swift; sourceTree = "<group>"; };
 		289E63D91C9F20060090B6FA /* FAQs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FAQs.storyboard; sourceTree = "<group>"; };
@@ -343,12 +344,14 @@
 				280B294A1C1C9CE5006E17B6 /* libc++.tbd in Frameworks */,
 				280B29551C1C9D2A006E17B6 /* AmazonFling.framework in Frameworks */,
 				280B29561C1C9D2A006E17B6 /* Bolts.framework in Frameworks */,
+				289480A31DD370D700C6301C /* SRBarcodeScanner.framework in Frameworks */,
 				280B29521C1C9D02006E17B6 /* SystemConfiguration.framework in Frameworks */,
 				280B294F1C1C9CF6006E17B6 /* MediaPlayer.framework in Frameworks */,
 				280B29501C1C9CF6006E17B6 /* MediaToolbox.framework in Frameworks */,
 				280B294C1C1C9CEE006E17B6 /* MediaAccessibility.framework in Frameworks */,
 				280B29481C1C9CDB006E17B6 /* CoreText.framework in Frameworks */,
 				280B29461C1C9CD5006E17B6 /* CoreBluetooth.framework in Frameworks */,
+				289480A71DD370D700C6301C /* PutioKit.framework in Frameworks */,
 				280B29441C1C9CCD006E17B6 /* AVFoundation.framework in Frameworks */,
 				280B29421C1C9CC7006E17B6 /* AudioToolbox.framework in Frameworks */,
 				280B29401C1C9CC1006E17B6 /* Accelerate.framework in Frameworks */,
@@ -356,8 +359,6 @@
 				280B293C1C1C9C58006E17B6 /* libicucore.tbd in Frameworks */,
 				280B293A1C1C9C50006E17B6 /* libz.tbd in Frameworks */,
 				280B29381C1C9C43006E17B6 /* libConnectSDK.a in Frameworks */,
-				280B28841C1C89BE006E17B6 /* PutioKit.framework in Frameworks */,
-				280B286F1C1C8977006E17B6 /* SRBarcodeScanner.framework in Frameworks */,
 				AFFD89806DD73995280BBECB /* Pods_Fetch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +434,7 @@
 		280B283A1C1C8930006E17B6 /* Fetch */ = {
 			isa = PBXGroup;
 			children = (
+				289480AC1DD3767C00C6301C /* Fetch.entitlements */,
 				280B295D1C1CD9E4006E17B6 /* Extensions */,
 				280B291E1C1C8D81006E17B6 /* Supporting Files */,
 				280B290F1C1C8D20006E17B6 /* ConnectSDK */,
@@ -885,17 +887,17 @@
 				280B28351C1C8930006E17B6 /* Frameworks */,
 				286FFFAC1C95905000A0D8FA /* Update Settings.bundle Build */,
 				280B28361C1C8930006E17B6 /* Resources */,
-				280B285E1C1C894B006E17B6 /* Embed Frameworks */,
 				28EBE3F71C88D15100A6E573 /* Realm */,
 				2891E5691CA5E4AA005CEE06 /* Fabric */,
 				0734EE83EE8B9F9B5E9547FF /* 📦 Embed Pods Frameworks */,
 				8AA65BA09C234F9DA417E1D2 /* 📦 Copy Pods Resources */,
+				289480AB1DD370D700C6301C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				280B286E1C1C8977006E17B6 /* PBXTargetDependency */,
-				280B28831C1C89BE006E17B6 /* PBXTargetDependency */,
+				289480A61DD370D700C6301C /* PBXTargetDependency */,
+				289480AA1DD370D700C6301C /* PBXTargetDependency */,
 			);
 			name = Fetch;
 			productName = Fetch;
@@ -974,6 +976,9 @@
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 						};
@@ -1308,15 +1313,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		280B286E1C1C8977006E17B6 /* PBXTargetDependency */ = {
+		289480A61DD370D700C6301C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 280B28671C1C8977006E17B6 /* SRBarcodeScanner */;
-			targetProxy = 280B286D1C1C8977006E17B6 /* PBXContainerItemProxy */;
+			targetProxy = 289480A51DD370D700C6301C /* PBXContainerItemProxy */;
 		};
-		280B28831C1C89BE006E17B6 /* PBXTargetDependency */ = {
+		289480AA1DD370D700C6301C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 280B287C1C1C89BE006E17B6 /* PutioKit */;
-			targetProxy = 280B28821C1C89BE006E17B6 /* PBXContainerItemProxy */;
+			targetProxy = 289480A91DD370D700C6301C /* PBXContainerItemProxy */;
 		};
 		28C91E561CA709C600D45750 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1413,8 +1418,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71AE25CBDB0BD8616C93AAD3 /* Pods-Fetch.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Fetch/Fetch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1445,8 +1452,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DEC2916A6B6B8089329516C4 /* Pods-Fetch.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Fetch/Fetch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1477,6 +1486,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1502,6 +1512,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1527,6 +1538,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1557,6 +1569,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

@@ -8,6 +8,7 @@ def shared
   pod 'SwiftyJSON', '2.4.0'
   pod 'KeychainAccess', '~> 2.4'
   pod 'RealmSwift'
+  pod 'Downpour', '~> 0.1'
   
 end
 
@@ -19,13 +20,13 @@ target 'Fetch' do
   pod 'TUSafariActivity'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'ReachabilitySwift'
+  pod 'ReachabilitySwift', '~> 2.4'
   
 end
 
 target 'PutioKit' do
-
-  pod 'Downpour', '~> 0.1'
+  
+  shared
 
 end
 

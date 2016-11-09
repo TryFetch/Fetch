@@ -43,8 +43,8 @@ class GradientOverlay: UIView {
         //6 - draw the gradient
         let startPoint = CGPoint.zero
         let endPoint = CGPoint(x:0, y:self.bounds.height)
-        CGContextDrawLinearGradient(context,
-            gradient,
+        CGContextDrawLinearGradient(context!,
+            gradient!,
             startPoint,
             endPoint,
             [])

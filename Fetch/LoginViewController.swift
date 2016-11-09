@@ -65,6 +65,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             
             let accessToken = url?.query!.stringByReplacingOccurrencesOfString("access_token=", withString: "", options: [], range: nil)
             
+            
+            
             Putio.keychain["access_token"] = accessToken
             
             let pc = self.presentingViewController
@@ -99,7 +101,9 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     }
     
     func loginWithOnePassword(sender: AnyObject) {
-        oneP.fillItemIntoWebView(webView, forViewController: self, sender: sender, showOnlyLogins: true, completion: nil)
+        oneP.fillItemIntoWebView(webView, forViewController: self, sender: sender, showOnlyLogins: true) { completed, error in
+            print(error)
+        }
     }
 
 }

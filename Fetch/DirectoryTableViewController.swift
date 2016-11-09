@@ -18,7 +18,6 @@ class DirectoryTableViewController: FilesTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = file.name
-        trackingTitle = "All Files"
     }
     
     override func setParams() -> [String : String] {
