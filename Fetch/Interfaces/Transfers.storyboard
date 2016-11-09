@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CsJ-Gk-vQG">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Transfers-->
+        <scene sceneID="I5Q-KV-6i7">
+            <objects>
+                <splitViewController id="CsJ-Gk-vQG" customClass="TransferSplitViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Transfers" image="cloud" id="6U5-2o-PM2">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="cloud-active"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <connections>
+                        <segue destination="2Rc-GC-beJ" kind="relationship" relationship="masterViewController" id="FwV-fZ-oza"/>
+                        <segue destination="fUc-vo-dHj" kind="relationship" relationship="detailViewController" id="yu7-Gp-QhS"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BcW-th-xfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-954" y="1550"/>
+        </scene>
+        <!--Add Files-->
+        <scene sceneID="Ril-kM-r2W">
+            <objects>
+                <navigationController title="Add Files" automaticallyAdjustsScrollViewInsets="NO" id="2Rc-GC-beJ" customClass="FilesNavViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Transfers" image="cloud" id="jF8-j4-IaA">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="cloud-active"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="8Pj-5S-vrc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.98823529409999999" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="371-Fv-aTy">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="uxz-RO-3wW" kind="relationship" relationship="rootViewController" id="epW-O8-xAl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TXo-Ja-roD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1352" y="2328"/>
+        </scene>
+        <!--Transfers-->
+        <scene sceneID="1Id-yH-cyA">
+            <objects>
+                <tableViewController id="uxz-RO-3wW" customClass="TransfersTableViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8jw-6v-LjP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="0.22" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="transfer" textLabel="k4r-WO-dOM" detailTextLabel="umm-eI-P34" style="IBUITableViewCellStyleSubtitle" id="XS4-TL-nAi">
+                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XS4-TL-nAi" id="s9t-ub-ljY">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Transfer Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4r-WO-dOM">
+                                            <rect key="frame" x="15" y="5" width="107" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="umm-eI-P34">
+                                            <rect key="frame" x="15" y="25" width="31" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uxz-RO-3wW" id="ySK-rW-edV"/>
+                            <outlet property="delegate" destination="uxz-RO-3wW" id="yf8-VQ-xaA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Transfers" id="BA3-mK-7OB">
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="JYl-LK-iix">
+                            <connections>
+                                <action selector="clearCompleted:" destination="uxz-RO-3wW" id="85n-Ot-tVL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="v8d-Sr-3e9">
+                            <connections>
+                                <segue destination="YCe-BD-Igu" kind="presentation" identifier="addTransfer" modalPresentationStyle="formSheet" id="m5f-Fy-d7e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="W2Z-Mb-1h4">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jx8-oq-5dV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1352" y="3064"/>
+        </scene>
+        <!--Transfers Detail Table View Controller-->
+        <scene sceneID="xLm-ef-p8l">
+            <objects>
+                <tableViewController id="SaY-mc-IlI" customClass="TransfersDetailTableViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hTW-2U-8nv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.12" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="0.22" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.12" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="RZ2-Wf-R6X" detailTextLabel="oIT-wD-lyn" style="IBUITableViewCellStyleValue1" id="MjR-j0-aog">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MjR-j0-aog" id="Ard-mq-Xde">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RZ2-Wf-R6X">
+                                            <rect key="frame" x="15" y="12" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oIT-wD-lyn">
+                                            <rect key="frame" x="543" y="12" width="42" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SaY-mc-IlI" id="WyL-2U-0HQ"/>
+                            <outlet property="delegate" destination="SaY-mc-IlI" id="wZS-Sk-Xgw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="qwo-bD-cfN"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OVJ-wn-Vyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="164" y="2328"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YIT-w6-gab">
+            <objects>
+                <viewController id="rzj-u6-a9S" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UE9-9Z-HzH"/>
+                        <viewControllerLayoutGuide type="bottom" id="3QH-oV-VQ4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ORc-29-x6s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.12" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="awY-Wq-OHk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="re4-Ea-0ZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1285" y="3096"/>
+        </scene>
+        <!--Add Files-->
+        <scene sceneID="A1S-ai-oGz">
+            <objects>
+                <navigationController storyboardIdentifier="addFiles" title="Add Files" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="YCe-BD-Igu" customClass="FilesNavViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="KpX-Jj-7r1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.98823529409999999" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nXC-7A-5fi" kind="relationship" relationship="rootViewController" id="9rN-HZ-KRo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asC-y1-rWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1352" y="3816"/>
+        </scene>
+        <!--Files Nav View Controller-->
+        <scene sceneID="MbF-Wq-zhQ">
+            <objects>
+                <navigationController storyboardIdentifier="detailViewController" automaticallyAdjustsScrollViewInsets="NO" id="fUc-vo-dHj" customClass="FilesNavViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Ffz-Sl-rpX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.98823529409999999" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SaY-mc-IlI" kind="relationship" relationship="rootViewController" id="9Kp-y9-Xha"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JAp-GS-XYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-532" y="2328"/>
+        </scene>
+        <!--Add Files-->
+        <scene sceneID="V1A-H9-4lQ">
+            <objects>
+                <viewController id="nXC-7A-5fi" customClass="AddFilesViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uj3-vx-w6Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Wl-iG-JIS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OGY-5L-wom">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDp-hq-YcF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="311"/>
+                                <color key="backgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="150"/>
+                                </variation>
+                            </textView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JnL-Rv-e14">
+                                <rect key="frame" x="0.0" y="310" width="600" height="290"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="290" id="spx-AS-pGS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="JnL-Rv-e14" secondAttribute="trailing" constant="-16" id="3e0-9C-r6d"/>
+                            <constraint firstAttribute="height" secondItem="vDp-hq-YcF" secondAttribute="height" constant="298" id="40v-AO-wPO">
+                                <variation key="heightClass=compact" constant="199"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="305"/>
+                            </constraint>
+                            <constraint firstItem="vDp-hq-YcF" firstAttribute="leading" secondItem="OGY-5L-wom" secondAttribute="leadingMargin" constant="-16" id="EOU-yU-7Fh"/>
+                            <constraint firstItem="vDp-hq-YcF" firstAttribute="top" secondItem="OGY-5L-wom" secondAttribute="topMargin" id="H4c-39-j9a">
+                                <variation key="heightClass=compact-widthClass=regular" constant="44"/>
+                            </constraint>
+                            <constraint firstItem="JnL-Rv-e14" firstAttribute="top" secondItem="vDp-hq-YcF" secondAttribute="bottom" constant="-1" id="WUY-hH-sv7"/>
+                            <constraint firstItem="JnL-Rv-e14" firstAttribute="leading" secondItem="OGY-5L-wom" secondAttribute="leadingMargin" constant="-16" id="Yx7-ba-GRK"/>
+                            <constraint firstItem="8Wl-iG-JIS" firstAttribute="top" secondItem="JnL-Rv-e14" secondAttribute="bottom" id="bSk-pz-ff3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vDp-hq-YcF" secondAttribute="trailing" constant="-16" id="ouE-t6-TOG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="40v-AO-wPO"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Files" id="940-7n-0iT">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="aZe-HE-e6v">
+                            <connections>
+                                <action selector="closeView:" destination="nXC-7A-5fi" id="co8-Ut-dTD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="QJ6-np-iA2">
+                            <connections>
+                                <action selector="saveFiles:" destination="nXC-7A-5fi" id="SOR-si-P24"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="folderPicker" destination="JnL-Rv-e14" id="yV1-Zo-wtb"/>
+                        <outlet property="heightConstraint" destination="spx-AS-pGS" id="TAe-1q-cxO"/>
+                        <outlet property="saveBtn" destination="QJ6-np-iA2" id="cIR-N8-hOS"/>
+                        <outlet property="textView" destination="vDp-hq-YcF" id="44D-ti-Tr6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qmd-Ah-27z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-677" y="3816"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hIf-Sl-Dbz">
+            <objects>
+                <navigationController storyboardIdentifier="blankViewController" automaticallyAdjustsScrollViewInsets="NO" id="SDi-V1-yYU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="HH0-AZ-ZaR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rzj-u6-a9S" kind="relationship" relationship="rootViewController" id="fy7-23-4t6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7sd-nT-cE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473" y="3096"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cloud" width="30" height="30"/>
+        <image name="cloud-active" width="30" height="30"/>
+    </resources>
+</document>

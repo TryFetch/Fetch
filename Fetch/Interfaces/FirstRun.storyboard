@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5yV-bx-xkc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="blE-nZ-wJo">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="5yV-bx-xkc" customClass="PageViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I4H-AJ-w4U"/>
+                        <viewControllerLayoutGuide type="bottom" id="whD-IE-00I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dJD-Fk-PdJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-bg" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-L0-AsM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXP-96-o5O">
+                                <rect key="frame" x="237" y="547" width="127" height="33"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Login with Put.io">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginDown:" destination="5yV-bx-xkc" eventType="touchDown" id="fqy-1R-Ida"/>
+                                    <action selector="loginUp:" destination="5yV-bx-xkc" eventType="touchUpInside" id="0IP-5f-WgU"/>
+                                    <action selector="loginUp:" destination="5yV-bx-xkc" eventType="touchUpOutside" id="MRT-lN-2GS"/>
+                                    <action selector="loginUp:" destination="5yV-bx-xkc" eventType="touchCancel" id="yG2-Kl-M5K"/>
+                                    <action selector="showWebView:" destination="5yV-bx-xkc" eventType="touchUpInside" id="TaE-kW-9nx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Fetch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-aD-VCG">
+                                <rect key="frame" x="20" y="239" width="560" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get you logged in…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqU-1V-KxN">
+                                <rect key="frame" x="20" y="280" width="560" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="NXP-96-o5O" secondAttribute="bottom" constant="20" symbolic="YES" id="1Lt-ef-fKM"/>
+                            <constraint firstItem="jqU-1V-KxN" firstAttribute="leading" secondItem="dJD-Fk-PdJ" secondAttribute="leadingMargin" id="2uA-bM-fs1"/>
+                            <constraint firstItem="pp3-L0-AsM" firstAttribute="leading" secondItem="dJD-Fk-PdJ" secondAttribute="leading" id="3dW-cA-IPE"/>
+                            <constraint firstItem="NXP-96-o5O" firstAttribute="centerX" secondItem="dJD-Fk-PdJ" secondAttribute="centerX" constant="1" id="8bR-d1-Bsq"/>
+                            <constraint firstItem="jqU-1V-KxN" firstAttribute="trailing" secondItem="dJD-Fk-PdJ" secondAttribute="trailingMargin" id="Hbg-cU-wKx"/>
+                            <constraint firstItem="pp3-L0-AsM" firstAttribute="top" secondItem="dJD-Fk-PdJ" secondAttribute="top" id="L1Z-Oh-ey6"/>
+                            <constraint firstItem="ZQc-aD-VCG" firstAttribute="leading" secondItem="dJD-Fk-PdJ" secondAttribute="leadingMargin" id="Ufk-ts-NLw"/>
+                            <constraint firstItem="ZQc-aD-VCG" firstAttribute="trailing" secondItem="dJD-Fk-PdJ" secondAttribute="trailingMargin" id="cnE-hB-2kv"/>
+                            <constraint firstItem="jqU-1V-KxN" firstAttribute="top" secondItem="ZQc-aD-VCG" secondAttribute="bottom" constant="8" id="jWp-Fx-1AM"/>
+                            <constraint firstAttribute="trailing" secondItem="pp3-L0-AsM" secondAttribute="trailing" id="olR-Nh-Rsv"/>
+                            <constraint firstItem="ZQc-aD-VCG" firstAttribute="centerY" secondItem="dJD-Fk-PdJ" secondAttribute="centerY" constant="-45" id="rG3-DL-YtW"/>
+                            <constraint firstItem="whD-IE-00I" firstAttribute="top" secondItem="pp3-L0-AsM" secondAttribute="bottom" id="suN-xH-bEG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="NXP-96-o5O" id="uUw-VN-uYy"/>
+                        <segue destination="TnU-pD-aGe" kind="presentation" identifier="showWebView" id="oW8-lv-hei"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6nE-NZ-aft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="1803"/>
+        </scene>
+        <!--Login with Put.io-->
+        <scene sceneID="tdV-p3-8sV">
+            <objects>
+                <viewController id="Mop-ZB-e7c" customClass="LoginViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <webView key="view" contentMode="scaleToFill" id="V21-AG-OEC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </webView>
+                    <navigationItem key="navigationItem" title="Login with Put.io" id="Pzn-X8-Nfm">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="YFu-VP-0FI">
+                            <connections>
+                                <action selector="closeView:" destination="Mop-ZB-e7c" id="BQa-5r-BxS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="V21-AG-OEC" id="q2Y-F7-6tU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vr5-hj-fm9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971" y="2567"/>
+        </scene>
+        <!--Files Nav View Controller-->
+        <scene sceneID="bwm-w5-TyA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TnU-pD-aGe" customClass="FilesNavViewController" customModule="Fetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="5sn-Ys-sAk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Mop-ZB-e7c" kind="relationship" relationship="rootViewController" id="Y9C-PG-4Gy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bPU-iw-qyp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="2567"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="login-bg" width="414" height="545"/>
+    </resources>
+</document>

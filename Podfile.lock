@@ -1,0 +1,70 @@
+PODS:
+  - 1PasswordExtension (1.8)
+  - Alamofire (3.3.1)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.7)
+  - GoSquared/Autoload (0.1.0-chat):
+    - GoSquared/Core
+  - GoSquared/Chat (0.1.0-chat):
+    - GoSquared/Core
+    - SocketRocket (~> 0.4.2)
+  - GoSquared/Core (0.1.0-chat)
+  - KeychainAccess (2.3.5)
+  - MZAppearance (1.1.6)
+  - MZFormSheetPresentationController (2.2.2):
+    - MZAppearance
+  - ReachabilitySwift (2.3.3)
+  - Realm (0.98.7):
+    - Realm/Headers (= 0.98.7)
+  - Realm/Headers (0.98.7)
+  - RealmSwift (0.98.7):
+    - Realm (= 0.98.7)
+  - SocketRocket (0.4.2)
+  - SwiftyJSON (2.3.2)
+  - TUSafariActivity (1.0.4)
+
+DEPENDENCIES:
+  - 1PasswordExtension
+  - Alamofire (~> 3.0)
+  - AlamofireImage (~> 2.0)
+  - Crashlytics
+  - Fabric
+  - GoSquared/Autoload (from `git@github.com:gosquared/gosquared-ios-chat.git`)
+  - GoSquared/Chat (from `git@github.com:gosquared/gosquared-ios-chat.git`)
+  - KeychainAccess
+  - MZFormSheetPresentationController (~> 2.2.0)
+  - ReachabilitySwift
+  - RealmSwift
+  - SwiftyJSON
+  - TUSafariActivity
+
+EXTERNAL SOURCES:
+  GoSquared:
+    :git: git@github.com:gosquared/gosquared-ios-chat.git
+
+CHECKOUT OPTIONS:
+  GoSquared:
+    :commit: 0916351d218d3d3f9e81f5b4ca1983497bdb3094
+    :git: git@github.com:gosquared/gosquared-ios-chat.git
+
+SPEC CHECKSUMS:
+  1PasswordExtension: 627d5aecf210c7636968faf5a4c3546c9531385b
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  GoSquared: 69a5f0eba9998994aeaf98f3d968bd126b7bb396
+  KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
+  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
+  MZFormSheetPresentationController: 8772f845dd3c64a0d9fe545a997d72201db3fe39
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  Realm: 46df2178359b6b57812e6cf957956febaba513a5
+  RealmSwift: 3056e6d7ad30ed50dd866185a615fccea73db5f5
+  SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+
+COCOAPODS: 0.39.0

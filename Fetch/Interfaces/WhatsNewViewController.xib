@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WhatsNewViewController" customModule="Fetch" customModuleProvider="target">
+            <connections>
+                <outlet property="image" destination="xKt-pc-HKb" id="xyO-Lf-As0"/>
+                <outlet property="topSection" destination="WKW-SI-xc3" id="P2U-wo-ACC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKW-SI-xc3">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-star" translatesAutoresizingMaskIntoConstraints="NO" id="xKt-pc-HKb">
+                            <rect key="frame" x="219" y="39" width="162" height="122"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="162" id="AXx-5V-oYZ"/>
+                                <constraint firstAttribute="height" constant="122" id="Q7z-wP-hlt"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98823529409999999" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="xKt-pc-HKb" secondAttribute="centerX" id="DgU-2q-dVr"/>
+                        <constraint firstAttribute="height" constant="200" id="T5I-EC-fWu"/>
+                        <constraint firstAttribute="centerY" secondItem="xKt-pc-HKb" secondAttribute="centerY" id="s32-Vb-EZO"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUh-bg-KDx">
+                    <rect key="frame" x="189" y="526" width="223" height="49"/>
+                    <color key="backgroundColor" red="0.98823529409999999" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="223" id="a2E-7Z-1YA"/>
+                        <constraint firstAttribute="height" constant="49" id="vfR-1t-jQU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Awesome!"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="ok:" destination="-1" eventType="touchUpInside" id="Ihz-ln-x8E"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="We've added search, renaming &amp; moving, position sync, choose download location and more!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDz-0g-goB">
+                    <rect key="frame" x="18" y="220" width="564" height="94"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="94" id="1fR-Q5-UBr"/>
+                    </constraints>
+                    <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="PDz-0g-goB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="0Ai-Lf-4Al"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PDz-0g-goB" secondAttribute="trailing" constant="18" id="LxC-zW-hQw"/>
+                <constraint firstAttribute="centerX" secondItem="fUh-bg-KDx" secondAttribute="centerX" id="aYc-HG-DhH"/>
+                <constraint firstItem="PDz-0g-goB" firstAttribute="top" secondItem="WKW-SI-xc3" secondAttribute="bottom" constant="20" id="g99-rw-cdL"/>
+                <constraint firstItem="WKW-SI-xc3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gKE-WP-kJy"/>
+                <constraint firstItem="WKW-SI-xc3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hia-Jz-qka"/>
+                <constraint firstAttribute="bottom" secondItem="fUh-bg-KDx" secondAttribute="bottom" constant="25" id="oMU-6U-T5m"/>
+                <constraint firstAttribute="trailing" secondItem="WKW-SI-xc3" secondAttribute="trailing" id="psD-6Q-6WH"/>
+                <constraint firstItem="PDz-0g-goB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="qBe-Jq-tcc"/>
+                <constraint firstAttribute="trailing" secondItem="PDz-0g-goB" secondAttribute="trailing" constant="18" id="rn2-RI-ZRs"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="new-star" width="219" height="219"/>
+    </resources>
+</document>
