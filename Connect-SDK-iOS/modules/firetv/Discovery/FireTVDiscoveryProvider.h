@@ -1,0 +1,34 @@
+//
+//  FireTVDiscoveryProvider.h
+//  ConnectSDK
+//
+//  Created by Eugene Nikolskyi on 2015-07-08.
+//  Copyright (c) 2015 LG Electronics. All rights reserved.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+#import "DiscoveryProvider.h"
+
+/**
+ * Discovery provider that can search for Amazon Fire TV and Fire TV Stick
+ * devices.
+ *
+ * @warning Due to the specifics of the Amazon's Fling SDK, stopping the
+ * discovery provider (via <tt>-[DiscoveryManager stopDiscovery]</tt>) will
+ * remove all found Fire TV devices! The Fling SDK's discovery part is required
+ * for @c FireTVService to work properly.
+ */
+@interface FireTVDiscoveryProvider : DiscoveryProvider
+
+@end

@@ -18,17 +18,10 @@
 		2802CF351C3FBF210062DEEF /* RSSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2802CF341C3FBF210062DEEF /* RSSTableViewController.swift */; };
 		2802CF371C3FD5AA0062DEEF /* AddFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2802CF361C3FD5AA0062DEEF /* AddFeedTableViewController.swift */; };
 		280B283C1C1C8930006E17B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B283B1C1C8930006E17B6 /* AppDelegate.swift */; };
-		280B28551C1C894B006E17B6 /* Downpour.h in Headers */ = {isa = PBXBuildFile; fileRef = 280B28541C1C894B006E17B6 /* Downpour.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		280B28591C1C894B006E17B6 /* Downpour.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28521C1C894A006E17B6 /* Downpour.framework */; };
-		280B285A1C1C894B006E17B6 /* Downpour.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28521C1C894A006E17B6 /* Downpour.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		280B28611C1C8961006E17B6 /* Downpour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B285F1C1C8961006E17B6 /* Downpour.swift */; };
-		280B28621C1C8961006E17B6 /* String+CleanedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28601C1C8961006E17B6 /* String+CleanedString.swift */; };
-		280B286B1C1C8977006E17B6 /* SRBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 280B286A1C1C8977006E17B6 /* SRBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		280B286F1C1C8977006E17B6 /* SRBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */; };
 		280B28701C1C8977006E17B6 /* SRBarcodeScanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		280B28761C1C8984006E17B6 /* SRBarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28741C1C8984006E17B6 /* SRBarcodeScanner.swift */; };
 		280B28771C1C8984006E17B6 /* SRBarcodeScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28751C1C8984006E17B6 /* SRBarcodeScannerDelegate.swift */; };
-		280B28801C1C89BE006E17B6 /* PutioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 280B287F1C1C89BE006E17B6 /* PutioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		280B28841C1C89BE006E17B6 /* PutioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */; };
 		280B28851C1C89BE006E17B6 /* PutioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		280B288B1C1C8AF0006E17B6 /* Putio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280B28891C1C8AF0006E17B6 /* Putio.swift */; };
@@ -144,18 +137,11 @@
 		28D871831C8B1F2B00F9F36C /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D871821C8B1F2B00F9F36C /* MoreTableViewController.swift */; };
 		28EB62691CA32E8600985F78 /* SeasonSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EB62681CA32E8600985F78 /* SeasonSectionHeaderCollectionReusableView.swift */; };
 		28EBE3F01C888E3800A6E573 /* NSObject+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EBE3EF1C888E3800A6E573 /* NSObject+Delay.swift */; };
-		535CB73BDFAD10BBE0B64755 /* Pods_Fetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF27E2679B90B61BE52B5C7 /* Pods_Fetch.framework */; };
-		90C16B845B6755A0761ADA3F /* Pods_PutioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FA073567416D9EA41E7736 /* Pods_PutioKit.framework */; };
+		908327948A1F40A7C36204B5 /* Pods_PutioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF286BA2C1BCFCC469FF02F4 /* Pods_PutioKit.framework */; };
+		AFFD89806DD73995280BBECB /* Pods_Fetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D319D310AFEED2AA9BE93E /* Pods_Fetch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		280B28571C1C894B006E17B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 280B28301C1C8930006E17B6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 280B28511C1C894A006E17B6;
-			remoteInfo = Downpour;
-		};
 		280B286D1C1C8977006E17B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 280B28301C1C8930006E17B6 /* Project object */;
@@ -187,7 +173,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				280B28851C1C89BE006E17B6 /* PutioKit.framework in Embed Frameworks */,
-				280B285A1C1C894B006E17B6 /* Downpour.framework in Embed Frameworks */,
 				280B28701C1C8977006E17B6 /* SRBarcodeScanner.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -209,7 +194,6 @@
 		280B28381C1C8930006E17B6 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		280B283B1C1C8930006E17B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		280B28471C1C8930006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		280B28521C1C894A006E17B6 /* Downpour.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Downpour.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		280B28541C1C894B006E17B6 /* Downpour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Downpour.h; sourceTree = "<group>"; };
 		280B28561C1C894B006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		280B285F1C1C8961006E17B6 /* Downpour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downpour.swift; sourceTree = "<group>"; };
@@ -342,12 +326,12 @@
 		28EBE3F21C88D12000A6E573 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		28EBE3FA1C88D36E00A6E573 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		28EBE3FB1C88D36E00A6E573 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		30068F7F81722B899CC2E236 /* Pods-PutioKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PutioKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-PutioKit/Pods-PutioKit.release.xcconfig"; sourceTree = "<group>"; };
-		6DAF3BF100C52C9B25C5388F /* Pods-Fetch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fetch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fetch/Pods-Fetch.release.xcconfig"; sourceTree = "<group>"; };
-		88B86DC5EC0821EC6ED02AFE /* Pods-PutioKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PutioKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PutioKit/Pods-PutioKit.debug.xcconfig"; sourceTree = "<group>"; };
-		90FA073567416D9EA41E7736 /* Pods_PutioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PutioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0672738B61EBC70944AB8A4 /* Pods-Fetch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fetch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fetch/Pods-Fetch.debug.xcconfig"; sourceTree = "<group>"; };
-		EAF27E2679B90B61BE52B5C7 /* Pods_Fetch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fetch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49D319D310AFEED2AA9BE93E /* Pods_Fetch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fetch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71AE25CBDB0BD8616C93AAD3 /* Pods-Fetch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fetch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fetch/Pods-Fetch.debug.xcconfig"; sourceTree = "<group>"; };
+		A36D05478F6C9BA03FB64878 /* Pods-PutioKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PutioKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-PutioKit/Pods-PutioKit.release.xcconfig"; sourceTree = "<group>"; };
+		BF286BA2C1BCFCC469FF02F4 /* Pods_PutioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PutioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6581CFA1E4994C8667E8BC3 /* Pods-PutioKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PutioKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PutioKit/Pods-PutioKit.debug.xcconfig"; sourceTree = "<group>"; };
+		DEC2916A6B6B8089329516C4 /* Pods-Fetch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fetch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fetch/Pods-Fetch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,16 +357,8 @@
 				280B293A1C1C9C50006E17B6 /* libz.tbd in Frameworks */,
 				280B29381C1C9C43006E17B6 /* libConnectSDK.a in Frameworks */,
 				280B28841C1C89BE006E17B6 /* PutioKit.framework in Frameworks */,
-				280B28591C1C894B006E17B6 /* Downpour.framework in Frameworks */,
 				280B286F1C1C8977006E17B6 /* SRBarcodeScanner.framework in Frameworks */,
-				535CB73BDFAD10BBE0B64755 /* Pods_Fetch.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		280B284E1C1C894A006E17B6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				AFFD89806DD73995280BBECB /* Pods_Fetch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +373,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90C16B845B6755A0761ADA3F /* Pods_PutioKit.framework in Frameworks */,
+				908327948A1F40A7C36204B5 /* Pods_PutioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +415,7 @@
 				28C91E511CA709C600D45750 /* FetchUITests */,
 				280B28391C1C8930006E17B6 /* Products */,
 				46663AA557EABCD9AD7524E5 /* Frameworks */,
-				31F129353217143DF8E28FD8 /* Pods */,
+				DB49725DA8470E025F80EB13 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -447,7 +423,6 @@
 			isa = PBXGroup;
 			children = (
 				280B28381C1C8930006E17B6 /* Fetch.app */,
-				280B28521C1C894A006E17B6 /* Downpour.framework */,
 				280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */,
 				280B287D1C1C89BE006E17B6 /* PutioKit.framework */,
 				28C91E501CA709C600D45750 /* FetchUITests.xctest */,
@@ -840,17 +815,6 @@
 			name = Movies;
 			sourceTree = "<group>";
 		};
-		31F129353217143DF8E28FD8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A0672738B61EBC70944AB8A4 /* Pods-Fetch.debug.xcconfig */,
-				6DAF3BF100C52C9B25C5388F /* Pods-Fetch.release.xcconfig */,
-				88B86DC5EC0821EC6ED02AFE /* Pods-PutioKit.debug.xcconfig */,
-				30068F7F81722B899CC2E236 /* Pods-PutioKit.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		46663AA557EABCD9AD7524E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,25 +839,26 @@
 				280B293B1C1C9C58006E17B6 /* libicucore.tbd */,
 				280B29391C1C9C50006E17B6 /* libz.tbd */,
 				280B29371C1C9C43006E17B6 /* libConnectSDK.a */,
-				EAF27E2679B90B61BE52B5C7 /* Pods_Fetch.framework */,
-				90FA073567416D9EA41E7736 /* Pods_PutioKit.framework */,
+				49D319D310AFEED2AA9BE93E /* Pods_Fetch.framework */,
+				BF286BA2C1BCFCC469FF02F4 /* Pods_PutioKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB49725DA8470E025F80EB13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71AE25CBDB0BD8616C93AAD3 /* Pods-Fetch.debug.xcconfig */,
+				DEC2916A6B6B8089329516C4 /* Pods-Fetch.release.xcconfig */,
+				C6581CFA1E4994C8667E8BC3 /* Pods-PutioKit.debug.xcconfig */,
+				A36D05478F6C9BA03FB64878 /* Pods-PutioKit.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		280B284F1C1C894A006E17B6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				280B28551C1C894B006E17B6 /* Downpour.h in Headers */,
-				280B28801C1C89BE006E17B6 /* PutioKit.h in Headers */,
-				280B286B1C1C8977006E17B6 /* SRBarcodeScanner.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		280B28651C1C8977006E17B6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -915,7 +880,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 280B284A1C1C8930006E17B6 /* Build configuration list for PBXNativeTarget "Fetch" */;
 			buildPhases = (
-				C2BC68A414C7B6A926DE1F31 /* 📦 Check Pods Manifest.lock */,
+				C0A3B64AE9933A3866EAFBB4 /* 📦 Check Pods Manifest.lock */,
 				280B28341C1C8930006E17B6 /* Sources */,
 				280B28351C1C8930006E17B6 /* Frameworks */,
 				286FFFAC1C95905000A0D8FA /* Update Settings.bundle Build */,
@@ -923,14 +888,12 @@
 				280B285E1C1C894B006E17B6 /* Embed Frameworks */,
 				28EBE3F71C88D15100A6E573 /* Realm */,
 				2891E5691CA5E4AA005CEE06 /* Fabric */,
-				02A5571C0C6E612C3297C47A /* 📦 Embed Pods Frameworks */,
-				8F396EEFDC7725C1FA7AD0C7 /* 📦 Copy Pods Resources */,
-				727ECAEF87456D764B2988CF /* Embed Pods Frameworks */,
+				0734EE83EE8B9F9B5E9547FF /* 📦 Embed Pods Frameworks */,
+				8AA65BA09C234F9DA417E1D2 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				280B28581C1C894B006E17B6 /* PBXTargetDependency */,
 				280B286E1C1C8977006E17B6 /* PBXTargetDependency */,
 				280B28831C1C89BE006E17B6 /* PBXTargetDependency */,
 			);
@@ -938,24 +901,6 @@
 			productName = Fetch;
 			productReference = 280B28381C1C8930006E17B6 /* Fetch.app */;
 			productType = "com.apple.product-type.application";
-		};
-		280B28511C1C894A006E17B6 /* Downpour */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 280B285B1C1C894B006E17B6 /* Build configuration list for PBXNativeTarget "Downpour" */;
-			buildPhases = (
-				280B284D1C1C894A006E17B6 /* Sources */,
-				280B284E1C1C894A006E17B6 /* Frameworks */,
-				280B284F1C1C894A006E17B6 /* Headers */,
-				280B28501C1C894A006E17B6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Downpour;
-			productName = Downpour;
-			productReference = 280B28521C1C894A006E17B6 /* Downpour.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		280B28671C1C8977006E17B6 /* SRBarcodeScanner */ = {
 			isa = PBXNativeTarget;
@@ -979,12 +924,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 280B28861C1C89BF006E17B6 /* Build configuration list for PBXNativeTarget "PutioKit" */;
 			buildPhases = (
-				BBE36906A408792E9B564192 /* 📦 Check Pods Manifest.lock */,
+				96A8A805DF0559BBFC3C88A7 /* 📦 Check Pods Manifest.lock */,
 				280B28781C1C89BE006E17B6 /* Sources */,
 				280B28791C1C89BE006E17B6 /* Frameworks */,
 				280B287A1C1C89BE006E17B6 /* Headers */,
 				280B287B1C1C89BE006E17B6 /* Resources */,
-				1165D6237F80A1CF8AE61228 /* 📦 Copy Pods Resources */,
+				DB2A97C234A7A7C666877396 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1026,26 +971,26 @@
 					280B28371C1C8930006E17B6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B598AEF9ZM;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 						};
 					};
-					280B28511C1C894A006E17B6 = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = B598AEF9ZM;
-					};
 					280B28671C1C8977006E17B6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B598AEF9ZM;
+						LastSwiftMigration = 0810;
 					};
 					280B287C1C1C89BE006E17B6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = B598AEF9ZM;
+						LastSwiftMigration = 0810;
 					};
 					28C91E4F1CA709C600D45750 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 						TestTargetID = 280B28371C1C8930006E17B6;
 					};
 				};
@@ -1064,7 +1009,6 @@
 			projectRoot = "";
 			targets = (
 				280B28371C1C8930006E17B6 /* Fetch */,
-				280B28511C1C894A006E17B6 /* Downpour */,
 				280B28671C1C8977006E17B6 /* SRBarcodeScanner */,
 				280B287C1C1C89BE006E17B6 /* PutioKit */,
 				28C91E4F1CA709C600D45750 /* FetchUITests */,
@@ -1102,13 +1046,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		280B28501C1C894A006E17B6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		280B28661C1C8977006E17B6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1134,7 +1071,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02A5571C0C6E612C3297C47A /* 📦 Embed Pods Frameworks */ = {
+		0734EE83EE8B9F9B5E9547FF /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1147,21 +1084,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fetch/Pods-Fetch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1165D6237F80A1CF8AE61228 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PutioKit/Pods-PutioKit-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		286FFFAC1C95905000A0D8FA /* Update Settings.bundle Build */ = {
@@ -1190,7 +1112,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" d0bb57a5e802f0e2c623dfb086ce3296dd6fd121 d5a7bb7df88f398f28f568ed25d47d06a55ea3d9c5b2a1a9672c17643f899b2e";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" d0bb57a5e802f0e2c623dfb086ce3296dd6fd121 d5a7bb7df88f398f28f568ed25d47d06a55ea3d9c5b2a1a9672c17643f899b2e";
 		};
 		28EBE3F71C88D15100A6E573 /* Realm */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1206,22 +1128,7 @@
 			shellPath = /bin/sh;
 			shellScript = "#bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
 		};
-		727ECAEF87456D764B2988CF /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fetch/Pods-Fetch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F396EEFDC7725C1FA7AD0C7 /* 📦 Copy Pods Resources */ = {
+		8AA65BA09C234F9DA417E1D2 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1236,7 +1143,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fetch/Pods-Fetch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BBE36906A408792E9B564192 /* 📦 Check Pods Manifest.lock */ = {
+		96A8A805DF0559BBFC3C88A7 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1251,7 +1158,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C2BC68A414C7B6A926DE1F31 /* 📦 Check Pods Manifest.lock */ = {
+		C0A3B64AE9933A3866EAFBB4 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1264,6 +1171,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB2A97C234A7A7C666877396 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PutioKit/Pods-PutioKit-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1336,15 +1258,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		280B284D1C1C894A006E17B6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				280B28621C1C8961006E17B6 /* String+CleanedString.swift in Sources */,
-				280B28611C1C8961006E17B6 /* Downpour.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		280B28631C1C8977006E17B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1395,11 +1308,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		280B28581C1C894B006E17B6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 280B28511C1C894A006E17B6 /* Downpour */;
-			targetProxy = 280B28571C1C894B006E17B6 /* PBXContainerItemProxy */;
-		};
 		280B286E1C1C8977006E17B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 280B28671C1C8977006E17B6 /* SRBarcodeScanner */;
@@ -1503,7 +1411,7 @@
 		};
 		280B284B1C1C8930006E17B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0672738B61EBC70944AB8A4 /* Pods-Fetch.debug.xcconfig */;
+			baseConfigurationReference = 71AE25CBDB0BD8616C93AAD3 /* Pods-Fetch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1529,12 +1437,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		280B284C1C1C8930006E17B6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DAF3BF100C52C9B25C5388F /* Pods-Fetch.release.xcconfig */;
+			baseConfigurationReference = DEC2916A6B6B8089329516C4 /* Pods-Fetch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1559,53 +1468,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		280B285C1C1C894B006E17B6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 2;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Downpour/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.Downpour;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		280B285D1C1C894B006E17B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 2;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Downpour/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.Downpour;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -1628,6 +1491,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1651,6 +1515,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.SRBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1658,7 +1523,7 @@
 		};
 		280B28871C1C89BF006E17B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88B86DC5EC0821EC6ED02AFE /* Pods-PutioKit.debug.xcconfig */;
+			baseConfigurationReference = C6581CFA1E4994C8667E8BC3 /* Pods-PutioKit.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1680,6 +1545,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1687,7 +1553,7 @@
 		};
 		280B28881C1C89BF006E17B6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30068F7F81722B899CC2E236 /* Pods-PutioKit.release.xcconfig */;
+			baseConfigurationReference = A36D05478F6C9BA03FB64878 /* Pods-PutioKit.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1709,6 +1575,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1723,6 +1590,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.FetchUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Fetch;
 			};
 			name = Debug;
@@ -1736,6 +1604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.FetchUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = Fetch;
 			};
 			name = Release;
@@ -1757,15 +1626,6 @@
 			buildConfigurations = (
 				280B284B1C1C8930006E17B6 /* Debug */,
 				280B284C1C1C8930006E17B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		280B285B1C1C894B006E17B6 /* Build configuration list for PBXNativeTarget "Downpour" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				280B285C1C1C894B006E17B6 /* Debug */,
-				280B285D1C1C894B006E17B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

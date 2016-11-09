@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         let url = webView.request?.mainDocumentURL
         let urlString = url!.absoluteString
         
-        if(urlString.rangeOfString("http://getfetchapp.com/authenticate/success.php") != nil) {
+        if(urlString!.rangeOfString("http://getfetchapp.com/authenticate/success.php") != nil) {
             
             let accessToken = url?.query!.stringByReplacingOccurrencesOfString("access_token=", withString: "", options: [], range: nil)
             

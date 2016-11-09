@@ -1,70 +1,55 @@
 PODS:
-  - 1PasswordExtension (1.8)
-  - Alamofire (3.3.1)
-  - AlamofireImage (2.4.0):
-    - Alamofire (~> 3.3)
-  - Crashlytics (3.7.0):
+  - 1PasswordExtension (1.8.4)
+  - Alamofire (3.5.1)
+  - AlamofireImage (2.5.0):
+    - Alamofire (~> 3.5)
+  - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - GoSquared/Autoload (0.1.0-chat):
-    - GoSquared/Core
-  - GoSquared/Chat (0.1.0-chat):
-    - GoSquared/Core
-    - SocketRocket (~> 0.4.2)
-  - GoSquared/Core (0.1.0-chat)
-  - KeychainAccess (2.3.5)
+  - Downpour (0.1.0)
+  - Fabric (1.6.11)
+  - KeychainAccess (2.4.0)
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.2.2):
     - MZAppearance
-  - ReachabilitySwift (2.3.3)
-  - Realm (0.98.7):
-    - Realm/Headers (= 0.98.7)
-  - Realm/Headers (0.98.7)
-  - RealmSwift (0.98.7):
-    - Realm (= 0.98.7)
-  - SocketRocket (0.4.2)
-  - SwiftyJSON (2.3.2)
+  - ReachabilitySwift (3)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+  - SwiftyJSON (2.4.0)
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
   - 1PasswordExtension
-  - Alamofire (~> 3.0)
+  - Alamofire (~> 3.4)
   - AlamofireImage (~> 2.0)
   - Crashlytics
+  - Downpour (~> 0.1)
   - Fabric
-  - GoSquared/Autoload (from `git@github.com:gosquared/gosquared-ios-chat.git`)
-  - GoSquared/Chat (from `git@github.com:gosquared/gosquared-ios-chat.git`)
-  - KeychainAccess
+  - KeychainAccess (~> 2.4)
   - MZFormSheetPresentationController (~> 2.2.0)
   - ReachabilitySwift
   - RealmSwift
-  - SwiftyJSON
+  - SwiftyJSON (= 2.4.0)
   - TUSafariActivity
 
-EXTERNAL SOURCES:
-  GoSquared:
-    :git: git@github.com:gosquared/gosquared-ios-chat.git
-
-CHECKOUT OPTIONS:
-  GoSquared:
-    :commit: 0916351d218d3d3f9e81f5b4ca1983497bdb3094
-    :git: git@github.com:gosquared/gosquared-ios-chat.git
-
 SPEC CHECKSUMS:
-  1PasswordExtension: 627d5aecf210c7636968faf5a4c3546c9531385b
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  GoSquared: 69a5f0eba9998994aeaf98f3d968bd126b7bb396
-  KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
+  1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  AlamofireImage: 2d34936e5201270bb17a316a786e90e83b4a249d
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Downpour: 7acc08bfd87104fd2d562587436a8606937c6917
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  KeychainAccess: c2a71459af5bddf720a51806046a598500976c04
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 8772f845dd3c64a0d9fe545a997d72201db3fe39
-  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
-  Realm: 46df2178359b6b57812e6cf957956febaba513a5
-  RealmSwift: 3056e6d7ad30ed50dd866185a615fccea73db5f5
-  SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: e15f96cf903ace3e8b9bc9fd1f686dfd5b17e831
+
+COCOAPODS: 1.0.0

@@ -24,7 +24,7 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     func addLoadingView() {
-        loadingView = NSBundle.mainBundle().loadNibNamed("TVMovieLoading", owner: self, options: nil)[0] as? TVMovieLoadingView
+        loadingView = NSBundle.mainBundle().loadNibNamed("TVMovieLoading", owner: self, options: nil)![0] as? TVMovieLoadingView
         loadingView.frame = view.bounds
         loadingView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         loadingView.layer.zPosition = 20

@@ -1,0 +1,67 @@
+== Amazon Fire TV module for Connect SDK (iOS)
+
+The Amazon Fire TV module extends Connect SDK to add Amazon Fire TV and Fire TV Stick devices using the Fling SDK. This repository is included as a submodule in the main project, and requires manual setup before the main project will compile.
+
+This module acts a layer on top of Amazon's Fling SDK, and requires the Fling SDK framework to function. It provides the following functionality:
+
+- Media playback
+- Media control
+
+Using Connect SDK for discovery/control of Fire TV devices will result in your app complying with the https://developer.amazon.com/public/support/pml.html[Amazon Fling SDK terms of service].
+
+== General Information
+
+For more information about Connect SDK, visit the https://github.com/ConnectSDK/Connect-SDK-iOS[main repository].
+
+== Setup
+
+=== Connect SDK Integration
+
+. Download the Amazon Fling SDK from https://developer.amazon.com/public/apis/experience/fling/docs/amazon-fling-sdk-download[the Amazon website].
+. Unzip `ios-sdk/frameworks/AmazonFling.framework` and `ios-sdk/frameworks/third_party_framework/Bolts.framework` into the `modules/firetv/Frameworks/` directory.
+. *In your project*: link `AmazonFling.framework`, `Bolts.framework`, `libc++.dylib`, and `AdSupport.framework` with your application target:
+  * _either_ drag them from the `ConnectSDK` project into your project's `Frameworks` group and then add them to your target;
+  * _or_ go to your project settings, select the application target, "Build Phases" tab, in "Link Binary With Libraries" section click "\+", then "Add Other…", and select `AmazonFling.framework` and `Bolts.framework` files; then click "+" and add system `libc++.dylib` and `AdSupport.framework` files.
+
+=== Connect SDK Lite Integration
+
+. Add this repository as a submodule into the Connect SDK Lite project, e.g.:
++
+[source,bash]
+----
+git submodule add https://github.com/ConnectSDK/Connect-SDK-iOS-FireTV.git firetv
+----
+. Add this directory to the Connect SDK Lite Xcode project (`ConnectSDK` target).
+. Amend the target memberships:
+.. Change the target membership of `*.m` files in `FireTVTests/` directory from `ConnectSDK` to `ConnectSDKTests`.
+.. Change the target membership of `*.m` files in `FireTVIntegrationTests/` directory from `ConnectSDK` to `ConnectSDKIntegrationTests`.
+.. Remove the `XCTestCase+TaskTests.h` file from the `ConnectSDK` target.
+.. In the `ConnectSDK` target's `Headers` build phases, move all `FireTV*` headers from `Project` to `Public` section.
+. Download the Amazon Fling SDK from https://developer.amazon.com/public/apis/experience/fling/docs/amazon-fling-sdk-download[the Amazon website].
+. Unzip `ios-sdk/frameworks/AmazonFling.framework` and `ios-sdk/frameworks/third_party_framework/Bolts.framework` into the `modules/firetv/Frameworks/` directory.
+. Add the `AmazonFling.framework` and `Bolts.framework` to the Xcode project (`ConnectSDK`, `ConnectSDKTests`, and `ConnectSDKIntegrationTests` targets).
+. Link `libc++.dylib` and `AdSupport.framework` with `ConnectSDKTests`, `ConnectSDKIntegrationTests`, and your application targets.
+. Add a reference to the `FireTVService` and `FireTVDiscoveryProvider` classes in the `ConnectSDKDefaultPlatforms.h` file.
+
+== Limitations/Caveats
+
+- Play state subscription: currently, `FireTVService`'s `-[MediaControl subscribePlayStateWithSuccess:failure:]` only supports one subscription, that is this method allows adding multiple handlers, but the returned object is the same, so calling `-unsubscribe` will unsubscribe all the handlers.
+- Stopping discovery: due to the specifics of the Amazon Fling SDK, stopping the discovery provider (via `-[DiscoveryManager stopDiscovery]`) will remove all found Fire TV devices! The Fling SDK's discovery part is required for `FireTVService` to work properly.
+- FireTV devices and DIAL: Amazon Fling SDK doesn't provide the IP address of a device, but a unique identifier instead. However, the DIAL device description doesn't include that identifier, so Connect SDK is unable to merge those two services in the same `ConnectableDevice` at this point. When using both `FireTVService` and `DIALService`, you will get two different `ConnectableDevice` objects with one of the services, representing the same physical FireTV device.
+- FireTV service supports `WebVTT` format only. Subtitles on Fire TV are hidden by default. To display them, the user should manually pick one in the media player (click the "Options" button on the remote). The Fling SDK doesn't provide any way to make them appear remotely.
+
+== License
+
+Copyright (c) 2015 LG Electronics.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+> http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

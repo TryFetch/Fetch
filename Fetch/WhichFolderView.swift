@@ -88,7 +88,7 @@ class WhichFolderView: UIView {
         backgroundColor = UIColor(hue:0, saturation:0, brightness:0.27, alpha:1)
     }
     
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+    override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent?) {
         backgroundColor = .fetchLighterBackground()
     }
     
