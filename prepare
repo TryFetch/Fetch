@@ -1,0 +1,24 @@
+!/bin/bash
+clear
+echo "============================================"
+echo "Installing the bundler gem"
+echo "============================================"
+gem install bundler
+echo "============================================"
+echo "Running Bundler"
+echo "============================================"
+bundle install
+echo "============================================"
+echo "Installing CocoaPods"
+echo "============================================"
+pod install
+echo "============================================"
+echo "Changing bundle identifiers"
+echo "============================================"
+CWD="$(pwd)";
+/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.Fetch-$(date +%s)" $CWD/Fetch/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.PutioKit-$(date +%s)" $CWD/PutioKit/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.SRBarcodeScanner-$(date +%s)" $CWD/SRBarcodeScanner/Info.plist
+echo "============================================"
+echo "Fetch is ready to build! 🚀"
+echo "============================================"
