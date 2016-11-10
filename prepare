@@ -3,15 +3,18 @@ clear
 echo "============================================"
 echo "Installing the bundler gem"
 echo "============================================"
-gem install bundler
+GEM="$(which gem)";
+"$GEM" install bundler
 echo "============================================"
 echo "Running Bundler"
 echo "============================================"
-bundle install
+BUNDLER="$(which bundle)";
+"$BUNDLER" install
 echo "============================================"
 echo "Installing CocoaPods"
 echo "============================================"
-pod install
+POD="$(which pod)";
+"$POD" install
 echo "============================================"
 echo "Changing bundle identifiers"
 echo "============================================"
