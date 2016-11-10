@@ -91,10 +91,6 @@ fastlane/test_output
 *.map
 *.exp
 
-# Precompiled Headers
-*.gch
-*.pch
-
 # Libraries
 *.lib
 *.a
