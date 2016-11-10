@@ -15,9 +15,9 @@ pod install
 echo "============================================"
 echo "Changing bundle identifiers"
 echo "============================================"
-sed -i 's/com.getfetchapp.Fetch/com.getfetchapp.Fetch-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
-sed -i 's/com.getfetchapp.PutioKit/com.getfetchapp.PutioKit-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
-sed -i 's/com.getfetchapp.SRBarcodeScanner/com.getfetchapp.SRBarcodeScanner-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
+sed -i -e 's/com.getfetchapp.Fetch/com.getfetchapp.Fetch-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
+sed -i -e 's/com.getfetchapp.PutioKit/com.getfetchapp.PutioKit-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
+sed -i -e 's/com.getfetchapp.SRBarcodeScanner/com.getfetchapp.SRBarcodeScanner-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
 echo "============================================"
 echo "Fetch is ready to build! 🚀"
 echo "============================================"
