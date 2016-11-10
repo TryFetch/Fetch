@@ -19,7 +19,6 @@ CWD="$(pwd)";
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.Fetch-$(date +%s)" $CWD/Fetch/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.PutioKit-$(date +%s)" $CWD/PutioKit/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.SRBarcodeScanner-$(date +%s)" $CWD/SRBarcodeScanner/Info.plist
-/usr/libexec/PlistBuddy -c "Set :keychain-access-groups:0 com.getfetchapp.Fetch-$(date +%s)" Fetch/Fetch.entitlements
 echo "============================================"
 echo "Fetch is ready to build! 🚀"
 echo "============================================"
