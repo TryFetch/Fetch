@@ -65,9 +65,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             
             let accessToken = url?.query!.stringByReplacingOccurrencesOfString("access_token=", withString: "", options: [], range: nil)
             
-            
-            
-            Putio.keychain["access_token"] = accessToken
+            Putio.keychain.updateIfNeeded("access_token", value: accessToken)
             
             let pc = self.presentingViewController
             let sb = UIStoryboard(name: "Main", bundle: nil)

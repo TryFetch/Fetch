@@ -128,6 +128,8 @@
 		289E63DE1C9F2E9D0090B6FA /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289E63DD1C9F2E9D0090B6FA /* AnswerViewController.swift */; };
 		28A99CEB1C9F00FC00AB5ACA /* NoArtwork.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A99CEA1C9F00FC00AB5ACA /* NoArtwork.xib */; };
 		28A99CED1C9F011F00AB5ACA /* NoArtworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A99CEC1C9F011F00AB5ACA /* NoArtworkView.swift */; };
+		28AE19A51DD4D6120058D656 /* Keychain + Hotfix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE19A41DD4D6120058D656 /* Keychain + Hotfix.swift */; };
+		28AE19A61DD4D7160058D656 /* Keychain + Hotfix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE19A41DD4D6120058D656 /* Keychain + Hotfix.swift */; };
 		28B209081C9C83BE007229C8 /* TVMovieLoading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B209071C9C83BE007229C8 /* TVMovieLoading.xib */; };
 		28B2090A1C9C8458007229C8 /* TVMovieLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B209091C9C8458007229C8 /* TVMovieLoadingView.swift */; };
 		28B2090D1C9C906F007229C8 /* UIView+FadeAndHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2090C1C9C906F007229C8 /* UIView+FadeAndHide.swift */; };
@@ -304,7 +306,6 @@
 		286FFFAD1C95A55D00A0D8FA /* FetchAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAlertController.swift; sourceTree = "<group>"; };
 		287829521C94523F0090EE69 /* PushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
 		2891E5671CA5B222005CEE06 /* QuickAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAction.swift; sourceTree = "<group>"; };
-		289480AC1DD3767C00C6301C /* Fetch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fetch.entitlements; sourceTree = "<group>"; };
 		289D77651CA05A3D00EE8FF3 /* TVShowCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowCollectionViewController.swift; sourceTree = "<group>"; };
 		289D77671CA08C3100EE8FF3 /* TVShowCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowCollectionViewCell.swift; sourceTree = "<group>"; };
 		289E63D91C9F20060090B6FA /* FAQs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FAQs.storyboard; sourceTree = "<group>"; };
@@ -312,6 +313,7 @@
 		289E63DD1C9F2E9D0090B6FA /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		28A99CEA1C9F00FC00AB5ACA /* NoArtwork.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoArtwork.xib; sourceTree = "<group>"; };
 		28A99CEC1C9F011F00AB5ACA /* NoArtworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoArtworkView.swift; sourceTree = "<group>"; };
+		28AE19A41DD4D6120058D656 /* Keychain + Hotfix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keychain + Hotfix.swift"; sourceTree = "<group>"; };
 		28B209071C9C83BE007229C8 /* TVMovieLoading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TVMovieLoading.xib; sourceTree = "<group>"; };
 		28B209091C9C8458007229C8 /* TVMovieLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVMovieLoadingView.swift; sourceTree = "<group>"; };
 		28B2090C1C9C906F007229C8 /* UIView+FadeAndHide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FadeAndHide.swift"; sourceTree = "<group>"; };
@@ -434,7 +436,6 @@
 		280B283A1C1C8930006E17B6 /* Fetch */ = {
 			isa = PBXGroup;
 			children = (
-				289480AC1DD3767C00C6301C /* Fetch.entitlements */,
 				280B295D1C1CD9E4006E17B6 /* Extensions */,
 				280B291E1C1C8D81006E17B6 /* Supporting Files */,
 				280B290F1C1C8D20006E17B6 /* ConnectSDK */,
@@ -473,6 +474,7 @@
 		280B287E1C1C89BE006E17B6 /* PutioKit */ = {
 			isa = PBXGroup;
 			children = (
+				28AE19A31DD4D6020058D656 /* Extensions */,
 				28A99CE91C9F00C400AB5ACA /* Views */,
 				28C76E881C1E15ED005055C8 /* Protocols */,
 				280B28991C1C8B4C006E17B6 /* Models */,
@@ -762,6 +764,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		28AE19A31DD4D6020058D656 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				28AE19A41DD4D6120058D656 /* Keychain + Hotfix.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		28C76E881C1E15ED005055C8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,7 +989,7 @@
 								enabled = 1;
 							};
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1200,6 +1210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28AE19A61DD4D7160058D656 /* Keychain + Hotfix.swift in Sources */,
 				28B2090A1C9C8458007229C8 /* TVMovieLoadingView.swift in Sources */,
 				282D92B51C407D8A00B83109 /* ActivityTableViewController.swift in Sources */,
 				280B28D31C1C8C2E006E17B6 /* OpenInVLC.swift in Sources */,
@@ -1290,6 +1301,7 @@
 				280B28A81C1C8B59006E17B6 /* TVSeason.swift in Sources */,
 				282D92B21C407BAB00B83109 /* Events.swift in Sources */,
 				280B28AA1C1C8B59006E17B6 /* File.swift in Sources */,
+				28AE19A51DD4D6120058D656 /* Keychain + Hotfix.swift in Sources */,
 				280B28A51C1C8B59006E17B6 /* TVShow.swift in Sources */,
 				280B28A71C1C8B59006E17B6 /* Movie.swift in Sources */,
 				280B28AB1C1C8B59006E17B6 /* Search.swift in Sources */,
@@ -1421,7 +1433,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Fetch/Fetch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1455,7 +1466,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Fetch/Fetch.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
