@@ -1451,7 +1451,7 @@
 					"$(PROJECT_DIR)/Connect-SDK-iOS/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.Fetch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.Fetch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
@@ -1483,7 +1483,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Connect-SDK-iOS/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.Fetch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.Fetch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
@@ -1508,7 +1508,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.SRBarcodeScanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.SRBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1535,7 +1535,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.SRBarcodeScanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.SRBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1566,7 +1566,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.PutioKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1597,7 +1597,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.PutioKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;

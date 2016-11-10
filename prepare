@@ -15,10 +15,9 @@ pod install
 echo "============================================"
 echo "Changing bundle identifiers"
 echo "============================================"
-CWD="$(dirname $0)";
-/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.Fetch-$(date +%s)" $CWD/Fetch/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.PutioKit-$(date +%s)" $CWD/PutioKit/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.SRBarcodeScanner-$(date +%s)" $CWD/SRBarcodeScanner/Info.plist
+sed -i 's/com.getfetchapp.Fetch/com.getfetchapp.Fetch-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
+sed -i 's/com.getfetchapp.PutioKit/com.getfetchapp.PutioKit-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
+sed -i 's/com.getfetchapp.SRBarcodeScanner/com.getfetchapp.SRBarcodeScanner-'$(date +%s)'/g' Fetch.xcodeproj/project.pbxproj
 echo "============================================"
 echo "Fetch is ready to build! 🚀"
 echo "============================================"
