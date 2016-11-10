@@ -1,5 +1,7 @@
 #!/bin/bash
 clear
+CWD="$(dirname $0)";
+cd $CWD
 echo "============================================"
 echo "Installing the bundler gem"
 echo "============================================"
@@ -18,7 +20,6 @@ POD="$(which pod)";
 echo "============================================"
 echo "Changing bundle identifiers"
 echo "============================================"
-CWD="$(dirname $0)";
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.Fetch-$(date +%s)" $CWD/Fetch/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.PutioKit-$(date +%s)" $CWD/PutioKit/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.getfetchapp.SRBarcodeScanner-$(date +%s)" $CWD/SRBarcodeScanner/Info.plist
