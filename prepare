@@ -11,7 +11,7 @@ bundle install
 echo "============================================"
 echo "Installing CocoaPods"
 echo "============================================"
-pod install
+bundle exec pod install
 echo "============================================"
 echo "Changing bundle identifiers"
 echo "============================================"
