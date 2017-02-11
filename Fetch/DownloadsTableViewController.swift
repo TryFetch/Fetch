@@ -138,7 +138,18 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
                     self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     self.tableView.endUpdates()
                     self.showNoResultsIfRequired()
-                }
+                },
+
+                UITableViewRowAction(style: .Normal, title: "Share") { [unowned self] action, indexPath in
+                    let path = Downloader.sharedInstance.downloadedFiles[indexPath.row]
+                    let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+                    let URL = documentsUrl.URLByAppendingPathComponent(path)!
+                    let viewController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
+                    let frame = self.tableView.rectForRowAtIndexPath(indexPath)
+                    viewController.popoverPresentationController?.sourceView = self.tableView
+                    viewController.popoverPresentationController?.sourceRect = frame
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                },
             ]
         }
     }
