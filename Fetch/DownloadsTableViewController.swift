@@ -169,7 +169,8 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? AVPlayerViewController, let file = sender as? String {
-            
+            vc.delegate = PlayerDelegate.sharedInstance
+
             let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
             let fileUrl = documentsUrl.URLByAppendingPathComponent(file)
             
