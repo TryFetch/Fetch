@@ -26,8 +26,7 @@ public class Search {
     
     /// Search Put.io
     public func search(sender: UIViewController) {
-        
-        let t = term.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        let t = term.addingPercentEscapes(using: .utf8)
         Files.fetchWithURL("\(Putio.api)files/search/\(t!)/page/-1", params: ["oauth_token": "\(Putio.accessToken!)"], sender: sender) { files in
             self.results = files
             self.delegate?.searchCompleted(results: self.results)

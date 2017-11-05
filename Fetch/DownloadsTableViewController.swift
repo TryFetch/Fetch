@@ -27,17 +27,17 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
     
     func showNoResultsIfRequired() {
         if Downloader.sharedInstance.queue.count > 0 || Downloader.sharedInstance.downloadedFiles.count > 0 {
-            noResultsView.hidden = true
+            noResultsView.isHidden = true
         } else {
-            noResultsView.hidden = false
+            noResultsView.isHidden = false
         }
     }
 
     // MARK: - DownloaderDelegate
     
-    func percentageChanged(percentage: String) {
+    func percentageChanged(_ percentage: String) {
         self.percentage = percentage
-        if !tableView.editing {
+        if !tableView.isEditing {
             tableView.reloadData()
             showNoResultsIfRequired()
         }
@@ -49,11 +49,11 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
         showNoResultsIfRequired()
     }
     
-    func downloadError(error: NSError) {
+    func downloadError(_ error: NSError) {
         if error.code != -999 {
-            let alert = FetchAlertController(title: "Could Not Download", message: "The download could not be completed. Do you have an internet connection or enough storage?", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = FetchAlertController(title: "Could Not Download", message: "The download could not be completed. Do you have an internet connection or enough storage?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
             tableView.reloadData()
             showNoResultsIfRequired()
         }
@@ -63,25 +63,25 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return Downloader.sharedInstance.queue.count
         }
         return Downloader.sharedInstance.downloadedFiles.count
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return (Downloader.sharedInstance.queue.count > 0) ? "Download Queue" : ""
         }
         return (Downloader.sharedInstance.downloadedFiles.count > 0) ? "Files" : ""
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 && Downloader.sharedInstance.queue.count == 0 {
             return 0.01
         }
@@ -89,9 +89,9 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
         return 44.0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = (indexPath.section == 0) ? "queued" : "downloaded"
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier)!
         
         if indexPath.section == 0 {
             cell.textLabel?.text = Downloader.sharedInstance.queue[indexPath.row].name
@@ -106,25 +106,25 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
     
     // MARK: - Delete Files
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 return [
-                    UITableViewRowAction(style: .Destructive, title: "Cancel") { action, indexPath in
+                    UITableViewRowAction(style: .destructive, title: "Cancel") { action, indexPath in
                         Downloader.sharedInstance.currentRequest?.cancel()
                         if(Downloader.sharedInstance.queue.count > 0) { Downloader.sharedInstance.queue.removeFirst() }
                         self.tableView.beginUpdates()
-                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        self.tableView.deleteRows(at: [indexPath], with: .automatic)
                         self.tableView.endUpdates()
                         self.showNoResultsIfRequired()
                     }
                 ]
             } else {
                 return [
-                    UITableViewRowAction(style: .Destructive, title: "Remove") { action, indexPath in
-                        Downloader.sharedInstance.queue.removeAtIndex(indexPath.row)
+                    UITableViewRowAction(style: .destructive, title: "Remove") { action, indexPath in
+                        Downloader.sharedInstance.queue.remove(at: indexPath.row)
                         self.tableView.beginUpdates()
-                        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        self.tableView.deleteRows(at: [indexPath], with: .automatic)
                         self.tableView.endUpdates()
                         self.showNoResultsIfRequired()
                     }
@@ -132,23 +132,23 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
             }
         } else {
             return [
-                UITableViewRowAction(style: .Destructive, title: "Delete") { action, indexPath in
+                UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
                     Downloader.sharedInstance.deleteFileAtIndex(indexPath.row)
                     self.tableView.beginUpdates()
-                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
                     self.tableView.endUpdates()
                     self.showNoResultsIfRequired()
                 },
 
-                UITableViewRowAction(style: .Normal, title: "Share") { [unowned self] action, indexPath in
+                UITableViewRowAction(style: .normal, title: "Share") { [unowned self] action, indexPath in
                     let path = Downloader.sharedInstance.downloadedFiles[indexPath.row]
-                    let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-                    let URL = documentsUrl.URLByAppendingPathComponent(path)!
+                    let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let URL = documentsUrl.appendingPathComponent(path)
                     let viewController = UIActivityViewController(activityItems: [URL], applicationActivities: nil)
-                    let frame = self.tableView.rectForRowAtIndexPath(indexPath)
+                    let frame = self.tableView.rectForRow(at: indexPath)
                     viewController.popoverPresentationController?.sourceView = self.tableView
                     viewController.popoverPresentationController?.sourceRect = frame
-                    self.presentViewController(viewController, animated: true, completion: nil)
+                    self.present(viewController, animated: true, completion: nil)
                 },
             ]
         }
@@ -157,24 +157,24 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
     
     // MARK: - Play File
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: false)
         } else {
             if Downloader.sharedInstance.downloadedFiles.count > indexPath.row {
-                performSegueWithIdentifier("showPlayer", sender: Downloader.sharedInstance.downloadedFiles[indexPath.row])
+                performSegue(withIdentifier: "showPlayer", sender: Downloader.sharedInstance.downloadedFiles[indexPath.row])
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? AVPlayerViewController, let file = sender as? String {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AVPlayerViewController, let file = sender as? String {
             vc.delegate = PlayerDelegate.sharedInstance
 
-            let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-            let fileUrl = documentsUrl.URLByAppendingPathComponent(file)
+            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileUrl = documentsUrl.appendingPathComponent(file)
             
-            let player = AVPlayer(URL: fileUrl!)
+            let player = AVPlayer(url: fileUrl)
             vc.player = player
             vc.player?.play()
             

@@ -20,16 +20,16 @@ class SearchResultsViewController: FilesTableViewController, SearchDelegate {
     }
     
     override func fetchFiles() {
-        search?.search(self)
+        search?.search(sender: self)
     }
     
-    override func refresh(sender: UIRefreshControl) {
+    override func refresh(_ sender: UIRefreshControl) {
         refreshControl?.beginRefreshing()
         fetchFiles()
     }
     
     /// Search results have come back, now we can sing hallelu!
-    func searchCompleted(results results: [PutioKit.File]) {
+    func searchCompleted(results: [PutioKit.File]) {
         files = results
         
         tableView.reloadData()
@@ -37,9 +37,9 @@ class SearchResultsViewController: FilesTableViewController, SearchDelegate {
         overlay?.hideWithAnimation()
         
         if files.count == 0 {
-            noFiles!.hidden = false
+            noFiles!.isHidden = false
         } else {
-            noFiles!.hidden = true
+            noFiles!.isHidden = true
         }
 
     }

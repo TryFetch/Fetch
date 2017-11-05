@@ -17,8 +17,8 @@ class FilesNavViewController: UINavigationController {
     
     
     /// Force the status bar to be white
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     

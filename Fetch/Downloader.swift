@@ -11,11 +11,11 @@ import Alamofire
 
 protocol DownloaderDelegate {
     
-    func percentageChanged(percentage: String)
+    func percentageChanged(_ percentage: String)
     
     func downloadCompleted()
     
-    func downloadError(error: NSError)
+    func downloadError(_ error: NSError)
     
 }
 
@@ -26,8 +26,8 @@ class Downloader {
     var isDownloading = false
     
     var delegate: DownloaderDelegate?
-    
-    let manager = Alamofire.Manager(configuration: NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("uk.co.wearecocoon.background"))
+
+    let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "uk.co.wearecocoon.background"))
     
     var queue = [File]() {
         didSet {
@@ -42,16 +42,16 @@ class Downloader {
     /// MP4s that are in the documents folder.
     var downloadedFiles: [String] {
         do {
-            let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-            let directoryUrls = try  NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
-            return directoryUrls.filter{ $0.pathExtension! == "mp4" }.map{ $0.lastPathComponent! }
+            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let directoryUrls = try  FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())
+            return directoryUrls.filter{ $0.pathExtension == "mp4" }.map{ $0.lastPathComponent }
         } catch {
             return []
         }
     }
     
-    /// Where downloaded files will be dtored
-    let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
+    /// Where downloaded files will be stored
+    let destination = Alamofire.DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .userDomainMask)
 
     
     // MARK: - Methods
@@ -68,27 +68,27 @@ class Downloader {
             
             let endpoint = (file.has_mp4) ? "mp4/download" : "download"
             isDownloading = true
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            
-            currentRequest = manager.download(.GET, "\(Putio.api)/files/\(file.id)/\(endpoint)?oauth_token=\(Putio.accessToken!)", destination: destination)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+            currentRequest = manager.download("\(Putio.api)/files/\(file.id)/\(endpoint)?oauth_token=\(Putio.accessToken!)", method: .get, to: destination)
                 
-                .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-                    let percent = Int(round((Float(totalBytesRead) / Float(totalBytesExpectedToRead))*100))
-                    dispatch_async(dispatch_get_main_queue()) {
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                .downloadProgress { progress in
+                    let percent = Int(progress.fractionCompleted * 100)
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = true
                         self.delegate?.percentageChanged("\(percent)%")
                     }
                 }
                 
-                .response { _, _, _, error in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                .response { response in
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     if(self.queue.count > 0) { self.queue.removeFirst() }
                     self.isDownloading = false
                     self.downloadNext()
                     self.sendNotification()
                     
-                    if let e = error {
-                        self.delegate?.downloadError(e)
+                    if let error = response.error {
+                        self.delegate?.downloadError(error as NSError)
                     } else {
                         self.delegate?.downloadCompleted()
                     }
@@ -102,12 +102,12 @@ class Downloader {
      Send a notification when the files finish downloading
      */
     func sendNotification() {
-        if self.queue.isEmpty && UIApplication.sharedApplication().applicationState == .Background {
+        if self.queue.isEmpty && UIApplication.shared.applicationState == .background {
             let notification = UILocalNotification()
             notification.alertBody = "Your files have finished downloading."
             notification.alertAction = "open"
             notification.soundName = "success.wav"
-            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+            UIApplication.shared.presentLocalNotificationNow(notification)
         }
     }
     
@@ -116,12 +116,12 @@ class Downloader {
      
      - parameter index: The index of the file to remove
      */
-    func deleteFileAtIndex(index: Int) {
+    func deleteFileAtIndex(_ index: Int) {
         let file = downloadedFiles[index]
-        let fm = NSFileManager.defaultManager()
-        let documentsUrl =  fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let fm = FileManager.default
+        let documentsUrl =  fm.urls(for: .documentDirectory, in: .userDomainMask).first!
         do {
-            try fm.removeItemAtURL(documentsUrl.URLByAppendingPathComponent(file)!)
+            try fm.removeItem(at: documentsUrl.appendingPathComponent(file))
         } catch {
             print("Could not delete file")
         }
@@ -131,7 +131,7 @@ class Downloader {
      Set the badge icon to be the same value as the queue amount
      */
     func setTabBarIcon() {
-        if let tc = UIApplication.sharedApplication().keyWindow?.rootViewController as? FilesTabViewController {
+        if let tc = UIApplication.shared.keyWindow?.rootViewController as? FilesTabViewController {
             if let item = tc.tabBar.items?[3] {
                 item.badgeValue = (queue.isEmpty) ? nil : String(queue.count)
             }

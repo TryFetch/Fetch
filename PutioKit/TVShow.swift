@@ -58,10 +58,8 @@ public class TVShow: Object, MediaType {
     /// Title to sort alphabetically witout "The"
     public var sortableTitle: String? {
         get {
-            if let range = title?.rangeOfString("The ") {
-                if range.startIndex == title?.startIndex {
-                    return title?.stringByReplacingCharactersInRange(range, withString: "")
-                }
+            if let range = title?.range(of: "The "), range.lowerBound == title?.startIndex {
+                return title?.replacingCharacters(in: range, with: "")
             }
             return title
         }
@@ -99,7 +97,7 @@ public class TVShow: Object, MediaType {
             let d = Downpour(string: file.name!)
             if d.season != nil && d.episode != nil {
                 
-                TMDB.fetchEpisodeForSeason(d.season!, episode: d.episode!, showId: id) { episode in
+                TMDB.fetchEpisodeForSeason(season: d.season!, episode: d.episode!, showId: id) { episode in
                     self.requests -= 1
                     self.completed += 1
                     self.delegate?.percentUpdated()

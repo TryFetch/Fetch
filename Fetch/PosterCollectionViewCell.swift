@@ -16,11 +16,11 @@ class PosterCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         clipsToBounds = true
         backgroundColor =  UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1)
-        layer.borderColor = UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1).CGColor
+        layer.borderColor = UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1).cgColor
         layer.borderWidth = 1
     }
     
-    override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         return layoutAttributes
     }
     

@@ -9,6 +9,30 @@
 import UIKit
 import MZFormSheetPresentationController
 import PutioKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, DiscoveryManagerDelegate, GCKLoggerDelegate {
     
@@ -54,11 +78,11 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     }
     
     /// Create the instance of the discovery manager
-    private func setupDiscoveryManager() {
+    fileprivate func setupDiscoveryManager() {
         
 //        GCKLogger.sharedInstance().delegate = self
         
-        discoveryManager = DiscoveryManager.sharedManager()
+        discoveryManager = DiscoveryManager.shared()
         discoveryManager?.delegate = self
         
         discoveryManager?.registerDeviceService(CastService.self, withDiscovery: CastDiscoveryProvider.self)
@@ -77,14 +101,14 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     }
     
     /// Create the header button instance
-    private func createHeaderBtn() {
-        castBtn.button.addTarget(self, action: #selector(showDevicePicker), forControlEvents: .TouchUpInside)
-        castBtn.hidden = true
+    fileprivate func createHeaderBtn() {
+        castBtn.button.addTarget(self, action: #selector(showDevicePicker), for: .touchUpInside)
+        castBtn.isHidden = true
         button = UIBarButtonItem(customView: castBtn)
     }
     
     /// Show the device picker as an action sheet
-    func showDevicePicker(sender: AnyObject?) {
+    func showDevicePicker(_ sender: AnyObject?) {
         if device != nil {
             showDisconnectSheet(sender)
         } else {
@@ -93,36 +117,36 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     }
     
     /// Show the disconnect sheet if a device is already connected
-    private func showDisconnectSheet(sender: AnyObject?) {
+    fileprivate func showDisconnectSheet(_ sender: AnyObject?) {
         
-        let sheet = FetchAlertController(title: "Connected: \(device!.friendlyName!)", message: "", preferredStyle: .ActionSheet)
+        let sheet = FetchAlertController(title: "Connected: \(device!.friendlyName!)", message: "", preferredStyle: .actionSheet)
         
         sheet.popoverPresentationController?.barButtonItem = button
         
         if filePlaying != nil {
-            sheet.addAction(UIAlertAction(title: "Show Remote", style: .Default, handler: { (action) -> Void in
+            sheet.addAction(UIAlertAction(title: "Show Remote", style: .default, handler: { (action) -> Void in
                 self.showRemote(sender?.window??.rootViewController)
             }));
         }
         
-        sheet.addAction(UIAlertAction(title: "Disconnect", style: .Destructive, handler: disconnect))
-        sheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        sheet.addAction(UIAlertAction(title: "Disconnect", style: .destructive, handler: disconnect))
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         // Present it on the root view controller. We'll need to check to see if this works on iPad
-        sender?.window??.rootViewController?.presentViewController(sheet, animated: true, completion: nil)
+        sender?.window??.rootViewController?.present(sheet, animated: true, completion: nil)
         
     }
     
     /// Disconnect from the device, set it to nil and set the button state to .Disconnected
-    func disconnect(sender: AnyObject?) {
+    func disconnect(_ sender: AnyObject?) {
         stop()
         device?.disconnect()
         device = nil
-        castBtn.setState(.Disconnected)
+        castBtn.setState(.disconnected)
     }
     
     func stop() {
-        launchObject?.session.closeWithSuccess(nil, failure: nil)
+        launchObject?.session.close(success: nil, failure: nil)
         launchObject = nil
         filePlaying = nil
         isPlaying = false
@@ -132,21 +156,21 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     
     // MARK: - DiscoveryManagerDelegate
     
-    func discoveryManager(manager: DiscoveryManager!, didFindDevice device: ConnectableDevice!) {
+    func discoveryManager(_ manager: DiscoveryManager!, didFind device: ConnectableDevice!) {
         changeButtonVisibility()
     }
     
-    func discoveryManager(manager: DiscoveryManager!, didLoseDevice device: ConnectableDevice!) {
+    func discoveryManager(_ manager: DiscoveryManager!, didLose device: ConnectableDevice!) {
         print("Lost: \(device)")
         changeButtonVisibility()
     }
 
-    func discoveryManager(manager: DiscoveryManager!, didUpdateDevice device: ConnectableDevice!) {
+    func discoveryManager(_ manager: DiscoveryManager!, didUpdate device: ConnectableDevice!) {
         print("Updated: \(device)")
         changeButtonVisibility()
     }
     
-    func discoveryManager(manager: DiscoveryManager!, didFailWithError error: NSError!) {
+    func discoveryManager(_ manager: DiscoveryManager!, didFailWithError error: NSError!) {
         changeButtonVisibility()
         print(error)
     }
@@ -154,36 +178,36 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     /// Hide / Show the cast button based on the number of devices in the store
     func changeButtonVisibility() {
         if discoveryManager?.compatibleDevices().count > 0 {
-            castBtn.hidden = false
+            castBtn.isHidden = false
         } else {
-            castBtn.hidden = true
+            castBtn.isHidden = true
         }
     }
     
     
     // MARK: - DevicePickerDelegate
     
-    func devicePicker(picker: DevicePicker!, didSelectDevice device: ConnectableDevice!) {
+    func devicePicker(_ picker: DevicePicker!, didSelect device: ConnectableDevice!) {
         self.device = device
         device.connect()
         device.delegate = self
-        castBtn.setState(.Connecting)
+        castBtn.setState(.connecting)
     }
     
-    func devicePicker(picker: DevicePicker!, didCancelWithError error: NSError!) {
-        castBtn.setState(.Disconnected)
+    func devicePicker(_ picker: DevicePicker!, didCancelWithError error: NSError!) {
+        castBtn.setState(.disconnected)
         self.device = nil
     }
     
     
     // MARK: - ConnectableDeviceDelegate
     
-    func connectableDeviceReady(device: ConnectableDevice!) {
-        castBtn.setState(.Connected)
+    func connectableDeviceReady(_ device: ConnectableDevice!) {
+        castBtn.setState(.connected)
     }
     
-    func connectableDeviceDisconnected(device: ConnectableDevice!, withError error: NSError!) {
-        castBtn.setState(.Disconnected)
+    func connectableDeviceDisconnected(_ device: ConnectableDevice!, withError error: Error!) {
+        castBtn.setState(.disconnected)
         self.device = nil
     }
     
@@ -191,7 +215,7 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     // MARK: - Cast Media
     
     /// Send a file to the connected device
-    func sendFile(file: File, callback: () -> Void) {
+    func sendFile(_ file: File, callback: () -> Void) {
         
         launchObject = nil
         filePlaying = file
@@ -208,15 +232,15 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
             URL = "\(Putio.api)files/\(file.id)/stream?oauth_token=\(Putio.accessToken!)"
         }
         
-        let info = MediaInfo(URL: NSURL(string: URL)!, mimeType: "video/mp4")
-        info.title = file.name
+        let info = MediaInfo(url: Foundation.URL(string: URL)!, mimeType: "video/mp4")
+        info?.title = file.name
         
         // Add subtitles if it's an MP4 and chromecast
-        if (device?.serviceWithName("Chromecast") != nil && file.has_mp4) || device?.serviceWithName("Chromecast") == nil  {
+        if (device?.service(withName: "Chromecast") != nil && file.has_mp4) || device?.service(withName: "Chromecast") == nil  {
             
             if device!.hasCapabilities([kMediaPlayerSubtitleWebVTT]) {
                 
-                info.subtitleInfo = SubtitleInfo(URL: NSURL(string: "\(Putio.api)files/\(file.id)/subtitles/default?oauth_token=\(Putio.accessToken!)&format=webvtt")!) { sub in
+                info?.subtitleInfo = SubtitleInfo(url: Foundation.URL(string: "\(Putio.api)files/\(file.id)/subtitles/default?oauth_token=\(Putio.accessToken!)&format=webvtt")!) { sub in
                     sub.mimeType = "text/vtt"
                     sub.language = "en"
                     sub.label = "Subtitles"
@@ -224,7 +248,7 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
                 
             } else if device!.hasCapabilities([kMediaPlayerSubtitleSRT]) {
                 
-                info.subtitleInfo = SubtitleInfo(URL: NSURL(string: "\(Putio.api)files/\(file.id)/subtitles/default?oauth_token=\(Putio.accessToken!)&format=srt")!) { sub in
+                info?.subtitleInfo = SubtitleInfo(url: Foundation.URL(string: "\(Putio.api)files/\(file.id)/subtitles/default?oauth_token=\(Putio.accessToken!)&format=srt")!) { sub in
                     sub.mimeType = "text/srt"
                     sub.language = "en-US"
                     sub.label = "Subtitles"
@@ -235,13 +259,13 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
         }
         
         // if it's chromecast set it to be our app ID
-        if device?.serviceWithName("Chromecast") != nil {
+        if device?.service(withName: "Chromecast") != nil {
             let cs: CastService = device!.mediaPlayer() as! CastService
             cs.castWebAppId = castID
             mp = cs as MediaPlayer
         }
             
-        mp.playMediaWithMediaInfo(info, shouldLoop: false, success: { (media) -> Void in
+        mp.playMedia(with: info, shouldLoop: false, success: { (media) -> Void in
             self.launchObject = media
             self.delegate?.launchObjectSuccess()
         }) { (error) -> Void in
@@ -254,21 +278,21 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
     // MARK: - Remote
     
     /// Show the Cast Remote in a overlay
-    func showRemote(sender: AnyObject?) {
+    func showRemote(_ sender: AnyObject?) {
         
-        let vc = CastRemoteViewController(nibName: "CastRemote", bundle: NSBundle.mainBundle())
+        let vc = CastRemoteViewController(nibName: "CastRemote", bundle: Bundle.main)
         vc.file = filePlaying
         
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: vc)
-        if self.device?.serviceWithName("Chromecast") != nil && filePlaying!.has_mp4 {
-            formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 320)
+        if self.device?.service(withName: "Chromecast") != nil && filePlaying!.has_mp4 {
+            formSheetController.presentationController?.contentViewSize = CGSize(width: 300, height: 320)
         } else {
-            formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 290)
+            formSheetController.presentationController?.contentViewSize = CGSize(width: 300, height: 290)
         }
-        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.DropDown
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.dropDown
         formSheetController.contentViewCornerRadius = 5
         
-        formSheetController.view.layer.shadowColor = UIColor.blackColor().CGColor
+        formSheetController.view.layer.shadowColor = UIColor.black.cgColor
         formSheetController.view.layer.shadowOffset = CGSize(width: 0, height: 5)
         formSheetController.view.layer.shadowOpacity = 0.4
         formSheetController.view.layer.shadowRadius = 3
@@ -276,14 +300,14 @@ class CastHandler: NSObject, DevicePickerDelegate, ConnectableDeviceDelegate, Di
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldUseMotionEffect = true
         
-        sender?.presentViewController(formSheetController, animated: true, completion: nil)
+        sender?.present(formSheetController, animated: true, completion: nil)
         
     }
     
     
     // MARK: - GCKLoggerDelegate
     
-    func logFromFunction(function: UnsafePointer<Int8>, message: String!) {
+    func log(fromFunction function: UnsafePointer<Int8>, message: String!) {
         print("----------------------")
         print("CHROMECAST: \(message)")
         print("----------------------")

@@ -17,16 +17,16 @@ class TransfersTableViewController: UITableViewController {
     var selectedIndex: Int?
     var overlay: LoaderView?
     var noTransfers: UIView?
-    var timer: NSTimer?
+    var timer: Timer?
     var detailViewController: UINavigationController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        splitViewController?.preferredDisplayMode = .AllVisible
+        splitViewController?.preferredDisplayMode = .allVisible
         
         // Setup refresh control
-        refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         // Setup a loader
         overlay = LoaderView(frame: tableView.frame)
@@ -42,18 +42,18 @@ class TransfersTableViewController: UITableViewController {
         
         let sb = UIStoryboard(name: "Transfers", bundle: nil)
         
-        if let vc = sb.instantiateViewControllerWithIdentifier("detailViewController") as? UINavigationController {
+        if let vc = sb.instantiateViewController(withIdentifier: "detailViewController") as? UINavigationController {
             detailViewController = vc
         }
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTimer()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer?.invalidate()
         timer = nil
@@ -67,23 +67,23 @@ class TransfersTableViewController: UITableViewController {
         timer = nil
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transfers.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("transfer", forIndexPath: indexPath) 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "transfer", for: indexPath) 
 
         cell.textLabel?.text = transfers[indexPath.row].name
         cell.detailTextLabel?.text = transfers[indexPath.row].status_message
@@ -93,24 +93,24 @@ class TransfersTableViewController: UITableViewController {
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
         
             // If we're in split view (i.e. not collapsed) then we need to change the detail view
-            if selectedIndex == indexPath.row && !splitViewController!.collapsed {
-                performSegueWithIdentifier("showDetail", sender: nil)
+            if selectedIndex == indexPath.row && !splitViewController!.isCollapsed {
+                performSegue(withIdentifier: "showDetail", sender: nil)
             }
             
             let transfer = transfers[indexPath.row]
             transfer.destroy()
-            transfers.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            transfers.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             
             if self.transfers.count == 0 {
-                self.noTransfers!.hidden = false
+                self.noTransfers!.isHidden = false
             } else {
-                self.noTransfers!.hidden = true
+                self.noTransfers!.isHidden = true
             }
             
             
@@ -121,14 +121,14 @@ class TransfersTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let childvc: TransfersDetailTableViewController = detailViewController!.childViewControllers[0] as! TransfersDetailTableViewController
         childvc.transfer = transfers[indexPath.row]
         
         splitViewController?.showDetailViewController(detailViewController!, sender: self)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
 
@@ -136,7 +136,7 @@ class TransfersTableViewController: UITableViewController {
 
     // MARK: - Network
     
-    func refresh(sender: UIRefreshControl) {
+    func refresh(_ sender: UIRefreshControl) {
         refreshControl?.beginRefreshing()
         fetch()
     }
@@ -164,9 +164,9 @@ class TransfersTableViewController: UITableViewController {
                 }
                 
                 if self.transfers.count == 0 {
-                    self.noTransfers!.hidden = false
+                    self.noTransfers!.isHidden = false
                 } else {
-                    self.noTransfers!.hidden = true
+                    self.noTransfers!.isHidden = true
                 }
                 
                 self.tableView.reloadData()
@@ -188,36 +188,36 @@ class TransfersTableViewController: UITableViewController {
     // MARK: - Clear Completed
     
     
-    @IBAction func clearCompleted(sender: AnyObject) {
+    @IBAction func clearCompleted(_ sender: AnyObject) {
         
-        let alert = FetchAlertController(title: "Clear Completed", message: "Do you want to clear all completed transfers?", preferredStyle: .Alert)
+        let alert = FetchAlertController(title: "Clear Completed", message: "Do you want to clear all completed transfers?", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.cleanUp()
         }))
         
-        alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         
         let subView = alert.view.subviews.first!
         let contentView = subView.subviews.first!
         for view in contentView.subviews[0].subviews {
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.white
             view.alpha = 1
         }
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         
     }
 
     func cleanUp() {
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.overlay?.show()
         
         let params = ["oauth_token": "\(Putio.accessToken!)"]
-        Alamofire.request(.POST, "\(Putio.api)transfers/clean", parameters: params)
-            .response { request, response, data, error in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        Alamofire.request("\(Putio.api)transfers/clean", method: .post, parameters: params)
+            .response { response in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.fetch()
             }
         
@@ -226,13 +226,13 @@ class TransfersTableViewController: UITableViewController {
     
     // MARK: - Timer
     
-    func intervalFetch(sender: NSTimer) {
+    func intervalFetch(_ sender: Timer) {
         fetch()
     }
     
     func setupTimer() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: #selector(intervalFetch), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(intervalFetch), userInfo: nil, repeats: true)
         }
     }
 

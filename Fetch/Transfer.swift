@@ -21,9 +21,9 @@ class Transfer: NSObject {
     var estimated_time: Int64?
     
     enum TransferStatus {
-        case Completed
-        case Queued
-        case InProgress
+        case completed
+        case queued
+        case inProgress
     }
     
     init(id: Int, name: String, status_message: String, status: String, percent_done: Int, size: Int64, estimated_time: Int64?) {
@@ -32,11 +32,11 @@ class Transfer: NSObject {
         self.status_message = status_message
         
         if(status == "COMPLETED") {
-            self.status = .Completed
+            self.status = .completed
         } else if(status == "IN_QUEUE") {
-            self.status = .Queued
+            self.status = .queued
         } else {
-            self.status = .InProgress
+            self.status = .inProgress
         }
         
         self.percent_done = percent_done
@@ -46,13 +46,13 @@ class Transfer: NSObject {
     
     func destroy() {
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let params = ["oauth_token": "\(Putio.accessToken!)", "transfer_ids": "\(id!)"]
         
-        Alamofire.request(.POST, "\(Putio.api)transfers/cancel", parameters: params)
+        Alamofire.request("\(Putio.api)transfers/cancel", method: .post, parameters: params)
             .responseJSON {response in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = response.result.error {
                     print(error)
                 }

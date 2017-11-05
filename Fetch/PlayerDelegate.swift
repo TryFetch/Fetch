@@ -15,25 +15,25 @@ class PlayerDelegate: NSObject, AVPlayerViewControllerDelegate {
     
     static let sharedInstance = PlayerDelegate()
     
-    func playerViewControllerDidStartPictureInPicture(playerViewController: AVPlayerViewController) {
+    func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
         
         print("--- PIP STARTING ---")
         
     }
     
-    func playerViewControllerDidStopPictureInPicture(playerViewController: AVPlayerViewController) {
+    func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
         
         print("--- PIP STOPPING ---")
         
     }
     
-    func playerViewController(playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: (Bool) -> Void) {
+    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         
         print("---- PIP RESTORING -----")
         
-        let rvc = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let rvc = UIApplication.shared.keyWindow?.rootViewController
             
-        rvc!.presentViewController(playerViewController, animated: true, completion: {
+        rvc!.present(playerViewController, animated: true, completion: {
             completionHandler(true)
         })
         

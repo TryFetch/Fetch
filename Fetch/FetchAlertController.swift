@@ -10,13 +10,13 @@ import UIKit
 
 class FetchAlertController: UIAlertController {
 
-    override func addAction(action: UIAlertAction) {
+    override func addAction(_ action: UIAlertAction) {
         super.addAction(action)
         
         let subView = view.subviews.first!
         let contentView = subView.subviews.first!
         for view in contentView.subviews[0].subviews {
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.white
             view.alpha = 1
         }
     }

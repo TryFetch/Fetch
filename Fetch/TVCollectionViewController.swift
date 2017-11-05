@@ -21,12 +21,12 @@ class TVCollectionViewController: PosterCollectionViewController
 //        }
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Videos.sharedInstance.sortedTV.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("posterCell", forIndexPath: indexPath) as! PosterCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "posterCell", for: indexPath) as! PosterCollectionViewCell
         
         let show = Videos.sharedInstance.sortedTV[indexPath.row]
         
@@ -44,8 +44,8 @@ class TVCollectionViewController: PosterCollectionViewController
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? TVShowCollectionViewController, indexPath = collectionView?.indexPathsForSelectedItems()?.first {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? TVShowCollectionViewController, let indexPath = collectionView?.indexPathsForSelectedItems?.first {
             vc.show = Videos.sharedInstance.sortedTV[indexPath.row]
         }
     }

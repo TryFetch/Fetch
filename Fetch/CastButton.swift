@@ -30,14 +30,14 @@ class CastButton: UIView {
     ]
     
     /// Is the button connected?
-    var connectionState: CastConnectionState = .Disconnected
+    var connectionState: CastConnectionState = .disconnected
     
     init() {
         super.init(frame: CGRect.zero)
         
-        frame = CGRectMake(0, 0, castOn.size.width, castOn.size.height)
+        frame = CGRect(x: 0, y: 0, width: castOn.size.width, height: castOn.size.height)
         
-        button = UIButton(type: .System)
+        button = UIButton(type: .system)
         button.frame = frame
         button.imageView?.animationImages = castConnecting
         button.imageView?.animationDuration = 1.0
@@ -56,24 +56,24 @@ class CastButton: UIView {
     // MARK: - State
     
     /// Set the current state of the button
-    func setState(state: CastConnectionState) {
+    func setState(_ state: CastConnectionState) {
         self.connectionState = state
         updateButtonImage()
     }
     
     /// Update the image used by the button
-    private func updateButtonImage() {
+    fileprivate func updateButtonImage() {
         switch connectionState {
-            case .Connecting :
+            case .connecting :
                 button.imageView?.startAnimating()
                 break
-            case .Connected :
+            case .connected :
                 button.imageView?.stopAnimating()
-                button.setImage(castOn, forState: .Normal)
+                button.setImage(castOn, for: UIControlState())
                 break
             default:
                 button.imageView?.stopAnimating()
-                button.setImage(castOff, forState: .Normal)
+                button.setImage(castOff, for: UIControlState())
                 break
             
         }

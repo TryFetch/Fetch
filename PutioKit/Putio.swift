@@ -47,9 +47,9 @@ public class Putio {
      
      - parameter yn: Whether to show the indicator or not
      */
-    public class func networkActivityIndicatorVisible(yn: Bool) {
+    public class func networkActivityIndicatorVisible(_ yn: Bool) {
         #if os(iOS)
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = yn
+            UIApplication.shared.isNetworkActivityIndicatorVisible = yn
         #endif
     }
     
@@ -62,20 +62,20 @@ public class Putio {
     - parameter endpoint: The endpoint to call
     - parameter callback: Optional callback
     */
-    public class func get(endpoint: String, parameters: [String:AnyObject] = [:], callback: ((JSON?, NSError?) -> Void)?) {
+    public class func get(_ endpoint: String, parameters: [String:AnyObject] = [:], callback: ((JSON?, NSError?) -> Void)?) {
         
         self.networkActivityIndicatorVisible(true)
         
         var params = parameters
-        params["oauth_token"] = "\(self.accessToken!)"
+        params["oauth_token"] = self.accessToken! as NSString
         
-        Alamofire.request(.GET, "\(self.api)\(endpoint)", parameters: params)
+        Alamofire.request("\(self.api)\(endpoint)", parameters: params)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 
                 self.networkActivityIndicatorVisible(false)
                 
-                if let code = response.response?.statusCode where response.result.isFailure {
+                if let code = response.response?.statusCode, response.result.isFailure {
                     if case 400..<404 = code {
                         Putio.sharedInstance.delegate?.error400Received()
                     }
@@ -83,7 +83,7 @@ public class Putio {
                 
                 if let cb = callback {
                     if response.result.error != nil {
-                        cb(nil, response.result.error)
+                        cb(nil, response.result.error as! NSError)
                     } else if let data = response.result.value {
                         let json = JSON(data)
                         cb(json, nil)
@@ -102,7 +102,7 @@ public class Putio {
      - parameter endpoint: Endpoint to call
      - parameter callback: Optional callback
      */
-    public class func post(endpoint: String, callback: ((JSON?, NSError?) -> Void)?) {
+    public class func post(_ endpoint: String, callback: ((JSON?, NSError?) -> Void)?) {
         self.post(endpoint, parameters: [:], callback: callback)
     }
     
@@ -113,7 +113,7 @@ public class Putio {
      - parameter params:   Parameters to POST
      - parameter callback: Optional callback
      */
-    public class func post(endpoint: String, parameters params: [String:String], callback: ((JSON?, NSError?) -> Void)?) {
+    public class func post(_ endpoint: String, parameters params: [String:String], callback: ((JSON?, NSError?) -> Void)?) {
         
         var params = params
         
@@ -121,13 +121,13 @@ public class Putio {
         
         params["oauth_token"] = self.accessToken!
         
-        Alamofire.request(.POST, "\(self.api)\(endpoint)", parameters: params)
+        Alamofire.request("\(self.api)\(endpoint)", method: .post, parameters: params)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 
                 self.networkActivityIndicatorVisible(false)
                 
-                if let code = response.response?.statusCode where response.result.isFailure {
+                if let code = response.response?.statusCode, response.result.isFailure {
                     if case 400..<404 = code {
                         Putio.sharedInstance.delegate?.error400Received()
                     }
@@ -135,7 +135,7 @@ public class Putio {
                 
                 if let cb = callback {
                     if response.result.error != nil {
-                        cb(nil, response.result.error)
+                        cb(nil, response.result.error as! NSError)
                     } else if let data = response.result.value {
                         let json = JSON(data)
                         cb(json, nil)

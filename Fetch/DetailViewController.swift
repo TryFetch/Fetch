@@ -17,11 +17,11 @@ class DetailViewController: UITableViewController {
     var file: File!
     var mp4Status: String?
     var mp4Percent: Int = 0
-    var timer: NSTimer?
+    var timer: Timer?
     var times: Int = 0
     var activitySheet: UIActivityViewController!
     
-    var url: NSURL!
+    var url: URL!
     let safari = TUSafariActivity()
     let vlc = OpenInVLC()
     
@@ -41,13 +41,13 @@ class DetailViewController: UITableViewController {
         super.viewDidLoad()
         
         createActionSheet()
-        url = NSURL(string: "\(Putio.api)files/\(file.id)/download?oauth_token=\(Putio.accessToken!)")!
+        url = URL(string: "\(Putio.api)files/\(file.id)/download?oauth_token=\(Putio.accessToken!)")!
         
         // Set the title for the navbar
         self.title = "Details"
         
         // Do we need a convert button?
-        if(file.content_type != "video/mp4" && file.content_type?.rangeOfString("video") != nil && !file.has_mp4) {
+        if(file.content_type != "video/mp4" && file.content_type?.range(of: "video") != nil && !file.has_mp4) {
             getMp4Status(nil)
             sections.append(["-"])
         }
@@ -55,19 +55,19 @@ class DetailViewController: UITableViewController {
         // Setup the rows
         rows["Name"] = file.name
         
-        let formatter = NSByteCountFormatter()
-        let size = formatter.stringFromByteCount(file.size)
+        let formatter = ByteCountFormatter()
+        let size = formatter.string(fromByteCount: file.size)
         
         rows["Size"] = size
         rows["Type"] = file.content_type
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer?.invalidate()
         timer = nil
@@ -83,34 +83,34 @@ class DetailViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return sections.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return sections[section].count
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell
         
         let row = sections[indexPath.section][indexPath.row]
         
         if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) 
+            cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) 
             cell.textLabel!.text = row
             cell.detailTextLabel!.text = rows[row]
         } else {
             
-            cell = tableView.dequeueReusableCellWithIdentifier("mp4Btn", forIndexPath: indexPath) 
-            cell.selectionStyle = .None
-            cell.textLabel?.textColor = UIColor.grayColor()
+            cell = tableView.dequeueReusableCell(withIdentifier: "mp4Btn", for: indexPath) 
+            cell.selectionStyle = .none
+            cell.textLabel?.textColor = UIColor.gray
             
             var text: String!
             
@@ -127,7 +127,7 @@ class DetailViewController: UITableViewController {
             } else if mp4Status == "NOT_AVAILABLE" {
                 text = "Convert to MP4"
                 cell.textLabel?.textColor = UIColor(red:0, green:0.48, blue:1, alpha:1)
-                cell.selectionStyle = .Default
+                cell.selectionStyle = .default
             } else {
                 text = "Checking MP4 Status..."
             }
@@ -141,14 +141,14 @@ class DetailViewController: UITableViewController {
     
     // MARK: - Table View Selection
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 1 && mp4Status == "NOT_AVAILABLE" {
             file.convertToMp4()
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            let cell = tableView.cellForRow(at: indexPath)
             cell?.textLabel?.text = "Added to Queue..."
-            cell?.textLabel?.textColor = UIColor.grayColor()
-            cell?.selectionStyle = .None
+            cell?.textLabel?.textColor = UIColor.gray
+            cell?.selectionStyle = .none
             setupTimer()
         }
         
@@ -156,16 +156,16 @@ class DetailViewController: UITableViewController {
     
     // MARK: - MP4 status & timer
     
-    func getMp4Status(sender: AnyObject?) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func getMp4Status(_ sender: AnyObject?) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let params = ["oauth_token": "\(Putio.accessToken!)"]
         
         times += 1
         print("called \(times)")
         
-        Alamofire.request(.GET, "\(Putio.api)files/\(file.id)/mp4", parameters: params)
+        Alamofire.request("\(Putio.api)files/\(file.id)/mp4", parameters: params)
             .responseJSON { response in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 if response.result.isFailure {
                     print(response.result.error)
@@ -186,7 +186,7 @@ class DetailViewController: UITableViewController {
     
     func setupTimer() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(getMp4Status), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(getMp4Status), userInfo: nil, repeats: true)
         }
     }
     
@@ -195,24 +195,24 @@ class DetailViewController: UITableViewController {
     
     func createActionSheet() {
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(showActionSheet))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(showActionSheet))
         
     }
     
-    func showActionSheet(sender: AnyObject) {
+    func showActionSheet(_ sender: AnyObject) {
         
         activitySheet = UIActivityViewController(activityItems: [url], applicationActivities: [safari, vlc])
         activitySheet.excludedActivityTypes = [
-            UIActivityTypePostToFacebook,
-            UIActivityTypePostToFlickr,
-            UIActivityTypePostToTwitter,
-            UIActivityTypeAddToReadingList,
-            UIActivityTypeAirDrop
+            UIActivityType.postToFacebook,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToTwitter,
+            UIActivityType.addToReadingList,
+            UIActivityType.airDrop
         ]
         
         activitySheet.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
 
-        presentViewController(activitySheet, animated: true, completion: nil)
+        present(activitySheet, animated: true, completion: nil)
         
     }
 }

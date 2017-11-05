@@ -20,9 +20,9 @@ public class Event {
     public var createdAt: String? {
         didSet {
             if let string = createdAt {
-                let formatter = NSDateFormatter()
+                let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:s"
-                date = formatter.dateFromString(string)
+                date = formatter.date(from: string)! as NSDate
             }
         }
     }

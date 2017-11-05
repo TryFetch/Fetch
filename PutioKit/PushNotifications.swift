@@ -15,16 +15,16 @@ extension Putio {
      
      - parameter token: The device token
      */
-    public class func registerForPushNotifications(token: NSData) {
+    public class func registerForPushNotifications(token: Data) {
         
         if let apiToken = Putio.accessToken {
             
-            let characterSet = NSCharacterSet( charactersInString: "<>" )
-            let deviceToken = (token.description as NSString)
-                .stringByTrimmingCharactersInSet(characterSet)
-                .stringByReplacingOccurrencesOfString(" ", withString: "") as String
+            let characterSet = CharacterSet(charactersIn: "<>")
+            let deviceToken = token.description
+                .trimmingCharacters(in: characterSet)
+                .replacingOccurrences(of: " ", with: "")
         
-            Alamofire.request(.POST, "https://ftch.in/api/register-device", parameters: ["device": deviceToken, "api": apiToken])
+            Alamofire.request("https://ftch.in/api/register-device", method: .post, parameters: ["device": deviceToken, "api": apiToken])
         
         }
         

@@ -45,17 +45,17 @@ class FetchUITests: XCTestCase {
         snapshot("02TVShows")
         
         // screenshot season
-        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(2).collectionViews.cells.otherElements.childrenMatchingType(.Image).element.tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 2).collectionViews.cells.otherElements.children(matching: .image).element.tap()
         snapshot("03Season")
         
         // screenshot continue playing
-        let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element
         element.tap()
         snapshot("04Continue")
         app.alerts["Continue Playing"].collectionViews.buttons["Yes"].tap()
         let doneButton = app.buttons["Done"]
         doneButton.tap()
-        XCUIDevice.sharedDevice().orientation = .Portrait
+        XCUIDevice.shared().orientation = .portrait
         
         
         // screenshot multiple selection

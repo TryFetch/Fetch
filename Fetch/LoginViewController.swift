@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var logo: UIImageView!
     
     @IBOutlet weak var activityView: UIActivityIndicatorView!
-    let oneP = OnePasswordExtension.sharedExtension()
+    let oneP = OnePasswordExtension.shared()
     
     @IBOutlet weak var urlBtn: UIButton!
 
@@ -30,40 +30,40 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         createOnePasswordBtn()
         clearCookies()
         
-        let url = NSURL(string: "https://api.put.io/v2/oauth2/authenticate?client_id=2023&response_type=code&redirect_uri=http://getfetchapp.com/authenticate")!
-        let request = NSURLRequest(URL: url)
+        let url = URL(string: "https://api.put.io/v2/oauth2/authenticate?client_id=2023&response_type=code&redirect_uri=http://getfetchapp.com/authenticate")!
+        let request = URLRequest(url: url)
         webView?.loadRequest(request)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - Actions
     
-    @IBAction func closeView(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeView(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
 
     // MARK: - UIWebViewDelegate
     
     
-    func webViewDidStartLoad(webView: UIWebView) {
-        print(webView.request?.URL)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        print(webView.request?.url)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
         let url = webView.request?.mainDocumentURL
         let urlString = url!.absoluteString
         
-        if(urlString!.rangeOfString("http://getfetchapp.com/authenticate/success.php") != nil) {
+        if(urlString.range(of: "http://getfetchapp.com/authenticate/success.php") != nil) {
             
-            let accessToken = url?.query!.stringByReplacingOccurrencesOfString("access_token=", withString: "", options: [], range: nil)
+            let accessToken = url?.query!.replacingOccurrences(of: "access_token=", with: "", options: [], range: nil)
             
             Putio.keychain.updateIfNeeded("access_token", value: accessToken)
             
@@ -71,8 +71,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc: UITabBarController = sb.instantiateInitialViewController() as! UITabBarController
             
-            self.dismissViewControllerAnimated(true, completion: {
-                pc!.presentViewController(vc, animated: true, completion: nil)
+            self.dismiss(animated: true, completion: {
+                pc!.present(vc, animated: true, completion: nil)
             })
             
         }
@@ -82,7 +82,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     // MARK: - Cookies
     
     func clearCookies() {
-        let storage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        let storage: HTTPCookieStorage = HTTPCookieStorage.shared
         for cookie in storage.cookies! {
             storage.deleteCookie(cookie)
         }
@@ -93,13 +93,13 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     func createOnePasswordBtn() {
         
         if oneP.isAppExtensionAvailable() {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "onepassword-navbar-light"), style: .Plain, target: self, action: #selector(loginWithOnePassword))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "onepassword-navbar-light"), style: .plain, target: self, action: #selector(loginWithOnePassword))
         }
         
     }
     
-    func loginWithOnePassword(sender: AnyObject) {
-        oneP.fillItemIntoWebView(webView, forViewController: self, sender: sender, showOnlyLogins: true) { completed, error in
+    func loginWithOnePassword(_ sender: AnyObject) {
+        oneP.fillItem(intoWebView: webView, for: self, sender: sender, showOnlyLogins: true) { completed, error in
             print(error)
         }
     }

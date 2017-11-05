@@ -24,11 +24,11 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     func addLoadingView() {
-        loadingView = NSBundle.mainBundle().loadNibNamed("TVMovieLoading", owner: self, options: nil)![0] as? TVMovieLoadingView
+        loadingView = Bundle.main.loadNibNamed("TVMovieLoading", owner: self, options: nil)![0] as? TVMovieLoadingView
         loadingView.frame = view.bounds
-        loadingView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        loadingView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         loadingView.layer.zPosition = 20
-        loadingView.hidden = true
+        loadingView.isHidden = true
         
         view.addSubview(loadingView)
     }
@@ -39,9 +39,9 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
     func matchSeasonsIfRequired() {
         if show.seasons.isEmpty {
             loadingView.label.text = "Matching Episode Metadata..."
-            loadingView.hidden = false
+            loadingView.isHidden = false
             show.delegate = self
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             show.convertFilesToEpisodes()
         }
     }
@@ -51,7 +51,7 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
     }
     
     func tvEpisodesLoaded() {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         collectionView?.reloadData()
         loadingView.fadeAndHide()
     }
@@ -60,37 +60,37 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
     
     // MARK: UICollectionViewDelegateFlowLayout
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let w = view.bounds.width
         
         if w > 400 && w < 700 {
-            return CGSizeMake(w/2, 340)
+            return CGSize(width: w/2, height: 340)
         } else if w >= 700 && w < 1000 {
-            return CGSizeMake(w/3, 340)
+            return CGSize(width: w/3, height: 340)
         } else if w >= 1000 {
-            return CGSizeMake(w/4, 340)
+            return CGSize(width: w/4, height: 340)
         }
         
         // Otherwise return the standard single column
-        return CGSizeMake(w, 340)
+        return CGSize(width: w, height: 340)
     }
     
     // CALLED WHEN THE ORIENTATION CHANGES
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
     }
     
     
     // MARK: UICollectionViewDelegate
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionElementKindSectionHeader {
         
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "seasonHeader", forIndexPath: indexPath) as! SeasonSectionHeaderCollectionReusableView
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "seasonHeader", for: indexPath) as! SeasonSectionHeaderCollectionReusableView
             
-            let season = show.seasons.sorted("number")[indexPath.section]
+            let season = show.seasons.sorted(byKeyPath: "number")[indexPath.section]
             
             if season.number > 0 {
                 view.label.text = "SEASON \(season.number)"
@@ -102,24 +102,24 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
             
         }
         
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "sectionFooter", forIndexPath: indexPath)
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionFooter", for: indexPath)
         
     }
     
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return show.seasons.sorted("number").count
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return show.seasons.count
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return show.seasons.sorted("number")[section].episodes.sorted("episodeNo").count
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return show.seasons.sorted(byKeyPath: "number")[section].episodes.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("show", forIndexPath: indexPath) as! TVShowCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "show", for: indexPath) as! TVShowCollectionViewCell
 
-        let ep = show.seasons.sorted("number")[indexPath.section].episodes.sorted("episodeNo")[indexPath.item]
+        let ep = show.seasons.sorted(byKeyPath: "number")[indexPath.section].episodes.sorted(byKeyPath: "episodeNo")[indexPath.item]
         
         if let title = ep.title {
             cell.titleLabel.text = "\(ep.episodeNo). \(title)"
@@ -140,10 +140,10 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
             cell.imageView.image = image
         }
         
-        if let file = ep.file where file.accessed {
-            cell.doneView.hidden = false
+        if let file = ep.file, file.accessed {
+            cell.doneView.isHidden = false
         } else {
-            cell.doneView.hidden = true
+            cell.doneView.isHidden = true
         }
     
         return cell
@@ -152,10 +152,10 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
     
     // MARK: Navigation
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let castHandler = CastHandler.sharedInstance
-        if let file = show.seasons.sorted("number")[indexPath.section].episodes.sorted("episodeNo")[indexPath.item].file {
+        if let file = show.seasons.sorted(byKeyPath: "number")[indexPath.section].episodes.sorted(byKeyPath: "episodeNo")[indexPath.item].file {
             
             if castHandler.device != nil {
                 castHandler.sendFile(file) {
@@ -164,13 +164,13 @@ class TVShowCollectionViewController: UICollectionViewController, UICollectionVi
             } else {
                 let vc = MediaPlayerViewController()
                 
-                let url = NSURL(string: "\(Putio.api)files/\(file.id)/hls/media.m3u8?oauth_token=\(Putio.accessToken!)&subtitle_key=all")!
+                let url = URL(string: "\(Putio.api)files/\(file.id)/hls/media.m3u8?oauth_token=\(Putio.accessToken!)&subtitle_key=all")!
                 
                 vc.file = file
-                vc.player = AVPlayer(URL: url)
+                vc.player = AVPlayer(url: url)
                 vc.delegate = PlayerDelegate.sharedInstance
                 
-                presentViewController(vc, animated: true, completion: nil)
+                present(vc, animated: true, completion: nil)
             }
             
         }

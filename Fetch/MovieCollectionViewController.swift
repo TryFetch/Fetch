@@ -13,12 +13,12 @@ import AVFoundation
 
 class MovieCollectionViewController: PosterCollectionViewController {
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Videos.sharedInstance.sortedMovies.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("posterCell", forIndexPath: indexPath) as! PosterCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "posterCell", for: indexPath) as! PosterCollectionViewCell
         
         let show = Videos.sharedInstance.sortedMovies[indexPath.row]
         
@@ -36,7 +36,7 @@ class MovieCollectionViewController: PosterCollectionViewController {
     
     // MARK: - Navigation
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let castHandler = CastHandler.sharedInstance
         let movie = Videos.sharedInstance.sortedMovies[indexPath.item]
@@ -49,13 +49,13 @@ class MovieCollectionViewController: PosterCollectionViewController {
         } else {
             let vc = MediaPlayerViewController()
             
-            let url = NSURL(string: "\(Putio.api)files/\(file.id)/hls/media.m3u8?oauth_token=\(Putio.accessToken!)&subtitle_key=all")!
+            let url = URL(string: "\(Putio.api)files/\(file.id)/hls/media.m3u8?oauth_token=\(Putio.accessToken!)&subtitle_key=all")!
             
             vc.file = file
-            vc.player = AVPlayer(URL: url)
+            vc.player = AVPlayer(url: url)
             vc.delegate = PlayerDelegate.sharedInstance
             
-            presentViewController(vc, animated: true, completion: nil)
+            present(vc, animated: true, completion: nil)
         }
         
     }

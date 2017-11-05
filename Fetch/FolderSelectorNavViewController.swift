@@ -22,20 +22,20 @@ class FolderSelectorNavViewController: UINavigationController {
 
         let navBar = navigationBar
         whichView = WhichFolderView(frame: CGRect(x: 0, y: 0, width: navBar.frame.width, height: navBar.frame.height))
-        whichView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        whichView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         navBar.addSubview(whichView)
         
         whichView.layer.zPosition = 20
         
         border = CALayer()
         border.frame = CGRect(x: 0, y: 0, width: navBar.frame.width, height: 1)
-        border.backgroundColor = UIColor(hue:0, saturation:0, brightness:0.27, alpha:1).CGColor
+        border.backgroundColor = UIColor(hue:0, saturation:0, brightness:0.27, alpha:1).cgColor
         border.zPosition = 21
         
         navBar.layer.addSublayer(border)
         
         
-        gradOverlay = GradientOverlay(frame: CGRectZero)
+        gradOverlay = GradientOverlay(frame: CGRect.zero)
         view.addSubview(gradOverlay)
         
     }
@@ -43,7 +43,7 @@ class FolderSelectorNavViewController: UINavigationController {
     override func viewDidLayoutSubviews() {
         whichView.layoutIfNeeded()
         border.frame = CGRect(x: 0, y: 0, width: navigationBar.frame.width, height: 0.8)
-        gradOverlay.frame = CGRectMake(0, navigationBar.frame.height+1, view.frame.width, view.frame.height-navigationBar.frame.height-1)
+        gradOverlay.frame = CGRect(x: 0, y: navigationBar.frame.height+1, width: view.frame.width, height: view.frame.height-navigationBar.frame.height-1)
         
     }
 
