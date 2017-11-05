@@ -10,38 +10,38 @@ import UIKit
 
 class OpenInVLC: UIActivity {
    
-    override func activityType() -> String? {
-        return "SROpenInVLC"
-    }
+//    override var fetchactivityType : String? {
+//        return "SROpenInVLC"
+//    }
+//    
+//    override var activityTitle : String? {
+//        return "Open In VLC"
+//    }
     
-    override func activityTitle() -> String? {
-        return "Open In VLC"
-    }
-    
-    override func activityImage() -> UIImage? {
+    override var activityImage : UIImage? {
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             return UIImage(named: "vlc-ipad")
         }
         
         return UIImage(named: "vlc-iphone")
     }
     
-    override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
-        let url: NSURL = activityItems[0] as! NSURL
-        let converted = NSURL(string: "vlc://\(url)")!
-        return UIApplication.sharedApplication().canOpenURL(converted)
+    override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
+        let url: URL = activityItems[0] as! URL
+        let converted = URL(string: "vlc://\(url)")!
+        return UIApplication.shared.canOpenURL(converted)
     }
     
-    override class func activityCategory() -> UIActivityCategory {
-        return .Action
+    override class var activityCategory : UIActivityCategory {
+        return .action
     }
     
-    override func prepareWithActivityItems(activityItems: [AnyObject]) {
+    override func prepare(withActivityItems activityItems: [Any]) {
         for item in activityItems {
-            let url: NSURL = item as! NSURL
-            let converted = NSURL(string: "vlc://\(url)")!
-            UIApplication.sharedApplication().openURL(converted)
+            let url: URL = item as! URL
+            let converted = URL(string: "vlc://\(url)")!
+            UIApplication.shared.openURL(converted)
         }
     }
     

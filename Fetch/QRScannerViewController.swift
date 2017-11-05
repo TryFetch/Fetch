@@ -22,25 +22,25 @@ class QRScannerViewController: UIViewController, SRBarcodeScannerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        logoImageView.image = logoImageView.image!.imageWithRenderingMode(.AlwaysTemplate)
-        logoImageView.tintColor = .whiteColor()
+        logoImageView.image = logoImageView.image!.withRenderingMode(.alwaysTemplate)
+        logoImageView.tintColor = .white
         
         scanner.delegate = self
         
         if scanner.previewLayer != nil {
             scanner.previewLayer.frame = view.frame
-            scanner.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+            scanner.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             scanner.layoutIfNeeded()
         } else {
             let v = NoResultsView(frame: view.frame, text: "Allow camera access in Settings.")
-            v.backgroundColor = .groupTableViewBackgroundColor()
+            v.backgroundColor = .groupTableViewBackground
             view.addSubview(v)
-            v.hidden = false
+            v.isHidden = false
         }
         
-        let sound = NSBundle.mainBundle().pathForResource("success", ofType: "wav")
-        let url = NSURL.fileURLWithPath(sound!)
-        AudioServicesCreateSystemSoundID(url, &soundID!)
+        let sound = Bundle.main.path(forResource: "success", ofType: "wav")
+        let url = URL(fileURLWithPath: sound!)
+        AudioServicesCreateSystemSoundID(url as CFURL, &soundID!)
         
         scanner.startScanning()
     }
@@ -50,33 +50,33 @@ class QRScannerViewController: UIViewController, SRBarcodeScannerDelegate {
         soundID = nil
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Portrait
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
     }
     
     
     // MARK: - SRBarcodeScannerDelegate
     
-    func foundBarcode(barcode: String) {
+    func foundBarcode(_ barcode: String) {
         
         scanner.stopScanning()
         
-        Alamofire.request(.PUT, "https://ftch.in/exchange-tokens/\(barcode)", parameters: [
+        Alamofire.request("https://ftch.in/exchange-tokens/\(barcode)", method: .put, parameters: [
             "secret" : Putio.secret,
             "access_token" : Putio.accessToken!
         ])
         
         playSound()
         
-        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popToRootViewController(animated: true)
 
     }
     
-    func failedToCreateDeviceInputWithError(error: NSError) {
+    private func failedToCreateDeviceInputWithError(_ error: NSError) {
         print(error)
     }
     

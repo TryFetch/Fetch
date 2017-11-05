@@ -14,11 +14,11 @@ class WhatsNewViewController: UIViewController {
     @IBOutlet weak var topSection: UIView!
     @IBOutlet weak var image: UIImageView!
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        image.tintColor = .whiteColor()
+        image.tintColor = .white
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,17 +27,17 @@ class WhatsNewViewController: UIViewController {
     }
     
     /// Show the view controller
-    class func show(sender: AnyObject?) {
+    class func show(_ sender: AnyObject?) {
         
         if self.checkVersion() < 1.4 {
-            let vc = WhatsNewViewController(nibName: "WhatsNewViewController", bundle: NSBundle.mainBundle())
+            let vc = WhatsNewViewController(nibName: "WhatsNewViewController", bundle: Bundle.main)
             
             let formSheetController = MZFormSheetPresentationViewController(contentViewController: vc)
-            formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 400)
-            formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+            formSheetController.presentationController?.contentViewSize = CGSize(width: 300, height: 400)
+            formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.slideFromBottom
             formSheetController.contentViewCornerRadius = 5
             
-            formSheetController.view.layer.shadowColor = UIColor.blackColor().CGColor
+            formSheetController.view.layer.shadowColor = UIColor.black.cgColor
             formSheetController.view.layer.shadowOffset = CGSize(width: 0, height: 5)
             formSheetController.view.layer.shadowOpacity = 0.4
             formSheetController.view.layer.shadowRadius = 3
@@ -45,15 +45,15 @@ class WhatsNewViewController: UIViewController {
             formSheetController.presentationController?.shouldCenterVertically = true
             formSheetController.presentationController?.shouldUseMotionEffect = true
             
-            sender?.presentViewController(formSheetController, animated: true, completion: nil)
+            sender?.present(formSheetController, animated: true, completion: nil)
 
-            NSUserDefaults.standardUserDefaults().setFloat(1.4, forKey: "last_version")
+            UserDefaults.standard.set(1.4, forKey: "last_version")
         }
         
     }
     
     class func checkVersion() -> Float {
-        var version: Float? = NSUserDefaults.standardUserDefaults().objectForKey("last_version") as? Float
+        var version: Float? = UserDefaults.standard.object(forKey: "last_version") as? Float
         
         if version == nil {
             version = 0
@@ -62,8 +62,8 @@ class WhatsNewViewController: UIViewController {
         return version!
     }
     
-    @IBAction func ok(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func ok(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 
     

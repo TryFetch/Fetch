@@ -28,14 +28,14 @@ public class Videos {
     /// Movies sorted alphabetically
     public var sortedMovies: [Movie] {
         get {
-           return self.movies.sort({ $0.sortableTitle < $1.sortableTitle })
+           return self.movies.sorted { $0.sortableTitle! < $1.sortableTitle! }
         }
     }
 
     /// TV shows sorted alphabetically
     public var sortedTV: [TVShow] {
         get {
-            return self.tvShows.sort({ $0.sortableTitle < $1.sortableTitle })
+            return self.tvShows.sorted { $0.sortableTitle! < $1.sortableTitle! }
         }
     }
     
@@ -80,7 +80,7 @@ public class Videos {
             return
         }
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         syncing = true
         
@@ -91,13 +91,16 @@ public class Videos {
             files = []
         }
         
-        cachedFileCount = NSUserDefaults.standardUserDefaults().integerForKey("fileCount")
+        cachedFileCount = UserDefaults.standard.integer(forKey: "fileCount")
         
-        let params = ["oauth_token": "\(Putio.accessToken!)", "start_from": "1"]
+        let params: [String: AnyObject] = [
+            "oauth_token": Putio.accessToken! as NSString,
+            "start_from": "1" as NSString,
+        ]
         
         Putio.get("files/list", parameters: params) { json, error in
             if let files = json?["files"].array {
-                self.recursivelyFetchFiles(files.map(self.parseFile))
+                self.recursivelyFetchFiles(files: files.map(self.parseFile))
             }
         }
         
@@ -109,7 +112,7 @@ public class Videos {
      - parameter files: Files to fetch
      */
     private func recursivelyFetchFiles(files: [File]) {
-        self.files.appendContentsOf(files)
+        self.files.append(contentsOf: files)
         for file in files {
             
             if file.is_shared {
@@ -118,30 +121,30 @@ public class Videos {
             
             if file.content_type == "application/x-directory" {
                 folderCount += 1
-                loadSubfolderFromFile(file) { files in
+                loadSubfolderFromFile(file: file) { files in
                     self.folderCount -= 1
-                    self.recursivelyFetchFiles(files)
+                    self.recursivelyFetchFiles(files: files)
                 }
             }
         }
         
-        NSUserDefaults.standardUserDefaults().setInteger(self.files.count, forKey: "fileCount")
+        UserDefaults.standard.set(self.files.count, forKey: "fileCount")
         
         if cachedFileCount == 0 && folderCount == 0 && movies.count == 0 && tvShows.count == 0 { // This is the first run
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             print("Finished fetching files")
-            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "PutioFinished", object: self))
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PutioFinished"), object: self)
             convertToSearchTerms()
         } else if folderCount == 0 { // This is a refresh
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             print("Finished re-fetching files")
             if self.files.count != cachedFileCount {
                 print("File count changed!")
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "PutioFinished", object: self))
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PutioFinished"), object: self)
                 convertToSearchTerms()
             } else {
                 syncing = false
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "TMDBFinished", object: self))
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TMDBFinished"), object: self)
             }
         }
     }
@@ -152,7 +155,7 @@ public class Videos {
      - parameter file:     The folder to fetch
      - parameter callback: Called when Alamofire has finished
      */
-    private func loadSubfolderFromFile(file: File, callback: ([File]) -> Void) {
+    private func loadSubfolderFromFile(file: File, callback: @escaping ([File]) -> Void) {
         guard Putio.accessToken != nil else {
             print("Logged out")
             return
@@ -160,7 +163,7 @@ public class Videos {
         
         let params = ["oauth_token": "\(Putio.accessToken!)", "parent_id": "\(file.id)", "start_from": "1"]
        
-        Putio.get("files/list", parameters: params) { json, error in
+        Putio.get("files/list", parameters: params as [String : AnyObject]) { json, error in
             if let files = json?["files"].array?.map(self.parseFile) {
                 for f in files {
                     f.parent = file
@@ -224,13 +227,13 @@ public class Videos {
                 
                 let d = Downpour(string: file.name!)
   
-                if let search = searches[d.title.lowercaseString] {
+                if let search = searches[d.title.lowercased()] {
                     search.files.append(file)
                 } else {
                     let search = TMDBSearch()
                     search.downpour = d
                     search.files.append(file)
-                    searches[d.title.lowercaseString] = search
+                    searches[d.title.lowercased()] = search
                 }
                 
             }
@@ -252,7 +255,7 @@ public class Videos {
         newMovies = []
         newTvShows = []
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         for term in searches {
             folderCount += 1
@@ -262,10 +265,10 @@ public class Videos {
                 self.folderCount -= 1
                 self.completed += 1
                 
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "TMDBUpdated", object: self))
+                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "TMDBUpdated"), object: self))
                 
                 if let tvshow = result.tvshow {
-                    tvshow.files.appendContentsOf(term.1.files)
+                    tvshow.files.append(objectsIn: term.1.files)
                     self.newTvShows.append(tvshow)
                     
                     do {
@@ -278,7 +281,7 @@ public class Videos {
                 }
                 
                 if let movie = result.movie {
-                    movie.files.appendContentsOf(term.1.files)
+                    movie.files.append(objectsIn: term.1.files)
                     self.newMovies.append(movie)
                     
                     do {
@@ -298,21 +301,21 @@ public class Videos {
                     self.tvShows = self.newTvShows
 
                     TMDB.sharedInstance.requests = 0
-                    
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     syncing = false
                     
                     // Tell the App it's all done
-                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "TMDBFinished", object: self))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "TMDBFinished"), object: self))
                     
                 }
                 
             }
             
-            if term.1.downpour?.type == .Movie {
-                TMDB.searchMoviesWithString(term.0, year: term.1.downpour?.year, callback: parseResult)
+            if term.1.downpour?.type == .movie {
+                TMDB.searchMoviesWithString(string: term.0, year: term.1.downpour?.year, callback: parseResult)
             } else {
-                TMDB.searchTVWithString(term.0, year: term.1.downpour?.year, callback: parseResult)
+                TMDB.searchTVWithString(string: term.0, year: term.1.downpour?.year, callback: parseResult)
             }
             
         }
@@ -328,7 +331,7 @@ public class Videos {
         files = []
         movies = []
         searches = [:]
-        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "fileCount")
+        UserDefaults.standard.set(0, forKey: "fileCount")
     }
 
     

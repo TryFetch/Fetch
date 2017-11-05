@@ -11,12 +11,12 @@ import PutioKit
 
 class ActivityTableViewController: UITableViewController {
 
-    var events = [NSDate:[Event]]()
+    var events = [Date:[Event]]()
     
     let sb = UIStoryboard(name: "Main", bundle: nil)
     
-    var sortedKeys: [NSDate] {
-        return Array(events.keys).sort { $0.compare($1) == .OrderedDescending }
+    var sortedKeys: [Date] {
+        return events.keys.sorted { $0.compare($1) == .orderedDescending }
     }
     
     var overlay: LoaderView?
@@ -32,12 +32,12 @@ class ActivityTableViewController: UITableViewController {
         overlay = LoaderView(frame: tableView.frame)
         tableView.addSubview(overlay!.view)
         
-        refreshControl?.addTarget(self, action: #selector(fetch), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(fetch), for: UIControlEvents.valueChanged)
         
         fetch(self)
     }
     
-    func fetch(sender: AnyObject?) {
+    func fetch(_ sender: AnyObject?) {
         Events.get { events, error in
             self.events = events
             self.tableView.reloadData()
@@ -45,43 +45,43 @@ class ActivityTableViewController: UITableViewController {
             
             self.overlay?.hideWithAnimation()
             if events.count == 0 {
-                self.noResults!.hidden = false
+                self.noResults!.isHidden = false
             } else {
-                self.noResults!.hidden = true
+                self.noResults!.isHidden = true
             }
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let v = view as? UITableViewHeaderFooterView {
             v.backgroundView?.backgroundColor = .fetchLighterBackground()
-            v.textLabel?.textColor = .whiteColor()
+            v.textLabel?.textColor = .white
         }
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return events.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let key = sortedKeys[section]
         return events[key]!.count
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        return dateFormatter.stringFromDate(sortedKeys[section])
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter.string(from: sortedKeys[section])
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("eventCell")!
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell")!
         let key = sortedKeys[indexPath.section]
         let event = events[key]![indexPath.row]
         if event.fileID != nil {
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
         }
         cell.textLabel?.text = event.name
         return cell
@@ -89,10 +89,10 @@ class ActivityTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let key = sortedKeys[indexPath.section]
         let event = events[key]![indexPath.row]
-        if let vc = sb.instantiateViewControllerWithIdentifier("directoryView") as? DirectoryTableViewController {
+        if let vc = sb.instantiateViewController(withIdentifier: "directoryView") as? DirectoryTableViewController {
             File.getFileById("\(event.fileID!)") { file in
                 vc.file = file
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -102,7 +102,7 @@ class ActivityTableViewController: UITableViewController {
     
     // MARK: - Clear Activity
     
-    @IBAction func clearActivity(sender: AnyObject) {
+    @IBAction func clearActivity(_ sender: AnyObject) {
         overlay?.showWithAnimation()
         Events.clear {
             self.delay(1) {

@@ -13,21 +13,21 @@ class GradientOverlay: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .clearColor()
+        backgroundColor = .clear
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = .clearColor()
+        backgroundColor = .clear
     }
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         //2 - get the current context
         let context = UIGraphicsGetCurrentContext()
-        let colors = [UIColor(hue: 0, saturation: 0, brightness: 0.14, alpha: 0.5).CGColor, UIColor.fetchBackground().CGColor]
+        let colors = [UIColor(hue: 0, saturation: 0, brightness: 0.14, alpha: 0.5).cgColor, UIColor.fetchBackground().cgColor]
         
         //3 - set up the color space
         let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -36,34 +36,33 @@ class GradientOverlay: UIView {
         let colorLocations:[CGFloat] = [0.0, 1.0]
         
         //5 - create the gradient
-        let gradient = CGGradientCreateWithColors(colorSpace,
-            colors,
-            colorLocations)
+        let gradient = CGGradient(colorsSpace: colorSpace,
+            colors: colors as CFArray,
+            locations: colorLocations)
         
         //6 - draw the gradient
         let startPoint = CGPoint.zero
         let endPoint = CGPoint(x:0, y:self.bounds.height)
-        CGContextDrawLinearGradient(context!,
-            gradient!,
-            startPoint,
-            endPoint,
-            [])
+        context!.drawLinearGradient(gradient!,
+            start: startPoint,
+            end: endPoint,
+            options: [])
         
     }
     
     func hideWithAnimation() {
-        UIView.animateWithDuration(0.35, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             self.alpha = 0
             }, completion: { finished in
-                self.hidden = true
+                self.isHidden = true
         })
     }
     
     func showWithAnimation() {
         alpha = 0
-        hidden = false
+        isHidden = false
         
-        UIView.animateWithDuration(0.35, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             self.alpha = 1
         })
     }

@@ -10,7 +10,7 @@ import KeychainAccess
 
 extension Keychain {
     
-    func updateIfNeeded(key: String, value: String?) {
+    func updateIfNeeded(_ key: String, value: String?) {
         if self[key] != value {
             self[key] = value
         }

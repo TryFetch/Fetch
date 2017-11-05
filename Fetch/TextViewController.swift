@@ -38,10 +38,10 @@ class TextViewController: UIViewController {
     // MARK: - Network
         
     func loadText() {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        Alamofire.request(.GET, "\(Putio.api)files/\(file!.id)/download?oauth_token=\(Putio.accessToken!)")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        Alamofire.request("\(Putio.api)files/\(file!.id)/download?oauth_token=\(Putio.accessToken!)", method: .get)
             .responseString { response in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 if response.result.isFailure {
                     print(response.result.error)

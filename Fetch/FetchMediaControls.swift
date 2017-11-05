@@ -12,7 +12,7 @@ class FetchMediaControls: UIView {
 
     var barsHidden: Bool = false
     
-    @IBOutlet weak private var contentView:UIView!
+    @IBOutlet weak fileprivate var contentView:UIView!
     @IBOutlet weak var topBar: UINavigationBar!
     @IBOutlet weak var btmBar: UIToolbar!
     @IBOutlet weak var doneBtn: UIBarButtonItem!
@@ -21,12 +21,12 @@ class FetchMediaControls: UIView {
     init(frame: CGRect, title: String) {
         
         super.init(frame: frame)
-        NSBundle.mainBundle().loadNibNamed("FetchMediaControls", owner: self, options: nil)
+        Bundle.main.loadNibNamed("FetchMediaControls", owner: self, options: nil)
         
         topBar.topItem?.title = title
         
         contentView.frame = frame
-        contentView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.addSubview(contentView)
         
     }
@@ -41,19 +41,19 @@ class FetchMediaControls: UIView {
     
     // MARK: - Actions
     
-    @IBAction func toggleBars(sender: AnyObject) {
+    @IBAction func toggleBars(_ sender: AnyObject) {
         
         barsHidden = !barsHidden
         
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             
             self.topBar?.alpha = (self.barsHidden) ? 0 : 1
             self.btmBar?.alpha = (self.barsHidden) ? 0 : 1
             
             }, completion: { finished in
                 
-                self.topBar?.hidden = self.barsHidden
-                self.btmBar?.hidden = self.barsHidden
+                self.topBar?.isHidden = self.barsHidden
+                self.btmBar?.isHidden = self.barsHidden
                 
         })
         

@@ -32,16 +32,12 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     /// Does the camera have a back camera?
     public class var hasBackCamera: Bool {
         get {
-            var haveCamera = false
-            let devices = AVCaptureDevice.devices()
-            for device in devices {
-                if device.hasMediaType(AVMediaTypeVideo) {
-                    if device.position == .Back {
-                        haveCamera = true
-                    }
-                }
+            guard let devices = AVCaptureDevice.devices() as? [AVCaptureDevice] else {
+                return false
             }
-            return haveCamera
+
+            let device = devices.first { $0.hasMediaType(AVMediaTypeVideo) && $0.position == .back }
+            return device != nil
         }
     }
     
@@ -63,7 +59,7 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
         
         // Check if we have a back camera and then set it as the device
         if SRBarcodeScanner.hasBackCamera {
-            captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+            captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         }
         
         // Create I/O
@@ -83,7 +79,7 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
             captureSession.addInput(input)
             return true
         } catch {
-            delegate?.failedToCreateDeviceInputWithError?(error as NSError)
+            delegate?.failedToCreateDeviceInputWithError?(error: error as NSError)
             return false
         }
 
@@ -92,7 +88,7 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     /// Create the device output
     func createOutput() {
         captureOutput = AVCaptureMetadataOutput()
-        captureOutput!.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureOutput!.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureSession.addOutput(captureOutput!)
         
         // See: https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMetadataMachineReadableCodeObject_Class/index.html#//apple_ref/doc/constant_group/Machine_Readable_Object_Types
@@ -115,7 +111,7 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     /// Create the highlight view
     func setupHighlightView() {
         highlightView.layer.borderWidth = 2
-        highlightView.layer.borderColor = UIColor.redColor().CGColor
+        highlightView.layer.borderColor = UIColor.red.cgColor
         addSubview(highlightView)
     }
     
@@ -137,11 +133,11 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     
     // MARK: - AVCaptureMetadataOutputObjectsDelegate
     
-    public func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    @nonobjc public func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         if metadataObjects.count > 0 {
             let string = metadataObjects[0].stringValue as String
-            delegate?.foundBarcode?(string)
+            delegate?.foundBarcode?(barcode: string)
         }
         
     }

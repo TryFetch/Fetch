@@ -11,17 +11,17 @@ import UIKit
 extension UIView {
     
     func fadeAndHide() {
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 0
-        }) { complete in
-            self.hidden = true
-        }
+        }, completion: { complete in
+            self.isHidden = true
+        }) 
     }
     
     func fadeAndShow() {
         self.alpha = 0
-        self.hidden = false
-        UIView.animateWithDuration(0.3, animations: {
+        self.isHidden = false
+        UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 1
         })
     }

@@ -14,9 +14,9 @@ enum QuickAction: String {
     case Downloads = "uk.co.wearecocoon.Fetch.Downloads"
     case Activity = "uk.co.wearecocoon.Fetch.Activity"
     
-    static func handleAction(action: QuickAction, callback: (Bool) -> Void) {
+    static func handleAction(_ action: QuickAction, callback: (Bool) -> Void) {
         
-        guard let window = UIApplication.sharedApplication().delegate?.window! else {
+        guard let window = UIApplication.shared.delegate?.window! else {
             callback(false)
             return
         }
@@ -32,9 +32,9 @@ enum QuickAction: String {
             
                 tabs.selectedIndex = 3
                 if let navController = tabs.viewControllers?[3] as? UINavigationController {
-                    navController.popToRootViewControllerAnimated(false)
+                    navController.popToRootViewController(animated: false)
                     if let moreController = navController.childViewControllers[0] as? MoreTableViewController {
-                        moreController.performSegueWithIdentifier("showDownloads", sender: moreController)
+                        moreController.performSegue(withIdentifier: "showDownloads", sender: moreController)
                     }
                 }
                 
@@ -44,9 +44,9 @@ enum QuickAction: String {
             
                 tabs.selectedIndex = 3
                 if let navController = tabs.viewControllers?[3] as? UINavigationController {
-                    navController.popToRootViewControllerAnimated(false)
+                    navController.popToRootViewController(animated: false)
                     if let moreController = navController.childViewControllers[0] as? MoreTableViewController {
-                        moreController.performSegueWithIdentifier("showActivity", sender: moreController)
+                        moreController.performSegue(withIdentifier: "showActivity", sender: moreController)
                     }
                 }
                 
@@ -56,10 +56,10 @@ enum QuickAction: String {
             
                 tabs.selectedIndex = 1
                 if let navController = tabs.viewControllers?[1] as? UINavigationController {
-                    navController.popToRootViewControllerAnimated(false)
+                    navController.popToRootViewController(animated: false)
                     if let filesController = navController.childViewControllers[0] as? AllFilesTableViewController {
-                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
-                        dispatch_after(delayTime, dispatch_get_main_queue()) {
+                        let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: delayTime) {
                             filesController.searchBar.becomeFirstResponder()
                         }
                     }
@@ -72,9 +72,9 @@ enum QuickAction: String {
                 tabs.selectedIndex = 2
                 if let split = tabs.viewControllers?[2] as? UISplitViewController {
                     if let navController = split.childViewControllers[0] as? UINavigationController {
-                        navController.popToRootViewControllerAnimated(false)
+                        navController.popToRootViewController(animated: false)
                         if let transfers = navController.childViewControllers[0] as? TransfersTableViewController {
-                            transfers.performSegueWithIdentifier("addTransfer", sender: transfers)
+                            transfers.performSegue(withIdentifier: "addTransfer", sender: transfers)
                         }
                     }
                 }

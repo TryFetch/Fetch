@@ -42,7 +42,7 @@ class FolderSelectTableViewController: UITableViewController {
         fetchFolders()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.title = (parentFile != nil) ? parentFile!.name : "All Files"
     }
@@ -54,18 +54,18 @@ class FolderSelectTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return files.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("folderCell", forIndexPath: indexPath) 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "folderCell", for: indexPath) 
         
         cell.textLabel!.text = files[indexPath.row].name
 
@@ -76,14 +76,14 @@ class FolderSelectTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let vc = segue.destinationViewController as! FolderSelectTableViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! FolderSelectTableViewController
         vc.parentFile = selectedFile
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedFile = files[indexPath.row]
-        performSegueWithIdentifier("nextFolder", sender: self)
+        performSegue(withIdentifier: "nextFolder", sender: self)
     }
 
     
@@ -101,12 +101,12 @@ class FolderSelectTableViewController: UITableViewController {
         fetchFoldersWithCallback() { }
     }
     
-    func fetchFoldersWithCallback(callback: () -> Void) {
-        noResults.hidden = true
+    func fetchFoldersWithCallback(_ callback: @escaping () -> Void) {
+        noResults.isHidden = true
         Files.fetchFoldersFromURL("\(Putio.api)files/list", params: setParams()) { files in
             
             if files.count == 0 {
-                self.noResults.hidden = false
+                self.noResults.isHidden = false
             }
             
             self.files = files
@@ -118,28 +118,28 @@ class FolderSelectTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    @IBAction func addFolder(sender: AnyObject?) {
+    @IBAction func addFolder(_ sender: AnyObject?) {
         
-        let alert = FetchAlertController(title: "Add Folder", message: "Enter the name of the folder you wish to create.", preferredStyle: .Alert)
+        let alert = FetchAlertController(title: "Add Folder", message: "Enter the name of the folder you wish to create.", preferredStyle: .alert)
 
-        alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+        alert.addTextField { (textField) -> Void in
             textField.placeholder = "New Folder"
-            textField.autocorrectionType = .Yes
-            textField.autocapitalizationType = .Sentences
+            textField.autocorrectionType = .yes
+            textField.autocapitalizationType = .sentences
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Add Folder", style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Add Folder", style: .default, handler: { (action) in
             let input = alert.textFields![0] 
             self.createFolderWithName(input.text!)
         }))
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         
     }
     
     /// Create a folder with the name passed in
-    func createFolderWithName(name: String) {
+    func createFolderWithName(_ name: String) {
         
         if name == "" {
             return
@@ -154,7 +154,7 @@ class FolderSelectTableViewController: UITableViewController {
             params["parent_id"] = "0"
         }
         
-        Alamofire.request(.POST, "\(Putio.api)files/create-folder", parameters: params)
+        Alamofire.request("\(Putio.api)files/create-folder", method: .post, parameters: params)
             .responseJSON { response in
 
                 if let error = response.result.error {
@@ -172,11 +172,11 @@ class FolderSelectTableViewController: UITableViewController {
     }
     
     /// Navigate to a row with a specific ID
-    func navigateToId(id: Int) {
+    func navigateToId(_ id: Int) {
         for file in files {
             if file.id == id {
                 selectedFile = file
-                performSegueWithIdentifier("nextFolder", sender: self)
+                performSegue(withIdentifier: "nextFolder", sender: self)
             }
         }
     }

@@ -17,8 +17,8 @@ class SettingsNavViewController: UINavigationController {
     }
     
     /// Force the status bar to be white
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,21 +26,21 @@ class SettingsNavViewController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func shouldAutorotate() -> Bool {
-        if visibleViewController!.isKindOfClass(QRScannerViewController) {
+    override var shouldAutorotate : Bool {
+        if visibleViewController!.isKind(of: QRScannerViewController.self) {
             return false
         }
         
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         
-        if visibleViewController!.isKindOfClass(QRScannerViewController) {
-            return [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
+        if visibleViewController!.isKind(of: QRScannerViewController.self) {
+            return [UIInterfaceOrientationMask.portrait, UIInterfaceOrientationMask.portraitUpsideDown]
         }
         
-        return [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.Landscape, UIInterfaceOrientationMask.PortraitUpsideDown]
+        return [UIInterfaceOrientationMask.portrait, UIInterfaceOrientationMask.landscape, UIInterfaceOrientationMask.portraitUpsideDown]
         
     }
 

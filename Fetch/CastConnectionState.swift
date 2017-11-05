@@ -10,9 +10,9 @@ import Foundation
 
 enum CastConnectionState {
     
-    case Connected
-    case Disconnected
-    case Connecting
-    case Unknown
+    case connected
+    case disconnected
+    case connecting
+    case unknown
     
 }

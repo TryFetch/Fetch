@@ -17,13 +17,13 @@ class LoaderView: UIView {
         super.init(frame: frame)
         
         view = UIView(frame: frame)
-        view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         view.backgroundColor = UIColor.fetchBackground()
         view.layer.zPosition = 15
         
-        loader = UIActivityIndicatorView(activityIndicatorStyle: .White)
-        loader.autoresizingMask = [UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin]
-        loader.center = CGPointMake(view.center.x, view.center.y-64)
+        loader = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        loader.autoresizingMask = [UIViewAutoresizing.flexibleBottomMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin]
+        loader.center = CGPoint(x: view.center.x, y: view.center.y-64)
         loader.startAnimating()
         
         view.addSubview(loader)
@@ -34,25 +34,25 @@ class LoaderView: UIView {
     }
     
     func hideWithAnimation() {
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.view.alpha = 0
         }, completion: { finished in
-            self.view.hidden = true
+            self.view.isHidden = true
         })
     }
     
     func showWithAnimation() {
         view.alpha = 0
-        view.hidden = false
+        view.isHidden = false
         
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.view.alpha = 1
         })
     }
     
     func show() {
         self.view.alpha = 1
-        self.view.hidden = false
+        self.view.isHidden = false
     }
 
 }

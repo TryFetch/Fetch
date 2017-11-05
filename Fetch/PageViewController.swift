@@ -22,8 +22,8 @@ class PageViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     
@@ -33,24 +33,24 @@ class PageViewController: UIViewController {
         loginButton.clipsToBounds = true
         loginButton.layer.cornerRadius = 5
         loginButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        loginButton.layer.borderColor = UIColor.whiteColor().CGColor
+        loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.borderWidth = 1
         
         // SELECTED
-        loginButton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+        loginButton.setTitleColor(UIColor.white, for: .selected)
     }
     
     
-    @IBAction func loginDown(sender: AnyObject) {
+    @IBAction func loginDown(_ sender: AnyObject) {
         loginButton.backgroundColor = UIColor(white: 1, alpha: 0.2)
     }
     
-    @IBAction func loginUp(sender: AnyObject) {
-        loginButton.backgroundColor = UIColor.clearColor()
+    @IBAction func loginUp(_ sender: AnyObject) {
+        loginButton.backgroundColor = UIColor.clear
     }
     
-    @IBAction func showWebView(sender: AnyObject) {
-        performSegueWithIdentifier("showWebView", sender: sender)
+    @IBAction func showWebView(_ sender: AnyObject) {
+        performSegue(withIdentifier: "showWebView", sender: sender)
     }
 
 }
