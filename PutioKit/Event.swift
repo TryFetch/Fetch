@@ -20,15 +20,15 @@ public class Event {
     public var createdAt: String? {
         didSet {
             if let string = createdAt {
-                let formatter = NSDateFormatter()
+                let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:s"
-                date = formatter.dateFromString(string)
+                date = formatter.date(from: string)
             }
         }
     }
     
     /// Parsed NSDate when the event was created
-    public var date: NSDate?
+    public var date: Date?
     
     /// The ID of the file that this event relates to
     public var fileID: Int32?

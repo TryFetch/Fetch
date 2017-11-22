@@ -33,7 +33,7 @@ class TMDB {
      
      - parameter string: The term to search the databse with
      */
-    class func searchTVWithString(string: String, year: String?, callback: ((movie: Movie?, tvshow: TVShow?)) -> Void) {
+    class func searchTVWithString(_ string: String, year: String?, callback: @escaping ((movie: Movie?, tvshow: TVShow?)) -> Void) {
         
         TMDB.sharedInstance.requests += 1
         
@@ -46,9 +46,7 @@ class TMDB {
             params["first_air_date_year"] = year!
         }
         
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(TMDB.sharedInstance.requests / 4) * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(dispatch_time_t(delay), dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(TMDB.sharedInstance.requests / 4)) {
             TMDB.sharedInstance.searchWithParams(params, type: "tv") { response in
                 callback(response)
             }
@@ -61,7 +59,7 @@ class TMDB {
      
      - parameter string: The term to search the databse with
      */
-    class func searchMoviesWithString(string: String, year: String?, callback: ((movie: Movie?, tvshow: TVShow?)) -> Void) {
+    class func searchMoviesWithString(_ string: String, year: String?, callback: @escaping ((movie: Movie?, tvshow: TVShow?)) -> Void) {
         
         TMDB.sharedInstance.requests += 1
         
@@ -74,13 +72,12 @@ class TMDB {
             params["year"] = year!
         }
         
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(TMDB.sharedInstance.requests / 4) * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(dispatch_time_t(delay), dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(TMDB.sharedInstance.requests / 4)) {
             TMDB.sharedInstance.searchWithParams(params, type: "movie") { response in
                 callback(response)
             }
         }
+
         
     }
     
@@ -89,9 +86,9 @@ class TMDB {
      
      - parameter params: The parameters to use with Alamofire
      */
-    func searchWithParams(params: [String:String], type: String, callback: ((movie: Movie?, tvshow: TVShow?)) -> Void) {
+    func searchWithParams(_ params: [String:String], type: String, callback: @escaping ((movie: Movie?, tvshow: TVShow?)) -> Void) {
         
-        Alamofire.request(.GET, "\(TMDB.api)search/\(type)", parameters: params)
+        Alamofire.request("\(TMDB.api)search/\(type)", method: .get, parameters: params)
             .responseJSON { response in
                 
                 if response.result.isSuccess {
@@ -108,12 +105,12 @@ class TMDB {
                             movie.posterURL = results[0]["poster_path"].string
                             movie.overview = results[0]["overview"].string
                             if let date = results[0]["release_date"].string {
-                                let formatter = NSDateFormatter()
+                                let formatter = DateFormatter()
                                 formatter.dateFormat = "yyyy-MM-dd"
-                                if let parsed = formatter.dateFromString(date) {
-                                    let calendar = NSCalendar.currentCalendar()
-                                    let components = calendar.components([.Year], fromDate: parsed)
-                                    movie.releaseDate = "\(components.year)"
+                                if let parsed = formatter.date(from: date) {
+                                    let calendar = Calendar.current
+                                    let year = calendar.component(.year, from: parsed)
+                                    movie.releaseDate = "\(year)"
                                 }
                             }
                             
@@ -157,7 +154,7 @@ class TMDB {
     - parameter showId:   ID of the TV Show
     - parameter callback: Called when TV Season is fetched
     */
-    class func fetchEpisodeForSeason(season: String, episode: String, showId: Int, callback: (TVEpisode?) -> Void) {
+    class func fetchEpisodeForSeason(_ season: String, episode: String, showId: Int, callback: @escaping (TVEpisode?) -> Void) {
         
         TMDB.sharedInstance.requests += 1
         
@@ -165,11 +162,9 @@ class TMDB {
             "api_key" : TMDB.key
         ]
         
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(TMDB.sharedInstance.requests / 4) * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(dispatch_time_t(delay), dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(TMDB.sharedInstance.requests / 4)) {
             
-            Alamofire.request(.GET, "\(TMDB.api)tv/\(showId)/season/\(season)/episode/\(episode)", parameters: params)
+            Alamofire.request("\(TMDB.api)tv/\(showId)/season/\(season)/episode/\(episode)", method: .get, parameters: params)
                 .responseJSON { response in
                     
                     if response.result.isSuccess {

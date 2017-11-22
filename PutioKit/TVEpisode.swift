@@ -50,12 +50,12 @@ public class TVEpisode: Object {
     
     // MARK: Methods
     
-    public func getScreenshot(callback: (UIImage) -> Void) {
+    public func getScreenshot(callback: @escaping (UIImage) -> Void) {
         
         if let image = screenshot {
             callback(image)
         } else if let url = (stillURL != nil) ? "https://image.tmdb.org/t/p/w780\(stillURL!)" : file?.screenshot {
-            Alamofire.request(.GET, url)
+            Alamofire.request(url, method: .get)
                 .responseImage { response in
                     if let image = response.result.value {
                         self.screenshot = image

@@ -47,12 +47,16 @@ public class Movie: Object, MediaType {
     
     public var poster: UIImage?
     
+    public func getPoster(callback: (UIImage) -> Void) {
+        
+    }
+    
     /// Title to sort alphabetically witout "The"
     public var sortableTitle: String? {
         get {
-            if let range = title?.rangeOfString("The ") {
-                if range.startIndex == title?.startIndex {
-                    return title?.stringByReplacingCharactersInRange(range, withString: "")
+            if let range = title?.range(of: "The ") {
+                if range.lowerBound == title?.startIndex {
+                    return title?.replacingCharacters(in: range, with: "")
                 }
             }
             return title

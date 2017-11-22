@@ -31,9 +31,9 @@ public protocol MediaType: class {
 
 extension MediaType {
     
-    public func getPoster(callback: (UIImage) -> Void) {
+    public func getPoster(callback: @escaping (UIImage) -> Void) {
         if let url = posterURL {
-            Alamofire.request(.GET, "https://image.tmdb.org/t/p/w500\(url)")
+            Alamofire.request("https://image.tmdb.org/t/p/w500\(url)", method: .get)
                 .responseImage { response in
                     if let image = response.result.value {
                         self.poster = image
@@ -55,13 +55,13 @@ extension MediaType {
     }
     
     func generatePoster(callback: (UIImage) -> Void) {
-        
-        let noArtworkView = NSBundle(forClass: Putio.self).loadNibNamed("NoArtwork", owner: nil, options: nil)![0] as! NoArtworkView
-        noArtworkView.frame = CGRectMake(0, 0, 350, 525)
+       
+        let noArtworkView = Bundle(for: Putio.self).loadNibNamed("NoArtwork", owner: nil, options: nil)![0] as! NoArtworkView
+        noArtworkView.frame = CGRect(x: 0, y: 0, width: 350, height: 525)
         noArtworkView.label.text = self.title
         
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(350, 525), true, 0)
-        noArtworkView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 350, height: 525), true, 0)
+        noArtworkView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         callback(image!)
         UIGraphicsEndImageContext()

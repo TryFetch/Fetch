@@ -10,11 +10,11 @@ import Foundation
 
 public class Events {
     
-    public class func get(callback: ([NSDate:[Event]], NSError?) -> Void) {
+    public class func get(callback: @escaping ([Date:[Event]], NSError?) -> Void) {
         
         Putio.get("events/list") { json, error in
             
-            var sorted = [NSDate:[Event]]()
+            var sorted = [Date:[Event]]()
             if let j = json {
                 
                 if let rawEvents = j["events"].array {
@@ -50,12 +50,12 @@ public class Events {
                     }
                     
                     
-                    let formatter = NSDateFormatter()
+                    let formatter = DateFormatter()
                     formatter.dateFormat = "dd/MM/yyyy"
                     for event in events {
                         if let date = event.date {
-                            let dateString = formatter.stringFromDate(date)
-                            let newDate = formatter.dateFromString(dateString)!
+                            let dateString = formatter.string(from: date as Date)
+                            let newDate = formatter.date(from: dateString)!
                             if sorted[newDate] == nil {
                                 sorted[newDate] = []
                             }
@@ -74,7 +74,7 @@ public class Events {
         
     }
     
-    public class func clear(callback: () -> Void) {
+    public class func clear(callback: @escaping () -> Void) {
         Putio.post("events/delete") { json, error in
             callback()
         }

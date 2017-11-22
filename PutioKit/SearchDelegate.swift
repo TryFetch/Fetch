@@ -11,6 +11,6 @@ import Foundation
 public protocol SearchDelegate {
     
     /// Called when the search has been completed
-    func searchCompleted(results results: [File])
+    func searchCompleted(_ results: [File])
     
 }
