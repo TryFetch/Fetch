@@ -25,35 +25,12 @@ public protocol MediaType: class {
      
      - parameter callback: The callback that will return the poster for the media type
      */
-    func getPoster(callback: (UIImage) -> Void)
+    func getPoster(callback: @escaping (UIImage) -> Void)
     
 }
 
 extension MediaType {
-    
-    public func getPoster(callback: @escaping (UIImage) -> Void) {
-        if let url = posterURL {
-            Alamofire.request("https://image.tmdb.org/t/p/w500\(url)", method: .get)
-                .responseImage { response in
-                    if let image = response.result.value {
-                        self.poster = image
-                        callback(image)
-                    } else {
-                        self.generatePoster { image in
-                            self.poster = image
-                            callback(image)
-                        }
-                    }
-                }
-            
-        } else {
-            generatePoster { image in
-                self.poster = image
-                callback(image)
-            }
-        }
-    }
-    
+
     func generatePoster(callback: (UIImage) -> Void) {
        
         let noArtworkView = Bundle(for: Putio.self).loadNibNamed("NoArtwork", owner: nil, options: nil)![0] as! NoArtworkView

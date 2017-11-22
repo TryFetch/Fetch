@@ -47,8 +47,27 @@ public class Movie: Object, MediaType {
     
     public var poster: UIImage?
     
-    public func getPoster(callback: (UIImage) -> Void) {
-        
+    public func getPoster(callback: @escaping (UIImage) -> Void) {
+        if let url = posterURL {
+            Alamofire.request("https://image.tmdb.org/t/p/w500\(url)", method: .get)
+                .responseImage { response in
+                    if let image = response.result.value {
+                        self.poster = image
+                        callback(image)
+                    } else {
+                        self.generatePoster { image in
+                            self.poster = image
+                            callback(image)
+                        }
+                    }
+            }
+            
+        } else {
+            generatePoster { image in
+                self.poster = image
+                callback(image)
+            }
+        }
     }
     
     /// Title to sort alphabetically witout "The"
