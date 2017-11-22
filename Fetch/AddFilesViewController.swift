@@ -36,16 +36,16 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
         loadFolderPicker()
         
         if(magnetLink == nil) {
-            saveBtn.enabled = false
+            saveBtn.isEnabled = false
         } else {
         
             if let url = NSURL(string: magnetLink!) {
                 if url.scheme == "file" {
                     torrent = url
-                    textView.editable = false
+                    textView.isEditable = false
                     textView.text = "File: \(url.lastPathComponent!)"
-                    whichView?.hidden = true
-                    gradView?.hidden = true
+                    whichView?.isHidden = true
+                    gradView?.isHidden = true
                 } else {
                     textView.text = magnetLink
                 }
@@ -57,10 +57,10 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
         
         textView.delegate = self
         textView.textContainerInset = UIEdgeInsetsMake(10, 7, 10, 7)
-        textView.autocorrectionType = .No
+        textView.autocorrectionType = .no
         textView.becomeFirstResponder()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardChanged), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardChanged), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
     }
     
@@ -69,57 +69,57 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
         magnetLink = nil
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - Actions
     
-    @IBAction func closeView(sender: AnyObject) {
+    @IBAction func closeView(_ sender: AnyObject) {
         
         // Show an alert before we close here
         
         if(textView.text != "") {
             
-            let alert = FetchAlertController(title: "Close", message: "Are you sure you don't want to add the transfer?", preferredStyle: .Alert)
+            let alert = FetchAlertController(title: "Close", message: "Are you sure you don't want to add the transfer?", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 self.textView.resignFirstResponder()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }))
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
             
         } else {
             textView.resignFirstResponder()
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
     
     }
     
     
-    @IBAction func saveFiles(sender: AnyObject) {
+    @IBAction func saveFiles(_ sender: AnyObject) {
         addTransfer()
     }
 
     
     // MARK: - UITextViewDelegate
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         if(textView.text != nil) {
-            saveBtn.enabled = true
+            saveBtn.isEnabled = true
         }
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         whichView?.showWithAnimation()
         gradView?.showWithAnimation()
         folderPickerController?.whichView.label.text = "\(folderPickerController!.title!)"
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         whichView?.hideWithAnimation()
         gradView?.hideWithAnimation()
     }
@@ -128,11 +128,11 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
     
     func addTransfer() {
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         activityIndicator.startAnimating()
         let barBtn = UIBarButtonItem(customView: activityIndicator)
         navigationItem.rightBarButtonItem = barBtn
-        navigationItem.leftBarButtonItem?.enabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
         
         folderPickerController?.whichView.label.text = "\(folderPickerController!.title!)"
         whichView?.showWithAnimation()
@@ -146,31 +146,32 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
                 parentId = "\(vc.parentFile!.id)"
             }
             
-            Alamofire.upload(.POST, "https://upload.put.io/v2/files/upload?oauth_token=\(Putio.accessToken!)", multipartFormData: { data in
-                data.appendBodyPart(fileURL: file, name: "file")
-                data.appendBodyPart(data: parentId.dataUsingEncoding(NSUTF8StringEncoding)!, name: "parent_id")
-            }) { result in
+            Alamofire.upload(multipartFormData: { data in
+                data.append(file as URL, withName: "file")
+                data.append(parentId.data(using: .utf8)!, withName: "parent_id")
+            }, to: "https://upload.put.io/v2/files/upload?oauth_token=\(Putio.accessToken!)", encodingCompletion: { (result) in
                 switch result {
-                case .Success(let upload, _, _):
+                case .success(let upload, _, _):
                     upload.response { _ in
                         self.textView.resignFirstResponder()
-                        self.dismissViewControllerAnimated(true, completion: {
+                        self.dismiss(animated: true, completion: {
                             self.transfersTable?.reload()
                         })
                     }
-                case .Failure:
+                case .failure:
                     print("error uploading")
                     self.textView.resignFirstResponder()
-                    self.dismissViewControllerAnimated(true, completion: {
+                    self.dismiss(animated: true, completion: {
                         self.transfersTable?.reload()
                     })
                 }
-            }
+            })
+            
             
         } else {
             
             let url = textView.text
-            var params = ["oauth_token": "\(Putio.accessToken!)", "url": url, "extract": "true"]
+            var params: [String:Any] = ["oauth_token": "\(Putio.accessToken!)", "url": url as Any, "extract": "true"]
             
             // load the save_parent_id from the visible view controller
             let vc = folderPickerController!.visibleViewController as! FolderSelectTableViewController
@@ -178,10 +179,10 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
                 params["save_parent_id"] = "\(vc.parentFile!.id)"
             }
             
-            Alamofire.request(.POST, "\(Putio.api)transfers/add", parameters: params)
+            Alamofire.request("\(Putio.api)transfers/add", method: .post, parameters: params)
                 .response { _ in
                     self.textView.resignFirstResponder()
-                    self.dismissViewControllerAnimated(true, completion: {
+                    self.dismiss(animated: true, completion: {
                         self.transfersTable?.reload()
                     })
                 }
@@ -200,7 +201,7 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
         folderPickerController!.view.layoutIfNeeded()
         addChildViewController(folderPickerController!)
         folderPicker.addSubview(folderPickerController!.view)
-        folderPickerController!.didMoveToParentViewController(self)
+        folderPickerController!.didMove(toParentViewController: self)
         
         whichView = folderPickerController!.whichView
         whichView!.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showFolderPicker)))
@@ -216,7 +217,7 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
     }
 
     func keyboardChanged(sender: NSNotification) {
-        let height = (sender.userInfo![UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().height
+        let height = (sender.userInfo![UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.height
         heightConstraint.constant = height + folderPickerController!.navigationBar.frame.height
     }
     

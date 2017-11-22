@@ -19,9 +19,9 @@ class MediaPlayerViewController: AVPlayerViewController {
     var file: File?
     var loadedTime: CMTime?
     var checked: Bool = false
-    let defaults = NSUserDefaults.standardUserDefaults()
-    var notifier = NSNotificationCenter.defaultCenter()
-    var observer: AnyObject?
+    let defaults = UserDefaults.standard
+    var notifier = NotificationCenter.default
+    var observer: Any?
     
     
     // MARK: - Layout
@@ -31,18 +31,18 @@ class MediaPlayerViewController: AVPlayerViewController {
         
         // pause the player as soon as it loads
         player?.pause()
-        player?.closedCaptionDisplayEnabled = true
+        player?.isClosedCaptionDisplayEnabled = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Store the current position when the app is exited
-        notifier.addObserver(self, selector: #selector(saveTime), name: UIApplicationWillResignActiveNotification, object: nil)
-        notifier.addObserver(self, selector: #selector(playedToEnd), name: AVPlayerItemDidPlayToEndTimeNotification, object: player?.currentItem)
+        notifier.addObserver(self, selector: #selector(saveTime), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        notifier.addObserver(self, selector: #selector(playedToEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
         
         // Check the time at intervals
-        observer = player?.addPeriodicTimeObserverForInterval(CMTimeMake(15, 1), queue: nil) { (time) -> Void in
+        observer = player?.addPeriodicTimeObserver(forInterval: CMTimeMake(15, 1), queue: nil) { (time) -> Void in
             self.saveTime()
         }
         
@@ -57,7 +57,7 @@ class MediaPlayerViewController: AVPlayerViewController {
          
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveTime()
         
@@ -67,7 +67,7 @@ class MediaPlayerViewController: AVPlayerViewController {
     }
     
     func playedToEnd() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         // TODO: recommend next one
     }
     
@@ -77,17 +77,17 @@ class MediaPlayerViewController: AVPlayerViewController {
     
     /// Check if we've stored a time in NSUserDefaults
     func loadTime() {
-        let avc: FetchAlertController = FetchAlertController(title: "Continue Playing", message: "Would you like to continue where you left off?", preferredStyle: .Alert)
+        let avc: FetchAlertController = FetchAlertController(title: "Continue Playing", message: "Would you like to continue where you left off?", preferredStyle: .alert)
             
-        avc.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { action in
-            self.seekToTime(self.file!.start_from)
+        avc.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.seekToTime(time: self.file!.start_from)
         }))
             
-        avc.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { action in
+        avc.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
             self.player?.play()
         }))
             
-        showContinuePlaying(avc, time: file!.start_from)
+        showContinuePlaying(avc: avc, time: file!.start_from)
 
     }
     
@@ -95,14 +95,14 @@ class MediaPlayerViewController: AVPlayerViewController {
     /// Seek to the time in the keystore
     func seekToTime(time: Float64) {
         loadedTime = CMTimeMakeWithSeconds(time, 600)
-        player?.seekToTime(self.loadedTime!)
+        player?.seek(to: self.loadedTime!)
         player?.play()
     }
     
     
     /// Check in the NSUserDefaults to see if we should show an alert or just carry on
     func showContinuePlaying(avc: UIAlertController, time: Float64) {
-        presentViewController(avc, animated: true, completion: nil)
+        present(avc, animated: true, completion: nil)
     }
     
     

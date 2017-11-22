@@ -22,9 +22,6 @@ class TVMovieViewController: UIViewController {
         super.viewDidLoad()
     
         automaticallyAdjustsScrollViewInsets = false
-        UIApplication.sharedApplication().registerForRemoteNotifications()
-        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
-        
         navigationItem.rightBarButtonItem = CastHandler.sharedInstance.button
         
         tvContainer.layer.zPosition = 10
@@ -35,30 +32,30 @@ class TVMovieViewController: UIViewController {
     }
     
     func addLoadingView() {
-        loadingView = NSBundle.mainBundle().loadNibNamed("TVMovieLoading", owner: self, options: nil)![0] as? TVMovieLoadingView
+        loadingView = Bundle.main.loadNibNamed("TVMovieLoading", owner: self, options: nil)![0] as? TVMovieLoadingView
         loadingView.frame = view.bounds
-        loadingView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        loadingView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         loadingView.layer.zPosition = 20
-        loadingView.hidden = true
+        loadingView.isHidden = true
         
         view.addSubview(loadingView)
     }
     
-    @IBAction func segmentChanged(sender: AnyObject) {
+    @IBAction func segmentChanged(_ sender: AnyObject) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            movieContainer.hidden = true
-            tvContainer.hidden = false
+            movieContainer.isHidden = true
+            tvContainer.isHidden = false
         } else {
-            movieContainer.hidden = false
-            tvContainer.hidden = true
+            movieContainer.isHidden = false
+            tvContainer.isHidden = true
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedMovies" {
-            movieController = segue.destinationViewController as? MovieCollectionViewController
+            movieController = segue.destination as? MovieCollectionViewController
         } else if segue.identifier == "embedTV" {
-            tvController = segue.destinationViewController as? TVCollectionViewController
+            tvController = segue.destination as? TVCollectionViewController
         }
     }
     
@@ -66,29 +63,29 @@ class TVMovieViewController: UIViewController {
     // MARK: - File Handling
     
     func loadFilesIfRequired() {
-        Videos.sharedInstance.movies = Array(Putio.realm.objects(Movie))
-        Videos.sharedInstance.tvShows = Array(Putio.realm.objects(TVShow))
+        Videos.sharedInstance.movies = Array(Putio.realm.objects(Movie.self))
+        Videos.sharedInstance.tvShows = Array(Putio.realm.objects(TVShow.self))
         
         if Videos.sharedInstance.movies.isEmpty && Videos.sharedInstance.tvShows.isEmpty {
             loadFiles()
         } else {
-            tmdbLoaded(nil)
+            tmdbLoaded(sender: nil)
         }
     }
     
     func loadFiles() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(tmdbLoaded), name: "TMDBFinished", object: Videos.sharedInstance)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(putioFilesFetched), name: "PutioFinished", object: Videos.sharedInstance)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(progressUpdated), name: "TMDBUpdated", object: Videos.sharedInstance)
+        NotificationCenter.default.addObserver(self, selector: #selector(tmdbLoaded), name: NSNotification.Name(rawValue: "TMDBFinished"), object: Videos.sharedInstance)
+        NotificationCenter.default.addObserver(self, selector: #selector(putioFilesFetched), name: NSNotification.Name(rawValue: "PutioFinished"), object: Videos.sharedInstance)
+        NotificationCenter.default.addObserver(self, selector: #selector(progressUpdated), name: NSNotification.Name(rawValue: "TMDBUpdated"), object: Videos.sharedInstance)
         
-        movieContainer.hidden = true
-        segmentedControl.setEnabled(false, forSegmentAtIndex: 0)
-        segmentedControl.setEnabled(false, forSegmentAtIndex: 1)
-        segmentedControl.enabled = false
-        navigationItem.leftBarButtonItem?.enabled = false
+        movieContainer.isHidden = true
+        segmentedControl.setEnabled(false, forSegmentAt: 0)
+        segmentedControl.setEnabled(false, forSegmentAt: 1)
+        segmentedControl.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
         
         loadingView.indicator.setProgress(0, animated: false)
-        loadingView.hidden = false
+        loadingView.isHidden = false
         
         Videos.sharedInstance.fetch()
     }
@@ -96,28 +93,28 @@ class TVMovieViewController: UIViewController {
     func tmdbLoaded(sender: AnyObject?) {
         tvController?.collectionView?.reloadData()
         movieController?.collectionView?.reloadData()
-        segmentedControl.setEnabled(true, forSegmentAtIndex: 0)
-        segmentedControl.setEnabled(true, forSegmentAtIndex: 1)
-        segmentedControl.enabled = true
+        segmentedControl.setEnabled(true, forSegmentAt: 0)
+        segmentedControl.setEnabled(true, forSegmentAt: 1)
+        segmentedControl.isEnabled = true
         segmentedControl.selectedSegmentIndex = 0
-        navigationItem.leftBarButtonItem?.enabled = true
-        tvContainer.hidden = false
+        navigationItem.leftBarButtonItem?.isEnabled = true
+        tvContainer.isHidden = false
         loadingView.fadeAndHide()
     }
     
     // MARK: - IB Actions
     
-    @IBAction func manualSync(sender: AnyObject) {
+    @IBAction func manualSync(_ sender: AnyObject) {
         if let r = reachability {
-            if r.isReachableViaWWAN() {
-                let ac = FetchAlertController(title: "Sync Files", message: "Syncing files can take a while. Are you sure you wish to continue on a cellular connection?", preferredStyle: .Alert)
+            if r.isReachableViaWWAN {
+                let ac = FetchAlertController(title: "Sync Files", message: "Syncing files can take a while. Are you sure you wish to continue on a cellular connection?", preferredStyle: .alert)
 
-                ac.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { _ in
+                ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
                     self.executeRefresh()
                 }))
                 
-                ac.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
-                self.presentViewController(ac, animated: true, completion: nil)
+                ac.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                self.present(ac, animated: true, completion: nil)
             } else {
                 executeRefresh()
             }
@@ -132,33 +129,33 @@ class TVMovieViewController: UIViewController {
         loadFiles()
     }
     
-    @IBAction func movieSwipe(sender: UISwipeGestureRecognizer) {
+    @IBAction func movieSwipe(_ sender: UISwipeGestureRecognizer) {
         segmentedControl.selectedSegmentIndex = 0
         
         tvContainer.frame.origin.x = -view.frame.width
-        tvContainer.hidden = false
+        tvContainer.isHidden = false
         
-        UIView.animateWithDuration(0.35, delay: 0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseInOut, animations: {
             self.movieContainer.frame.origin.x = self.view.frame.width
             self.tvContainer.frame.origin.x = 0
         }) { _ in
-            self.movieContainer.hidden = true
+            self.movieContainer.isHidden = true
             self.movieContainer.frame.origin.x = 0
         }
         
     }
     
-    @IBAction func tvSwipe(sender: UISwipeGestureRecognizer) {
+    @IBAction func tvSwipe(_ sender: UISwipeGestureRecognizer) {
         segmentedControl.selectedSegmentIndex = 1
         
         movieContainer.frame.origin.x = view.frame.width
-        movieContainer.hidden = false
+        movieContainer.isHidden = false
         
-        UIView.animateWithDuration(0.35, delay: 0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseInOut, animations: {
             self.tvContainer.frame.origin.x = -self.view.frame.width
             self.movieContainer.frame.origin.x = 0
         }) { _ in
-            self.tvContainer.hidden = true
+            self.tvContainer.isHidden = true
             self.tvContainer.frame.origin.x = 0
         }
     }

@@ -36,8 +36,8 @@ class TransfersDetailTableViewController: UITableViewController {
             
             values[1] = "\(percent!)%"
             
-            let formatter = NSByteCountFormatter()
-            let size = formatter.stringFromByteCount(transfer!.size)
+            let formatter = ByteCountFormatter()
+            let size = formatter.string(fromByteCount: transfer!.size)
             values[2] = "\(size)"
             
         }
@@ -50,21 +50,21 @@ class TransfersDetailTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return rows.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         cell.textLabel?.text = rows[indexPath.row]
         cell.detailTextLabel?.text = values[indexPath.row]
@@ -79,8 +79,8 @@ class TransfersDetailTableViewController: UITableViewController {
         let frame = view.frame
         var noTransfers: UIView?
         noTransfers = UIView(frame: frame)
-        noTransfers!.hidden = false
-        noTransfers!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        noTransfers!.isHidden = false
+        noTransfers!.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         noTransfers!.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.12, alpha: 1)
         noTransfers!.layer.zPosition = 10
         view.addSubview(noTransfers!)

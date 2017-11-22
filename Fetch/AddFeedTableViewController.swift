@@ -22,12 +22,12 @@ class AddFeedTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    @IBAction func close(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func close(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func save(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func save(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

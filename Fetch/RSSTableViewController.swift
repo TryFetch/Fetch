@@ -26,9 +26,9 @@ class RSSTableViewController: UITableViewController {
         noResults = NoResultsView(frame: tableView.frame, text: "Add an RSS feed to begin.")
         tableView.addSubview(noResults!)
         
-        refreshControl?.addTarget(self, action: #selector(fetch), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(fetch), for: UIControlEvents.valueChanged)
         
-        fetch(self)
+        fetch(sender: self)
     }
     
     func fetch(sender: AnyObject?) {
@@ -39,9 +39,9 @@ class RSSTableViewController: UITableViewController {
             
             self.overlay?.hideWithAnimation()
             if feeds.count == 0 {
-                self.noResults!.hidden = false
+                self.noResults!.isHidden = false
             } else {
-                self.noResults!.hidden = true
+                self.noResults!.isHidden = true
             }
             
         }
@@ -49,21 +49,21 @@ class RSSTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feeds.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("rssCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rssCell", for: indexPath)
 
         let feed = feeds[indexPath.row]
         
         cell.textLabel?.text = feed.title
-        cell.imageView?.tintColor = (feed.paused != nil && feed.paused == true) ? .lightGrayColor() : .fetchGreen()
+        cell.imageView?.tintColor = (feed.paused != nil && feed.paused!) ? UIColor.lightGray : UIColor.fetchGreen()
 
         return cell
     }
@@ -71,10 +71,10 @@ class RSSTableViewController: UITableViewController {
     
     // MARK: - Row Actions
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let feed = feeds[indexPath.row]
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: deleteFeed)
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete", handler: deleteFeed)
         
         var title = "Pause"
         
@@ -82,7 +82,7 @@ class RSSTableViewController: UITableViewController {
             title = "Resume"
         }
 
-        let additionalAction = UITableViewRowAction(style: .Normal, title: title, handler: pauseResumeFeed)
+        let additionalAction = UITableViewRowAction(style: .normal, title: title, handler: pauseResumeFeed)
         additionalAction.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.25, alpha: 1)
         return [deleteAction, additionalAction]
     }
@@ -93,7 +93,7 @@ class RSSTableViewController: UITableViewController {
      - parameter action:    The row action that's being called
      - parameter indexPath: The indexPath for the row.
      */
-    func pauseResumeFeed(action: UITableViewRowAction!, indexPath: NSIndexPath!) {
+    func pauseResumeFeed(action: UITableViewRowAction!, indexPath: IndexPath) {
         let feed = feeds[indexPath.row]
         
         if feed.paused != nil && feed.paused == true {
@@ -105,7 +105,7 @@ class RSSTableViewController: UITableViewController {
         }
         
         tableView.setEditing(false, animated: true)
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     
@@ -115,34 +115,34 @@ class RSSTableViewController: UITableViewController {
      - parameter action:    The row action that's being called
      - parameter indexPath: The indexPath for the row
      */
-    func deleteFeed(action: UITableViewRowAction!, indexPath: NSIndexPath!) {
+    func deleteFeed(action: UITableViewRowAction!, indexPath: IndexPath) {
         
         let feed = feeds[indexPath.row]
-        let alert = FetchAlertController(title: "Delete Feed", message: "Are you sure you want to feed: '\(feed.title!)'?", preferredStyle: .ActionSheet)
+        let alert = FetchAlertController(title: "Delete Feed", message: "Are you sure you want to feed: '\(feed.title!)'?", preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Delete File", style: .Destructive) { action in
+        alert.addAction(UIAlertAction(title: "Delete File", style: .destructive) { action in
             
             feed.delete()
-            self.feeds.removeAtIndex(indexPath.row)
+            self.feeds.remove(at: indexPath.row)
             
             if self.feeds.count == 0 {
-                self.noResults?.hidden = false
+                self.noResults?.isHidden = false
             }
             
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
 
         })
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel){ action in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel){ action in
             self.tableView.setEditing(false, animated: true)
         })
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        let cell = tableView.cellForRow(at: indexPath)!
         
         alert.popoverPresentationController?.sourceView = cell
         alert.popoverPresentationController?.sourceRect = CGRect(x: cell.frame.width+65, y: 0, width: 80, height: cell.frame.height)
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         
     }
 

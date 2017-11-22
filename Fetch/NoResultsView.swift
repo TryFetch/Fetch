@@ -15,17 +15,17 @@ class NoResultsView: UIView {
     init(frame: CGRect, text: String) {
         super.init(frame: frame)
         
-        hidden = true
-        autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        isHidden = true
+        autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         backgroundColor = UIColor.fetchBackground()
         layer.zPosition = 10
         
         label = UILabel(frame: frame)
         label.text = text
         label.textColor = UIColor.fetchGreyText()
-        label.autoresizingMask = [UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin]
-        label.center = CGPointMake(center.x, center.y-64)
-        label.textAlignment = .Center
+        label.autoresizingMask = [UIViewAutoresizing.flexibleBottomMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin]
+        label.center = CGPoint(x: center.x, y: center.y-64)
+        label.textAlignment = .center
         
         addSubview(label)
     }

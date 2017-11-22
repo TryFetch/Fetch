@@ -46,13 +46,13 @@ class Transfer: NSObject {
     
     func destroy() {
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let params = ["oauth_token": "\(Putio.accessToken!)", "transfer_ids": "\(id!)"]
         
-        Alamofire.request(.POST, "\(Putio.api)transfers/cancel", parameters: params)
+        Alamofire.request("\(Putio.api)transfers/cancel", method: .post, parameters: params)
             .responseJSON {response in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = response.result.error {
                     print(error)
                 }

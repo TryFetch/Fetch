@@ -20,8 +20,8 @@ class WhichFolderView: UIView {
         
         label = UILabel(frame: CGRect(x: 50, y: 0, width: frame.width-80, height: frame.height))
         label.text = "All Files"
-        label.font = .preferredFontForTextStyle(UIFontTextStyleBody)
-        label.textColor = .whiteColor()
+        label.font = .preferredFont(forTextStyle: UIFontTextStyle.body)
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         
@@ -46,19 +46,19 @@ class WhichFolderView: UIView {
         
         // THE AUTOLAYOUT CONSTRAINTS
         
-        let aConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[superview]-(<=1)-[folder]", options: .AlignAllCenterY, metrics: nil, views: viewsDict)
+        let aConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[folder]", options: .alignAllCenterY, metrics: nil, views: viewsDict)
         addConstraints(aConstraints)
         
-        let aConstraints2 = NSLayoutConstraint.constraintsWithVisualFormat("H:[superview]-(<=1)-[label]", options: .AlignAllCenterY, metrics: nil, views: viewsDict)
+        let aConstraints2 = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[label]", options: .alignAllCenterY, metrics: nil, views: viewsDict)
         addConstraints(aConstraints2)
         
-        let aConstraints3 = NSLayoutConstraint.constraintsWithVisualFormat("H:[superview]-(<=1)-[chevron]", options: .AlignAllCenterY, metrics: nil, views: viewsDict)
+        let aConstraints3 = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[chevron]", options: .alignAllCenterY, metrics: nil, views: viewsDict)
         addConstraints(aConstraints3)
         
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[folder(==30)]-10-[label]-10-[chevron(==18)]-11-|", options: [], metrics: nil, views: viewsDict)
+        let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[folder(==30)]-10-[label]-10-[chevron(==18)]-11-|", options: [], metrics: nil, views: viewsDict)
         addConstraints(hConstraints)
         
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[chevron(==10)]", options: [], metrics: nil, views: viewsDict)
+        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[chevron(==10)]", options: [], metrics: nil, views: viewsDict)
         addConstraints(vConstraints)
         
     }
@@ -68,31 +68,31 @@ class WhichFolderView: UIView {
     }
     
     func hideWithAnimation() {
-        UIView.animateWithDuration(0.35, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             self.alpha = 0
         }, completion: { finished in
-            self.hidden = true
+            self.isHidden = true
         })
     }
     
     func showWithAnimation() {
         alpha = 0
-        hidden = false
+        isHidden = false
         
-        UIView.animateWithDuration(0.35, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             self.alpha = 1
         })
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         backgroundColor = UIColor(hue:0, saturation:0, brightness:0.27, alpha:1)
     }
     
-    override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         backgroundColor = .fetchLighterBackground()
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         backgroundColor = .fetchLighterBackground()
     }
     
