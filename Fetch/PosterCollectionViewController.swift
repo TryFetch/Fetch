@@ -19,6 +19,12 @@ class PosterCollectionViewController: UICollectionViewController, UICollectionVi
         automaticallyAdjustsScrollViewInsets = false
     }
     
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        collectionView?.contentInset = UIEdgeInsetsMake(0, view.safeAreaInsets.left, 0, view.safeAreaInsets.right)
+    }
+    
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
