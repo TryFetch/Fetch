@@ -1,23 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TVMovieLoadingView" customModule="Fetch" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="chp-h1-gtM">
-                    <rect key="frame" x="45" y="299" width="510" height="2"/>
-                    <color key="tintColor" red="0.85882352941176465" green="0.64313725490196083" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="45" y="332.5" width="285" height="2"/>
+                    <color key="tintColor" red="0.85882352941176465" green="0.64313725490196083" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="510" id="HvV-EN-go1"/>
                     </constraints>
-                    <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="trackTintColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="HvV-EN-go1"/>
@@ -25,30 +30,31 @@
                     </variation>
                 </progressView>
                 <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tmdb" translatesAutoresizingMaskIntoConstraints="NO" id="hpp-NL-mta">
-                    <rect key="frame" x="228" y="493" width="145" height="44"/>
+                    <rect key="frame" x="115" y="513" width="145" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="8NU-Lv-gqd"/>
                         <constraint firstAttribute="width" constant="145" id="Gwl-4R-ZPT"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching Put.io Files..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOp-rJ-KOH">
-                    <rect key="frame" x="45" y="249" width="510" height="21"/>
+                    <rect key="frame" x="45" y="282.5" width="285" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="0.46739673457647624" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.46739673614501953" green="0.46739673614501953" blue="0.46739673614501953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.14000000059604645" green="0.14000000059604645" blue="0.14000000059604645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="chp-h1-gtM" firstAttribute="top" secondItem="vOp-rJ-KOH" secondAttribute="bottom" constant="29" id="7md-Di-woR"/>
                 <constraint firstAttribute="trailing" secondItem="chp-h1-gtM" secondAttribute="trailing" constant="45" id="N5F-nw-jGA"/>
                 <constraint firstItem="chp-h1-gtM" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NTw-n3-wiE"/>
                 <constraint firstItem="chp-h1-gtM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="XND-7w-jsA"/>
                 <constraint firstAttribute="trailing" secondItem="vOp-rJ-KOH" secondAttribute="trailing" constant="45" id="eMh-CN-swr"/>
-                <constraint firstAttribute="bottom" secondItem="hpp-NL-mta" secondAttribute="bottom" constant="63" id="fAd-Wb-ejU"/>
+                <constraint firstAttribute="bottom" secondItem="hpp-NL-mta" secondAttribute="bottom" constant="110" id="fAd-Wb-ejU"/>
                 <constraint firstItem="hpp-NL-mta" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fUW-ou-wzJ"/>
                 <constraint firstItem="vOp-rJ-KOH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="ivV-fx-ezv"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="P5a-Rx-H5G"/>
             <connections>
                 <outlet property="indicator" destination="chp-h1-gtM" id="phS-gW-ZKs"/>
                 <outlet property="label" destination="vOp-rJ-KOH" id="wBq-fn-aZ6"/>
@@ -57,6 +63,6 @@
         </view>
     </objects>
     <resources>
-        <image name="tmdb" width="173" height="49"/>
+        <image name="tmdb" width="173" height="50"/>
     </resources>
 </document>

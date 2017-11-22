@@ -25,14 +25,14 @@ class ImageHandlerViewController: UIViewController, UIScrollViewDelegate {
         
         // Setup the loader
         overlay = LoaderView(frame: view.frame)
-        overlay?.view.backgroundColor = UIColor.blackColor()
-        overlay?.loader.activityIndicatorViewStyle = .White
+        overlay?.view.backgroundColor = UIColor.black
+        overlay?.loader.activityIndicatorViewStyle = .white
         view.addSubview(overlay!.view)
         
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return navigationController?.navigationBarHidden == false
+    override var prefersStatusBarHidden: Bool {
+        return navigationController!.isNavigationBarHidden == false
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,13 +40,13 @@ class ImageHandlerViewController: UIViewController, UIScrollViewDelegate {
         file = nil
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         toggle()
         loadImage()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         imageView.image = nil
     }
@@ -55,15 +55,15 @@ class ImageHandlerViewController: UIViewController, UIScrollViewDelegate {
     
     func loadImage() {
         let params = ["oauth_token": "\(Putio.accessToken!)"]
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        Alamofire.request(.GET, "\(Putio.api)files/\(file!.id)/download", parameters: params)
-            .response { (req, res, data, error) in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                if(error != nil) {
-                    print(error)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        Alamofire.request("\(Putio.api)files/\(file!.id)/download", method: .get, parameters: params)
+            .responseData { result in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                if(result.error != nil) {
+                    print(result.error)
                 } else {
-                    self.imageView.contentMode = .ScaleAspectFit
-                    self.imageView.image = UIImage(data: data!)
+                    self.imageView.contentMode = .scaleAspectFit
+                    self.imageView.image = UIImage(data: result.data!)
                     self.overlay?.hideWithAnimation()
                 }
             }
@@ -78,11 +78,11 @@ class ImageHandlerViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Hide/Show Nav Bar
     
     func toggle() {
-        let isHidden = navigationController?.navigationBarHidden
+        let isHidden = navigationController!.isNavigationBarHidden
         navigationController?.setNavigationBarHidden(isHidden == false, animated: true)
     }
     
-    @IBAction func toggleNav(sender: AnyObject) {
+    @IBAction func toggleNav(_ sender: AnyObject) {
         toggle()
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 public class Feeds {
     
-    public class func get(callback: ([Feed], NSError?) -> Void) {
+    public class func get(callback: @escaping ([Feed], NSError?) -> Void) {
         
         Putio.get("rss/list") { json, error in
             if let j = json {

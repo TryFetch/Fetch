@@ -16,17 +16,17 @@ class MoreTableViewController: UITableViewController {
         super.viewDidLoad()
         downloadBadge.layer.masksToBounds = true
         downloadBadge.layer.cornerRadius = 13
-        downloadBadge.hidden = true
+        downloadBadge.isHidden = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let count = Downloader.sharedInstance.queue.count
         if count > 0 {
             downloadBadge.text = String(count)
-            downloadBadge.hidden = false
+            downloadBadge.isHidden = false
         } else {
-            downloadBadge.hidden = true
+            downloadBadge.isHidden = true
         }
     }
     

@@ -52,15 +52,38 @@ public class TVShow: Object, MediaType {
     /// The poster image
     public var poster: UIImage?
     
+    public func getPoster(callback: @escaping (UIImage) -> Void) {
+        if let url = posterURL {
+            Alamofire.request("https://image.tmdb.org/t/p/w500\(url)", method: .get)
+                .responseImage { response in
+                    if let image = response.result.value {
+                        self.poster = image
+                        callback(image)
+                    } else {
+                        self.generatePoster { image in
+                            self.poster = image
+                            callback(image)
+                        }
+                    }
+            }
+            
+        } else {
+            generatePoster { image in
+                self.poster = image
+                callback(image)
+            }
+        }
+    }
+    
     /// Delegate for the TVShow
     public var delegate: TVShowDelegate?
     
     /// Title to sort alphabetically witout "The"
     public var sortableTitle: String? {
         get {
-            if let range = title?.rangeOfString("The ") {
-                if range.startIndex == title?.startIndex {
-                    return title?.stringByReplacingCharactersInRange(range, withString: "")
+            if let range = title?.range(of: "The ") {
+                if range.lowerBound == title?.startIndex {
+                    return title?.replacingCharacters(in: range, with: "")
                 }
             }
             return title

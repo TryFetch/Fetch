@@ -16,12 +16,12 @@ class AllFilesTableViewController: FilesTableViewController, UISearchBarDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        tableView.contentOffset = CGPointMake(0, 44)
+        tableView.contentOffset = CGPoint(x: 0, y: 44)
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let search = Search(term: searchBar.text!)
-        let searchResultsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Search Results") as! SearchResultsViewController
+        let searchResultsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search Results") as! SearchResultsViewController
         searchResultsVC.search = search
         navigationController?.pushViewController(searchResultsVC, animated: true)
     }

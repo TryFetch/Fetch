@@ -15,19 +15,9 @@ extension Putio {
      
      - parameter token: The device token
      */
+    @available(*, deprecated)
     public class func registerForPushNotifications(token: NSData) {
-        
-        if let apiToken = Putio.accessToken {
-            
-            let characterSet = NSCharacterSet( charactersInString: "<>" )
-            let deviceToken = (token.description as NSString)
-                .stringByTrimmingCharactersInSet(characterSet)
-                .stringByReplacingOccurrencesOfString(" ", withString: "") as String
-        
-            Alamofire.request(.POST, "https://ftch.in/api/register-device", parameters: ["device": deviceToken, "api": apiToken])
-        
-        }
-        
+        // REMOVED
     }
     
 }

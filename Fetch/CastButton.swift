@@ -35,9 +35,9 @@ class CastButton: UIView {
     init() {
         super.init(frame: CGRect.zero)
         
-        frame = CGRectMake(0, 0, castOn.size.width, castOn.size.height)
+        frame = CGRect(x: 0, y: 0, width: castOn.size.width, height: castOn.size.height)
         
-        button = UIButton(type: .System)
+        button = UIButton(type: .system)
         button.frame = frame
         button.imageView?.animationImages = castConnecting
         button.imageView?.animationDuration = 1.0
@@ -69,11 +69,11 @@ class CastButton: UIView {
                 break
             case .Connected :
                 button.imageView?.stopAnimating()
-                button.setImage(castOn, forState: .Normal)
+                button.setImage(castOn, for: .normal)
                 break
             default:
                 button.imageView?.stopAnimating()
-                button.setImage(castOff, forState: .Normal)
+                button.setImage(castOff, for: .normal)
                 break
             
         }

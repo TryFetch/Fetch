@@ -19,15 +19,12 @@ var reachability: Reachability?
 class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
     
     var window: UIWindow?
-    let notificationCenter = NSNotificationCenter.defaultCenter()
+    let notificationCenter = NotificationCenter.default
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print(error)
-        }
+        reachability = Reachability()
+        
         
         Fabric.with([Crashlytics.self()])
         
@@ -46,18 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
         setupRootViewController()
         
         return true
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        // BACKGROUND REFRESH :D
-    }
-    
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        Putio.registerForPushNotifications(deviceToken)
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print("Couldn't register: \(error)")
     }
     
     func setupUI() {
@@ -80,15 +65,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
         switchCtrl.tintColor = .fetchYellow()
         switchCtrl.onTintColor = .fetchYellow()
         
-        UITextField.appearance().keyboardAppearance = .Dark
-        UISearchBar.appearance().keyboardAppearance = .Dark
+        UITextField.appearance().keyboardAppearance = .dark
+        UISearchBar.appearance().keyboardAppearance = .dark
         
     }
     
     func setupRootViewController() {
         
         // If the app has been passed a testing token then pop it in the keychain
-        if let token = NSUserDefaults.standardUserDefaults().stringForKey("UITestingToken") {
+        if let token = UserDefaults.standard.string(forKey: "UITestingToken") {
             Putio.keychain["access_token"] = token
         }
         
@@ -113,7 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
     // =====
     // Open the application via 3DTouch shortcuts on the homepage
     // =====
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         
         var action: QuickAction? {
             switch shortcutItem.type {
@@ -131,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
         }
         
         if let a = action {
-            QuickAction.handleAction(a, callback: completionHandler)
+            QuickAction.handleAction(action: a, callback: completionHandler)
         } else {
             completionHandler(false)
         }
@@ -141,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
     
     // MARK: - Add New Files
     
-    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         
         if Putio.accessToken != nil {
             
@@ -156,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
             self.window?.rootViewController = rvc
             
             // Setup add files to be vc
-            let vc: UINavigationController = sb2.instantiateViewControllerWithIdentifier("addFiles") as! UINavigationController
+            let vc: UINavigationController = sb2.instantiateViewController(withIdentifier: "addFiles") as! UINavigationController
             let childView: AddFilesViewController = vc.viewControllers[0] as! AddFilesViewController
             
             // Move the url reference to the controller
@@ -164,9 +150,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
             
             // Present
             
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), { () -> Void in
-                self.window?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.window?.rootViewController?.present(vc, animated: true, completion: nil)
             })
             
             return true
@@ -185,7 +170,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
     
     // MARK: - Background Download
     
-    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
+    
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Downloader.sharedInstance.manager.backgroundCompletionHandler = completionHandler
     }
     
@@ -198,11 +184,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
 func logoutWithError() {
     let sb = UIStoryboard(name: "FirstRun", bundle: nil)
     let vc: UIViewController = sb.instantiateInitialViewController()!
-    UIApplication.sharedApplication().keyWindow?.rootViewController = vc
+    UIApplication.shared.keyWindow?.rootViewController = vc
     
-    let alert = FetchAlertController(title: "Logged Out", message: "You've been logged out. Please login to continue.", preferredStyle: .Alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-    vc.presentViewController(alert, animated: true, completion: nil)
+    let alert = FetchAlertController(title: "Logged Out", message: "You've been logged out. Please login to continue.", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    vc.present(alert, animated: true, completion: nil)
     
     
     Putio.keychain["access_token"] = nil

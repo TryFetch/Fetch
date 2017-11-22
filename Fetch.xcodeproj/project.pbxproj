@@ -105,13 +105,13 @@
 		283D9D2C1C3FB21A00037125 /* FetchMediaControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D211C3FB21A00037125 /* FetchMediaControls.xib */; };
 		283D9D2D1C3FB21A00037125 /* FirstRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D221C3FB21A00037125 /* FirstRun.storyboard */; };
 		283D9D2E1C3FB21A00037125 /* FolderPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D231C3FB21A00037125 /* FolderPicker.storyboard */; };
-		283D9D2F1C3FB21A00037125 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D241C3FB21A00037125 /* LaunchScreen.xib */; };
 		283D9D301C3FB21A00037125 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D251C3FB21A00037125 /* Main.storyboard */; };
 		283D9D311C3FB21A00037125 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D261C3FB21A00037125 /* More.storyboard */; };
 		283D9D321C3FB21A00037125 /* MoveFiles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D271C3FB21A00037125 /* MoveFiles.storyboard */; };
 		283D9D331C3FB21A00037125 /* Transfers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D281C3FB21A00037125 /* Transfers.storyboard */; };
 		283D9D341C3FB21A00037125 /* TVMovies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D291C3FB21A00037125 /* TVMovies.storyboard */; };
 		283D9D351C3FB21A00037125 /* WhatsNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D9D2A1C3FB21A00037125 /* WhatsNewViewController.xib */; };
+		28679F141FC62DEA002F5A68 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28679F131FC62DEA002F5A68 /* Launch Screen.storyboard */; };
 		286AFDBA1CA7118F007C2526 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286AFDB91CA7118F007C2526 /* 1Password.xcassets */; };
 		286FFFAA1C9587A200A0D8FA /* AllFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FFFA91C9587A200A0D8FA /* AllFilesTableViewController.swift */; };
 		286FFFAE1C95A55E00A0D8FA /* FetchAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FFFAD1C95A55D00A0D8FA /* FetchAlertController.swift */; };
@@ -196,10 +196,6 @@
 		280B28381C1C8930006E17B6 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		280B283B1C1C8930006E17B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		280B28471C1C8930006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		280B28541C1C894B006E17B6 /* Downpour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Downpour.h; sourceTree = "<group>"; };
-		280B28561C1C894B006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		280B285F1C1C8961006E17B6 /* Downpour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downpour.swift; sourceTree = "<group>"; };
-		280B28601C1C8961006E17B6 /* String+CleanedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CleanedString.swift"; sourceTree = "<group>"; };
 		280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SRBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		280B286A1C1C8977006E17B6 /* SRBarcodeScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRBarcodeScanner.h; sourceTree = "<group>"; };
 		280B286C1C1C8977006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -294,13 +290,13 @@
 		283D9D211C3FB21A00037125 /* FetchMediaControls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FetchMediaControls.xib; path = Interfaces/FetchMediaControls.xib; sourceTree = "<group>"; };
 		283D9D221C3FB21A00037125 /* FirstRun.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FirstRun.storyboard; path = Interfaces/FirstRun.storyboard; sourceTree = "<group>"; };
 		283D9D231C3FB21A00037125 /* FolderPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FolderPicker.storyboard; path = Interfaces/FolderPicker.storyboard; sourceTree = "<group>"; };
-		283D9D241C3FB21A00037125 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = Interfaces/LaunchScreen.xib; sourceTree = "<group>"; };
 		283D9D251C3FB21A00037125 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Interfaces/Main.storyboard; sourceTree = "<group>"; };
 		283D9D261C3FB21A00037125 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = More.storyboard; path = Interfaces/More.storyboard; sourceTree = "<group>"; };
 		283D9D271C3FB21A00037125 /* MoveFiles.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MoveFiles.storyboard; path = Interfaces/MoveFiles.storyboard; sourceTree = "<group>"; };
 		283D9D281C3FB21A00037125 /* Transfers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Transfers.storyboard; path = Interfaces/Transfers.storyboard; sourceTree = "<group>"; };
 		283D9D291C3FB21A00037125 /* TVMovies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TVMovies.storyboard; path = Interfaces/TVMovies.storyboard; sourceTree = "<group>"; };
 		283D9D2A1C3FB21A00037125 /* WhatsNewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WhatsNewViewController.xib; path = Interfaces/WhatsNewViewController.xib; sourceTree = "<group>"; };
+		28679F131FC62DEA002F5A68 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		286AFDB91CA7118F007C2526 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		286FFFA91C9587A200A0D8FA /* AllFilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFilesTableViewController.swift; sourceTree = "<group>"; };
 		286FFFAD1C95A55D00A0D8FA /* FetchAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAlertController.swift; sourceTree = "<group>"; };
@@ -412,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				280B283A1C1C8930006E17B6 /* Fetch */,
-				280B28531C1C894B006E17B6 /* Downpour */,
 				280B28691C1C8977006E17B6 /* SRBarcodeScanner */,
 				280B287E1C1C89BE006E17B6 /* PutioKit */,
 				28C91E511CA709C600D45750 /* FetchUITests */,
@@ -447,17 +442,6 @@
 				280B283B1C1C8930006E17B6 /* AppDelegate.swift */,
 			);
 			path = Fetch;
-			sourceTree = "<group>";
-		};
-		280B28531C1C894B006E17B6 /* Downpour */ = {
-			isa = PBXGroup;
-			children = (
-				280B285F1C1C8961006E17B6 /* Downpour.swift */,
-				280B28601C1C8961006E17B6 /* String+CleanedString.swift */,
-				280B28541C1C894B006E17B6 /* Downpour.h */,
-				280B28561C1C894B006E17B6 /* Info.plist */,
-			);
-			path = Downpour;
 			sourceTree = "<group>";
 		};
 		280B28691C1C8977006E17B6 /* SRBarcodeScanner */ = {
@@ -546,7 +530,6 @@
 				280011801C8C59DA00A809C6 /* Downloads.storyboard */,
 				283D9D221C3FB21A00037125 /* FirstRun.storyboard */,
 				283D9D231C3FB21A00037125 /* FolderPicker.storyboard */,
-				283D9D241C3FB21A00037125 /* LaunchScreen.xib */,
 				283D9D251C3FB21A00037125 /* Main.storyboard */,
 				283D9D261C3FB21A00037125 /* More.storyboard */,
 				283D9D271C3FB21A00037125 /* MoveFiles.storyboard */,
@@ -557,6 +540,7 @@
 				2802CF2B1C3FBC940062DEEF /* RSS.storyboard */,
 				2802CF2D1C3FBCA50062DEEF /* Sharing.storyboard */,
 				289E63D91C9F20060090B6FA /* FAQs.storyboard */,
+				28679F131FC62DEA002F5A68 /* Launch Screen.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1042,6 +1026,7 @@
 				280B28B31C1C8BC4006E17B6 /* CastFrameworkAssets.xcassets in Resources */,
 				283D9D2D1C3FB21A00037125 /* FirstRun.storyboard in Resources */,
 				280011811C8C59DA00A809C6 /* Downloads.storyboard in Resources */,
+				28679F141FC62DEA002F5A68 /* Launch Screen.storyboard in Resources */,
 				283D9D2B1C3FB21A00037125 /* CastRemote.xib in Resources */,
 				28B209081C9C83BE007229C8 /* TVMovieLoading.xib in Resources */,
 				283D9D351C3FB21A00037125 /* WhatsNewViewController.xib in Resources */,
@@ -1050,7 +1035,6 @@
 				283D9D2C1C3FB21A00037125 /* FetchMediaControls.xib in Resources */,
 				2802CF2E1C3FBCA50062DEEF /* Sharing.storyboard in Resources */,
 				280B29201C1C8D8F006E17B6 /* Settings.bundle in Resources */,
-				283D9D2F1C3FB21A00037125 /* LaunchScreen.xib in Resources */,
 				283D9D321C3FB21A00037125 /* MoveFiles.storyboard in Resources */,
 				283D9D331C3FB21A00037125 /* Transfers.storyboard in Resources */,
 				283D9D341C3FB21A00037125 /* TVMovies.storyboard in Resources */,
@@ -1170,7 +1154,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C0A3B64AE9933A3866EAFBB4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1185,7 +1169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DB2A97C234A7A7C666877396 /* [CP] Copy Pods Resources */ = {
@@ -1384,6 +1368,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1421,6 +1406,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1455,7 +1441,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1487,7 +1473,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1512,7 +1498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1538,7 +1524,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.SRBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1569,7 +1555,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1600,7 +1586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

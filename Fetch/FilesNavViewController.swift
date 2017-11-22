@@ -9,23 +9,9 @@
 import UIKit
 
 class FilesNavViewController: UINavigationController {
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
-    
-    /// Force the status bar to be white
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }

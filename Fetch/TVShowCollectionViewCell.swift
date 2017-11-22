@@ -20,10 +20,10 @@ class TVShowCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.autoresizingMask = [.FlexibleHeight]
+        contentView.autoresizingMask = [.flexibleHeight]
         
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor.fetchLighterBackground().CGColor
+        layer.borderColor = UIColor.fetchLighterBackground().cgColor
     }
     
 }
