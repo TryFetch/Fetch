@@ -196,10 +196,6 @@
 		280B28381C1C8930006E17B6 /* Fetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		280B283B1C1C8930006E17B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		280B28471C1C8930006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		280B28541C1C894B006E17B6 /* Downpour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Downpour.h; sourceTree = "<group>"; };
-		280B28561C1C894B006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		280B285F1C1C8961006E17B6 /* Downpour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downpour.swift; sourceTree = "<group>"; };
-		280B28601C1C8961006E17B6 /* String+CleanedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CleanedString.swift"; sourceTree = "<group>"; };
 		280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SRBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		280B286A1C1C8977006E17B6 /* SRBarcodeScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRBarcodeScanner.h; sourceTree = "<group>"; };
 		280B286C1C1C8977006E17B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -412,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				280B283A1C1C8930006E17B6 /* Fetch */,
-				280B28531C1C894B006E17B6 /* Downpour */,
 				280B28691C1C8977006E17B6 /* SRBarcodeScanner */,
 				280B287E1C1C89BE006E17B6 /* PutioKit */,
 				28C91E511CA709C600D45750 /* FetchUITests */,
@@ -447,17 +442,6 @@
 				280B283B1C1C8930006E17B6 /* AppDelegate.swift */,
 			);
 			path = Fetch;
-			sourceTree = "<group>";
-		};
-		280B28531C1C894B006E17B6 /* Downpour */ = {
-			isa = PBXGroup;
-			children = (
-				280B285F1C1C8961006E17B6 /* Downpour.swift */,
-				280B28601C1C8961006E17B6 /* String+CleanedString.swift */,
-				280B28541C1C894B006E17B6 /* Downpour.h */,
-				280B28561C1C894B006E17B6 /* Info.plist */,
-			);
-			path = Downpour;
 			sourceTree = "<group>";
 		};
 		280B28691C1C8977006E17B6 /* SRBarcodeScanner */ = {
@@ -1384,6 +1368,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1421,6 +1406,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1455,7 +1441,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1487,7 +1473,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1512,7 +1498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1538,7 +1524,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.SRBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1569,7 +1555,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1600,7 +1586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

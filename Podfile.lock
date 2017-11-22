@@ -1,55 +1,55 @@
 PODS:
   - 1PasswordExtension (1.8.4)
-  - Alamofire (3.5.1)
-  - AlamofireImage (2.5.0):
-    - Alamofire (~> 3.5)
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - Downpour (0.1.0)
+  - Downpour (0.2.0)
   - Fabric (1.6.11)
-  - KeychainAccess (2.4.0)
+  - KeychainAccess (3.1.0)
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.2.2):
     - MZAppearance
-  - ReachabilitySwift (2.4)
-  - Realm (2.0.3):
-    - Realm/Headers (= 2.0.3)
-  - Realm/Headers (2.0.3)
-  - RealmSwift (2.0.3):
-    - Realm (= 2.0.3)
-  - SwiftyJSON (2.4.0)
+  - ReachabilitySwift (3)
+  - Realm (2.10.2):
+    - Realm/Headers (= 2.10.2)
+  - Realm/Headers (2.10.2)
+  - RealmSwift (2.10.2):
+    - Realm (= 2.10.2)
+  - SwiftyJSON (3.1.4)
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
   - 1PasswordExtension
-  - Alamofire (~> 3.4)
-  - AlamofireImage (~> 2.0)
+  - Alamofire (~> 4.5)
+  - AlamofireImage (~> 3.3)
   - Crashlytics
-  - Downpour (~> 0.1)
+  - Downpour (~> 0.2)
   - Fabric
-  - KeychainAccess (~> 2.4)
+  - KeychainAccess (~> 3.1)
   - MZFormSheetPresentationController (~> 2.2.0)
-  - ReachabilitySwift (~> 2.4)
-  - RealmSwift
-  - SwiftyJSON (= 2.4.0)
+  - ReachabilitySwift (~> 3.0)
+  - RealmSwift (~> 2.10)
+  - SwiftyJSON (~> 3.1)
   - TUSafariActivity
 
 SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
-  AlamofireImage: 2d34936e5201270bb17a316a786e90e83b4a249d
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
-  Downpour: 7acc08bfd87104fd2d562587436a8606937c6917
+  Downpour: e35bf7a969c3bd81910155bb599819f949215cd7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  KeychainAccess: c2a71459af5bddf720a51806046a598500976c04
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 8772f845dd3c64a0d9fe545a997d72201db3fe39
-  ReachabilitySwift: dc7452dab85ff881904215e1a113326ad8d07beb
-  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
-  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
-  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
+  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: 8675ae75edbb0453a1704f15212c05dced5a2e2e
+PODFILE CHECKSUM: 23b04b5b82217627ab3852639f2c8ed8f2c4d6e3
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
