@@ -170,8 +170,8 @@ class AddFilesViewController: UIViewController, UITextViewDelegate {
             
         } else {
             
-            let url = textView.text
-            var params: [String:Any] = ["oauth_token": "\(Putio.accessToken!)", "url": url as Any, "extract": "true"]
+            let url = textView.text!
+            var params = ["oauth_token": "\(Putio.accessToken!)", "url": url, "extract": "true"]
             
             // load the save_parent_id from the visible view controller
             let vc = folderPickerController!.visibleViewController as! FolderSelectTableViewController
