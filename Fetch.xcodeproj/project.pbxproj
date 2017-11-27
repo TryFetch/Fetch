@@ -134,8 +134,6 @@
 		28B2090A1C9C8458007229C8 /* TVMovieLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B209091C9C8458007229C8 /* TVMovieLoadingView.swift */; };
 		28B2090D1C9C906F007229C8 /* UIView+FadeAndHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2090C1C9C906F007229C8 /* UIView+FadeAndHide.swift */; };
 		28C76E8A1C1E15F9005055C8 /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C76E891C1E15F9005055C8 /* MediaType.swift */; };
-		28C91E531CA709C600D45750 /* FetchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C91E521CA709C600D45750 /* FetchUITests.swift */; };
-		28C91E5B1CA70A0900D45750 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C91E5A1CA70A0900D45750 /* SnapshotHelper.swift */; };
 		28D871831C8B1F2B00F9F36C /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D871821C8B1F2B00F9F36C /* MoreTableViewController.swift */; };
 		28EB62691CA32E8600985F78 /* SeasonSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EB62681CA32E8600985F78 /* SeasonSectionHeaderCollectionReusableView.swift */; };
 		28EBE3F01C888E3800A6E573 /* NSObject+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EBE3EF1C888E3800A6E573 /* NSObject+Delay.swift */; };
@@ -157,13 +155,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 280B287C1C1C89BE006E17B6;
 			remoteInfo = PutioKit;
-		};
-		28C91E551CA709C600D45750 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 280B28301C1C8930006E17B6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 280B28371C1C8930006E17B6;
-			remoteInfo = Fetch;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -314,7 +305,6 @@
 		28B209091C9C8458007229C8 /* TVMovieLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVMovieLoadingView.swift; sourceTree = "<group>"; };
 		28B2090C1C9C906F007229C8 /* UIView+FadeAndHide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FadeAndHide.swift"; sourceTree = "<group>"; };
 		28C76E891C1E15F9005055C8 /* MediaType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
-		28C91E501CA709C600D45750 /* FetchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C91E521CA709C600D45750 /* FetchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUITests.swift; sourceTree = "<group>"; };
 		28C91E541CA709C600D45750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28C91E5A1CA70A0900D45750 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -376,13 +366,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		28C91E4D1CA709C600D45750 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -423,7 +406,6 @@
 				280B28381C1C8930006E17B6 /* Fetch.app */,
 				280B28681C1C8977006E17B6 /* SRBarcodeScanner.framework */,
 				280B287D1C1C89BE006E17B6 /* PutioKit.framework */,
-				28C91E501CA709C600D45750 /* FetchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -936,24 +918,6 @@
 			productReference = 280B287D1C1C89BE006E17B6 /* PutioKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		28C91E4F1CA709C600D45750 /* FetchUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 28C91E591CA709C600D45750 /* Build configuration list for PBXNativeTarget "FetchUITests" */;
-			buildPhases = (
-				28C91E4C1CA709C600D45750 /* Sources */,
-				28C91E4D1CA709C600D45750 /* Frameworks */,
-				28C91E4E1CA709C600D45750 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				28C91E561CA709C600D45750 /* PBXTargetDependency */,
-			);
-			name = FetchUITests;
-			productName = FetchUITests;
-			productReference = 28C91E501CA709C600D45750 /* FetchUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -987,11 +951,6 @@
 						DevelopmentTeam = B598AEF9ZM;
 						LastSwiftMigration = 0810;
 					};
-					28C91E4F1CA709C600D45750 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0810;
-						TestTargetID = 280B28371C1C8930006E17B6;
-					};
 				};
 			};
 			buildConfigurationList = 280B28331C1C8930006E17B6 /* Build configuration list for PBXProject "Fetch" */;
@@ -1010,7 +969,6 @@
 				280B28371C1C8930006E17B6 /* Fetch */,
 				280B28671C1C8977006E17B6 /* SRBarcodeScanner */,
 				280B287C1C1C89BE006E17B6 /* PutioKit */,
-				28C91E4F1CA709C600D45750 /* FetchUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1057,13 +1015,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A99CEB1C9F00FC00AB5ACA /* NoArtwork.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		28C91E4E1CA709C600D45750 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,7 +1105,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C0A3B64AE9933A3866EAFBB4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1169,7 +1120,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DB2A97C234A7A7C666877396 /* [CP] Copy Pods Resources */ = {
@@ -1297,15 +1248,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		28C91E4C1CA709C600D45750 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				28C91E531CA709C600D45750 /* FetchUITests.swift in Sources */,
-				28C91E5B1CA70A0900D45750 /* SnapshotHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1318,11 +1260,6 @@
 			isa = PBXTargetDependency;
 			target = 280B287C1C1C89BE006E17B6 /* PutioKit */;
 			targetProxy = 289480A91DD370D700C6301C /* PBXContainerItemProxy */;
-		};
-		28C91E561CA709C600D45750 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 280B28371C1C8930006E17B6 /* Fetch */;
-			targetProxy = 28C91E551CA709C600D45750 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1592,34 +1529,6 @@
 			};
 			name = Release;
 		};
-		28C91E571CA709C600D45750 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = FetchUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.FetchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Fetch;
-			};
-			name = Debug;
-		};
-		28C91E581CA709C600D45750 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = FetchUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.wearecocoon.FetchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-				TEST_TARGET_NAME = Fetch;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1655,15 +1564,6 @@
 			buildConfigurations = (
 				280B28871C1C89BF006E17B6 /* Debug */,
 				280B28881C1C89BF006E17B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		28C91E591CA709C600D45750 /* Build configuration list for PBXNativeTarget "FetchUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				28C91E571CA709C600D45750 /* Debug */,
-				28C91E581CA709C600D45750 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
