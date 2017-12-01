@@ -77,7 +77,10 @@ class Downloader {
                     
                     DispatchQueue.main.async {
                         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                        self.delegate?.percentageChanged(percentage: "\(progress.fractionCompleted * 100)")
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .percent
+                        let percentage = formatter.string(from: NSNumber(value: progress.fractionCompleted))
+                        self.delegate?.percentageChanged(percentage: percentage!)
                     }
                     
                 }
