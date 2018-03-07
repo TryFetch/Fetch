@@ -23,6 +23,10 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
         noResultsView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.12, alpha: 1)
         tableView.addSubview(noResultsView)
         showNoResultsIfRequired()
+
+        if #available(iOS 11.0, *) {
+            tableView?.dragDelegate = self
+        }
     }
     
     func showNoResultsIfRequired() {
@@ -182,4 +186,23 @@ class DownloadsTableViewController: UITableViewController, DownloaderDelegate {
         }
     }
 
+}
+
+@available(iOS 11.0, *)
+extension DownloadsTableViewController: UITableViewDragDelegate {
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard indexPath.section == 1 else { return [] }
+
+        let path = Downloader.sharedInstance.downloadedFiles[indexPath.row]
+
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let URL = try! documentsUrl.asURL().appendingPathComponent(path)
+
+        guard let itemProvider = NSItemProvider(contentsOf: URL) else {
+            return []
+        }
+
+        return [UIDragItem(itemProvider: itemProvider)]
+    }
 }
