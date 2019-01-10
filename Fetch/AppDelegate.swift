@@ -123,6 +123,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PutioDelegate {
         }
         
     }
+    
+    // MARK: - Support IOS 10+ open function
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        
+        if Putio.accessToken != nil {
+            
+            let sb: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let sb2: UIStoryboard = UIStoryboard(name: "Transfers", bundle: nil)
+            
+            // Setup the root view controller
+            let rvc: UITabBarController = sb.instantiateInitialViewController() as! UITabBarController
+            
+            // Set the selected tab to transfers
+            rvc.selectedIndex = 2
+            self.window?.rootViewController = rvc
+            
+            // Setup add files to be vc
+            let vc: UINavigationController = sb2.instantiateViewController(withIdentifier: "addFiles") as! UINavigationController
+            let childView: AddFilesViewController = vc.viewControllers[0] as! AddFilesViewController
+            
+            // Move the url reference to the controller
+            childView.magnetLink = url.absoluteString
+            
+            // Present
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+            })
+            
+            return true
+            
+        }
+        
+        return false
+    }
 
     
     // MARK: - Add New Files
